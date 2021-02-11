@@ -1,46 +1,103 @@
+import React from "react";
 import { createGlobalStyle } from "styled-components";
 
-export default createGlobalStyle`
- 
-  /* GLobal Variables */ 
+const Styles = createGlobalStyle`
+  
+  .base-ui {
 
-  :root {
-    
-    /* Shadows */
     --bui-box-shadow: 0px 9px 9px -11px rgba(0, 0, 0, 0.5);
     --bui-lift-shadow: 0px 23px 18px -21px rgba(0, 0, 0, 0.7);
 
-  }
+    --bui-space: 0.5rem;
+    --bui-space-2x: 1rem;
+    --bui-space-3x: 1.5rem;
+    --bui-space-4x: 2rem;
 
-  /* Box sizing rules */
-  
-  *,
-  *::before,
-  *::after {
-    box-sizing: border-box;
-  }
-
-  /* Button reset (lookss like a div) */
-  button, a {
-    margin: 0;
-    padding: 0;
-    border: none;
-    color: inherit;
-    font-size: 1em;    
-    cursor: pointer;
-    line-height: inherit;
-    display: inline-flex;
-    font-family: inherit;
-    text-decoration: none;
-    justify-content: center;
-    background: transparent;
-    -moz-appearance: none;
-    -webkit-appearance: none;
-    transition: background-color .3s ease;
-    & > * {
-      pointer-events: none;
+    & *,
+    & *::before,
+    & *::after {
+      box-sizing: border-box;
     }
+
+    /* Spacing */
+
+    & .--space {
+      margin: var(--bui-space);
+    }
+
+    & .--space-2x {
+      margin: var(--bui-space-2x);
+    }
+
+    & .--space-3x {
+      margin: var(--bui-space-3x);
+    }
+
+    & .--space-4x {
+      margin: var(--bui-space-4x);
+    }
+
+  /* Spacing Inset */
+
+    & .--space-i {
+      padding: var(--bui-space);
+    }
+
+    & .--space-2x-i {
+      padding: var(--bui-space-2x);
+    }
+
+    & .--space-3x-i {
+      padding: var(--bui-space-3x);
+    }
+
+    & .--space-4x-i {
+      padding: var(--bui-space-4x);
+    }
+
+    /* Verical & Horizontal Alignment */
+
+    & .--stack-start  {
+      align-items: flex-start;
+    }
+
+    & .--stack-end {
+      align-items: flex-end;
+    }
+
+    & .--stack-stretch {
+      align-items: stretch;
+    }
+
+    & .--stack-center {      
+      align-items: center;
+    }
+
+    & .--rail-end {
+      justify-content: flex-end;
+    }
+   
+    & .--rail-start {
+      justify-content: flex-start;
+    }
+
+    & .--rail-center {
+      justify-content: center;
+    }
+
+    & .--rail-spread {
+      justify-content: space-between;
+    }
+
+    & .--rail-evenly {
+      justify-content: space-evenly;
+    } 
+
+    & .--rail-around {
+      justify-content: space-around;
+    } 
   }
+
 
 
 /* Messahe Bubble 
@@ -101,3 +158,10 @@ export default createGlobalStyle`
 // ---- Global Utilities ---------------
 
 `;
+
+export default ({ children }) => (
+  <div className="base-ui">
+    {children}
+    <Styles />
+  </div>
+);
