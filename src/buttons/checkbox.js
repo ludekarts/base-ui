@@ -28,15 +28,22 @@ const Input = styled.input`
       position: absolute;
       align-items: center;
       display: inline-flex;
-      justify-content: center;
-      color: ${({ bg }) => bg};
+      justify-content: center;      
       box-shadow: inset 0 0 0 0 transparent;
       transition: box-shadow .3s ease;
     }
     
-    &:checked + span {
-      box-shadow: inset 0 0 0 1.15rem ${({ color }) => color};
-    }
+    ${({ color, bg, rounded }) => `
+      & + span {
+        color: ${bg};
+        border-radius: ${rounded ? "50%" : "0.2rem"};
+        box-shadow: 0 0 0 0.15rem ${color} inset; 
+      }
+
+      &:checked + span {
+        box-shadow: 0 0 0 1.5rem ${color} inset; 
+      }
+    `};
 
   }
 `;
@@ -45,45 +52,23 @@ const Label = styled.label`
   width: 1.5rem;
   height: 1.5rem;
   flex-shrink: 0;
-  line-height: 1em;
+  line-height: 1;
   overflow: hidden;
   position: relative;
-  border-radius: 2px;
   align-items: center;
   display: inline-flex;
-  justify-content: center;
-  
-  &::before {
-    top:0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    content: "";
-    position: absolute;
-    box-shadow: ${({ color }) => `inset 0.15em 0.15em 0px ${color}, inset -0.15em -0.15em 0px ${color}`}; 
-  }
+  justify-content: center;  
 `;
+
 
 // ----  Checkbox ----------------
 
 const Checkbox = forwardRef((props, ref) => {
-  const { id, name, mode, color, bg, required, onChange, value, defaultValue, ...rest } = props;
+  const { id, name, type, color, bg, rounded, ...rest } = props;
   return (
-    <Label htmlFor={id} color={color}>
-      <Input
-        bg={bg}
-        id={id}
-        ref={ref}
-        name={name}
-        type={mode}
-        color={color}
-        value={value}
-        required={required}
-        onChange={onChange}
-        defaultValue={defaultValue}
-        {...rest}
-      />
-      <span>✓</span>
+    <Label htmlFor={id || name} color={color} bg={bg} rounded={rounded}>
+      <Input id={id || name} name={name} type={type} color={color} bg={bg} rounded={rounded} ref={ref} {...rest} />
+      <span>{rounded ? "•" : "✓"}</span>
     </Label>
   );
 });
@@ -91,27 +76,17 @@ const Checkbox = forwardRef((props, ref) => {
 Checkbox.displayName = "Checkbox";
 
 Checkbox.propTypes = {
-  id: PropTypes.string.isRequired,
   bg: PropTypes.string,
-  name: PropTypes.string,
   color: PropTypes.string,
-  required: PropTypes.bool,
-  onChange: PropTypes.func,
-  value: PropTypes.oneOfType([
-    PropTypes.number,
-    PropTypes.string,
-  ]),
-  defaultValue: PropTypes.oneOfType([
-    PropTypes.number,
-    PropTypes.string,
-  ]),
-  mode: PropTypes.oneOf(["checkbox", "radio"]),
+  rounded: PropTypes.bool,
+  name: PropTypes.string.isRequired,
+  type: PropTypes.oneOf(["checkbox", "radio"]),
 };
 
 Checkbox.defaultProps = {
-  name: PropTypes.string.isRequired,
-  mode: "checkbox",
+  type: "checkbox",
   color: "#666666",
+  rounded: false,
   bg: "white",
 };
 

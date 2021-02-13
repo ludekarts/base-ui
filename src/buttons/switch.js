@@ -1,104 +1,85 @@
-import React from "react";
+import React, { forwardRef } from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
 // Styled.
-const SwitchButton = styled.label`
+const Label = styled.label`
+  font-size: ${({ size }) => size === "lg" ? "1.5rem" : size === "sm" ? "0.75rem" : "1rem"};
   width: 2.8em;
   height: 1.6em;
   flex-shrink: 0;
-  position: relative;
-  display: inline-block;
-
+  position: relative;  
+  display: inline-flex;
+  
   & > input {
-    display:none;
-    &:checked + div {
-      background: ${({ color }) => color || "#666"};
-
+    display: none;
+    &:checked + span {
+      background-color: ${({ color, offColor }) => offColor || color};
       &::before {
         transform: translateX(1.2em) translateZ(0);
-      }
-
-      &::after {
-        right: none;
-        left: 0.4em;
-        bottom: 0.2em;
-        line-height: 1.2em;
-        content: "${({ off }) => off}";
       }
     }
   }
 `;
 
-const Slider = styled.div`
+const Slider = styled.span`
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
   cursor: pointer;
-  position: absolute;
-  border-radius: 2em;
-  transition: right .2s ease;
-  background: ${({ color }) => color || "#666"};
+  font-size: inherit;
+  position: absolute;  
+  transition: right .2s ease, background-color .2s ease;
+  
+  ${({ color, squared }) => `
+    border-radius: ${squared ? "0.1em" : "2em"};
+    background-color: ${color};
 
-  &::after {
-    right: 0.4em;
-    bottom: 0.2em;
-    color: white;
-    font-size: 1.2em;
-    font-weight: bold;
-    position: absolute;
-    line-height: 1.2em;
-    font-family: monospace;
-    content: "${({ on }) => on}";
-  }
-
+    &::before {
+      border-radius: ${squared ? "0.1em" : "50%"}; 
+    }
+  `};
+  
   &::before {
     content: "";
     left: 0.2em;
-    bottom: 0.2em;
     width: 1.2em;
     height: 1.2em;
-    border-radius: 50%;
+    bottom: 0.2em;    
     position: absolute;
+    background-color: #FFFFFF;
     transition: transform .2s ease;
-    background-color: #fff;
   }
 `;
 
-const Switch = props => {
-  const { id, name, checked, onChange, color, onGlyph, offGlyph, value, defaultChecked, ...rest } = props;
+const Switch = forwardRef((props, ref) => {
+  const { id, name, type, color, size, offColor, squared, ...rest } = props;
   return (
-    <SwitchButton htmlFor={id} off={offGlyph} color={color} {...rest} >
-      <input
-        id={id}
-        name={name}
-        value={value}
-        type="checkbox"
-        checked={checked}
-        onChange={onChange}
-        defaultChecked={defaultChecked} />
-      <Slider on={onGlyph} color={color} />
-    </SwitchButton>
+    <Label htmlFor={id || name} size={size} offColor={offColor}>
+      <input id={id || name} name={name} type={type} ref={ref} {...rest} />
+      <Slider color={color} squared={squared} />
+    </Label>
   );
-};
+});
+
 
 Switch.displayName = "Switch";
 
 Switch.propTypes = {
-  id: PropTypes.string.isRequired,
-  name: PropTypes.string,
-  checked: PropTypes.bool,
-  onChange: PropTypes.func,
+  size: PropTypes.string,
   color: PropTypes.string,
-  value: PropTypes.string,
-  onGlyph: PropTypes.string,
-  offGlyph: PropTypes.string,
-  defaultChecked: PropTypes.bool,
+  squared: PropTypes.bool,
+  offColor: PropTypes.string,
+  name: PropTypes.string.isRequired,
+  type: PropTypes.oneOf(["checkbox", "radio"]),
 };
 
 Switch.defaultProps = {
+  size: "md",
+  squared: false,
   color: "#666666",
+  type: "checkbox",
 };
 
 export default Switch;
