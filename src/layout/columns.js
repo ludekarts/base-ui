@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import PropTypes from "prop-types";
 
-const Collumns = styled.div`
+const Columns = styled.div`
   width: 100%;
   display: flex;
   flex-wrap: wrap;
@@ -13,15 +13,15 @@ const Collumns = styled.div`
   }
 `;
 
-Collumns.displayName = "Collumns";
-Collumns.propTypes = {
+Columns.displayName = "Columns";
+Columns.propTypes = {
   gap: PropTypes.string,
   minSize: PropTypes.string,
 };
 
-Collumns.defaultProps = {
+Columns.defaultProps = {
   gap: "1em",
   minSize: "14rem",
 }
 
-export default Collumns;
+export default Columns;

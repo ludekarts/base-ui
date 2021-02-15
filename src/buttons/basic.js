@@ -17,7 +17,6 @@ const ButtonBasic = styled.button`
   -webkit-appearance: none;  
   transition: filter .3s ease;
 
-
   ${({ size, text, color, inverse }) => `
     ${size === "lg" ? "padding: 1rem 1.5rem;" : size === "sm" ? "padding: 0.2rem 0.5rem;" : "padding: 0.5rem 1rem;"}
     background-color: ${inverse ? text : color};
@@ -30,7 +29,7 @@ const ButtonBasic = styled.button`
       right: 0;
       bottom: 0;
       z-index: -1;
-      opacity: 0.5;
+      opacity: 0.6;
       position: absolute;   
       border-radius: inherit;      
       transition: box-shadow .3s ease;
@@ -39,10 +38,9 @@ const ButtonBasic = styled.button`
     &:focus {
       outline: none;            
       &::before {                
-        box-shadow: 0 0 0 3px ${color};
+        box-shadow: 0 0 0 3px ${color === "#dddddd" || color === "transparent" ? "rgb(66, 153, 225)" : color} ;
       }
     }
-    
   `}
 
   & > * {

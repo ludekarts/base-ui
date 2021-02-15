@@ -69,7 +69,7 @@ const Styles = createGlobalStyle`
       align-items: stretch;
     }
 
-    & .--stack-center {      
+    & .--stack-center, .--v-center {      
       align-items: center;
     }
 
@@ -81,7 +81,7 @@ const Styles = createGlobalStyle`
       justify-content: flex-start;
     }
 
-    & .--rail-center {
+    & .--rail-center, .--h-center  {
       justify-content: center;
     }
 
@@ -96,6 +96,16 @@ const Styles = createGlobalStyle`
     & .--rail-around {
       justify-content: space-around;
     } 
+
+    /* Default focus */
+
+    & .base-ui-focus {      
+        transition: box-shadow .3s ease;
+      &:focus {
+        outline: none;
+        box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.6);
+      }
+    }
   }
 
 

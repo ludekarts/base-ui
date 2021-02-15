@@ -51,7 +51,7 @@ const Close = styled.button`
 const Drawer = forwardRef((props, ref) => {
   const { children, open, onClose, nested, top, width, ...rest } = props;
   return (
-    <Overlay open={open} onClick={onClose} tint="0.7">
+    <Overlay open={open} onClick={onClose} tint={0.7}>
       <Wrapper {...rest} open={open} nested={nested} top={top} width={width} onClick={event => event.stopPropagation()} ref={ref}>
         {
           !onClose ? null :
