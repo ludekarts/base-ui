@@ -18,10 +18,10 @@ const ButtonBasic = styled.button`
   transition: filter .3s ease;
 
 
-  ${({ size, color, bg, inverse }) => `
+  ${({ size, text, color, inverse }) => `
     ${size === "lg" ? "padding: 1rem 1.5rem;" : size === "sm" ? "padding: 0.2rem 0.5rem;" : "padding: 0.5rem 1rem;"}
-    background-color: ${inverse ? color : bg};
-    color: ${inverse ? bg : color};
+    background-color: ${inverse ? text : color};
+    color: ${inverse ? color : text};
    
     &::before {
       content: "";
@@ -39,7 +39,7 @@ const ButtonBasic = styled.button`
     &:focus {
       outline: none;            
       &::before {                
-        box-shadow: 0 0 0 3px ${bg};
+        box-shadow: 0 0 0 3px ${color};
       }
     }
     
@@ -62,8 +62,8 @@ const ButtonBasic = styled.button`
 ButtonBasic.propTypes = {
   disabled: PropTypes.bool,
   color: PropTypes.string,
+  text: PropTypes.string,
   type: PropTypes.string,
-  bg: PropTypes.string,
   inverse: PropTypes.oneOfType([
     PropTypes.bool,
     PropTypes.number,
@@ -73,9 +73,9 @@ ButtonBasic.propTypes = {
 ButtonBasic.defaultProps = {
   disabled: false,
   inverse: false,
-  color: "inherit",
+  text: "inherit",
   type: "button",
-  bg: "#dddddd",
+  color: "#dddddd",
 };
 
 export default ButtonBasic;

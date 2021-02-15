@@ -7,6 +7,7 @@ import { GlobalStyles, Text } from "../src";
 import { Container, Rail, Stack, Grid, Space, Collumns } from "../src/layout";
 import { Button, Checkbox, Switch } from "../src/buttons";
 import Form from "../src/form";
+import { Drawer, Modal, Overlay } from "../src/panels";
 
 const Wrapper = styled.div`
   font-family: "Lato", sans-serif;
@@ -49,6 +50,9 @@ const Box = styled.div`
 
 const Docs = () => {
   const [form, setForm] = useState({ username: "", password: "", isAdmin: false, gender: "" });
+  const [showOverlay, toggleOverlay] = useState(false);
+  const [showDrawer, toggleDrawer] = useState(false);
+  const [showModal, toggleModal] = useState(false);
   return (
     <GlobalStyles>
       <Wrapper>
@@ -62,22 +66,22 @@ const Docs = () => {
                 <h4>Button: Small</h4>
                 <Rail className="--stack-center">
                   <Button size="sm" >Small Color</Button>
-                  <Button size="sm" color="white" bg="var(--pink)">Small Bg</Button>
-                  <Button as="a" href="#" size="sm" color="white" bg="var(--blue)">Small Link</Button>
+                  <Button size="sm" text="white" color="var(--pink)">Small Bg</Button>
+                  <Button as="a" href="#" size="sm" text="white" color="var(--blue)">Small Link</Button>
                 </Rail>
 
                 <h4>Button: Normal</h4>
                 <Rail className="--stack-center">
                   <Button>Normal Color</Button>
-                  <Button color="white" bg="var(--pink)">Normal Bg</Button>
-                  <Button as="a" href="#" color="white" bg="var(--blue)">Normal Link</Button>
+                  <Button text="white" color="var(--pink)">Normal Bg</Button>
+                  <Button as="a" href="#" text="white" color="var(--blue)">Normal Link</Button>
                 </Rail>
 
                 <h4>Button: Large</h4>
                 <Rail className="--stack-center">
                   <Button size="lg" >Large Color</Button>
-                  <Button size="lg" color="white" bg="var(--pink)">Large Bg</Button>
-                  <Button as="a" href="#" size="lg" color="white" bg="var(--blue)">Large Link</Button>
+                  <Button size="lg" text="white" color="var(--pink)">Large Bg</Button>
+                  <Button as="a" href="#" size="lg" text="white" color="var(--blue)">Large Link</Button>
                 </Rail>
               </Stack>
             </Space>
@@ -181,7 +185,7 @@ const Docs = () => {
             </Space>
 
             <Text as="h2">Rail</Text>
-            <Rail breakpoint="400px" className="--rail-end">
+            <Rail breakpoint="400px" className="--rail-spread">
               <Box className="nostretch --space-4x-i">1</Box>
               <Box className="nostretch --space-4x-i">2</Box>
               <Box className="nostretch --space-4x-i">3</Box>
@@ -204,11 +208,36 @@ const Docs = () => {
 
             <Text as="h2">Collumns</Text>
             <Collumns minSize="340px">
-              <Box>11</Box>
-              <Box>12</Box>
+              <Space breakpoint="760px" minmax="max" spaceBefore="0 0.5em 0 0" spaceAfter="0">
+                <Box>11</Box>
+              </Space>
+              <Space breakpoint="760px" minmax="max" spaceBefore="0 0 0 0.5em" spaceAfter="1em 0 0">
+                <Box>12</Box>
+              </Space>
             </Collumns>
+
+            <Text as="h2">Panels</Text>
+            <Rail>
+              <Button onClick={() => toggleOverlay(!showOverlay)}>Overlay</Button>
+              <Button color="var(--pink)" text="white" onClick={() => toggleModal(!showModal)}>Modal</Button>
+              <Button color="var(--blue)" text="white" onClick={() => toggleDrawer(!showDrawer)}>Drawer</Button>
+            </Rail>
+
+            <Space space="0 0 3em" />
           </Stack>
         </Container>
+
+        <Overlay open={showOverlay} onClick={() => toggleOverlay(false)} />
+
+        <Drawer open={showDrawer} onClose={() => toggleDrawer(false)}>
+          <h3>Hello drawer</h3>
+          <p>This is a sample drawer content...</p>
+        </Drawer>
+
+        <Modal open={showModal} onClose={() => toggleModal(false)}>
+          <h3>Hello modal</h3>
+          <p>This is a sample modal content...</p>
+        </Modal>
       </Wrapper>
     </GlobalStyles>
   );
@@ -216,48 +245,3 @@ const Docs = () => {
 
 Docs.displayName = "Docs";
 export default Docs;
-
-/*
-
-<h4>Underline</h4>
-  <Rail className="--stack-center">
-    <Underline size="sm" color="rebeccapurple">Small</Underline>
-    <Underline size="md" bg="var(--pink)">Normal</Underline>
-    <Underline size="md" disabled>Disabled</Underline>
-    <Underline size="lg" color="white" bg="#3355ee">Large</Underline>
-    <Underline size="lg" color="white" bg="#3355ee" inverse>Inverse</Underline>
-  </Rail>
-  <h4>Ghost</h4>
-  <Rail className="--stack-center" breakpoint="570px">
-    <Ghost size="sm" color="rebeccapurple">Small</Ghost>
-    <Ghost size="md" color="var(--pink)">Normal</Ghost>
-    <Ghost size="md" disabled>Disabled</Ghost>
-    <Ghost size="lg" color="#3355ee" bg="#FFFFFF">Large</Ghost>
-    <Ghost size="lg" color="#3355ee" bg="#FFFFFF" inverse>Inverse</Ghost>
-  </Rail>
-  <Rail className="--stack-center">
-    <Ghost size="sm" rounded color="rebeccapurple">Small</Ghost>
-    <Ghost size="md" rounded color="var(--pink)">Normal</Ghost>
-    <Ghost size="md" rounded disabled>Disabled</Ghost>
-    <Ghost size="lg" rounded color="#3355ee" bg="#FFFFFF">Large</Ghost>
-    <Ghost size="lg" rounded color="#3355ee" bg="#FFFFFF" inverse>Inverse</Ghost>
-  </Rail>
-  <h4>Checkbox</h4>
-  <Rail className="--stack-center">
-    <Checkbox id="c-1" />
-    <Checkbox id="c-2" color="var(--pink)" defaultChecked />
-    <Checkbox id="c-3" color="#3355ee" />
-  </Rail>
-  <h4>Radio</h4>
-  <Rail className="--stack-center">
-    <Checkbox id="c-4" mode="radio" />
-    <Checkbox id="c-5" mode="radio" color="var(--pink)" />
-    <Checkbox id="c-6" mode="radio" color="#3355ee" />
-  </Rail>
-  <h4>Switch</h4>
-  <Rail className="--stack-center">
-    <Switch />
-    <Switch color="var(--pink)" />
-    <Switch color="#3355ee" />
-  </Rail>
-*/
