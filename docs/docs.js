@@ -8,6 +8,8 @@ import { Container, Rail, Stack, Grid, Space, Columns } from "../src/layout";
 import { Button, Checkbox, Switch } from "../src/buttons";
 import Form from "../src/form";
 import { Drawer, Modal, Overlay } from "../src/panels";
+import { Dropdown, DropdownToggle } from "../src/dropdown";
+import Collapse from "../src/collapse";
 
 const Wrapper = styled.div`
   font-family: "Lato", sans-serif;
@@ -24,10 +26,18 @@ const Wrapper = styled.div`
   --akcent-two: #8bc34a;
 `}
  
+  & pre {
+    margin: 0;
+  }
 
-  & input {
+  & input, & pre {
+    width: 100%;
     padding: 0.8em 1em;
     border: 1px solid #ddd;
+  }
+
+  .flex {
+    display: flex
   }
 
   .text-right {
@@ -68,8 +78,25 @@ const Box = styled.div`
   }
 `;
 
+const Menu = styled.div`
+  position: relative;
+`;
+
+const DropList = styled(Dropdown)`
+  z-index: 20;
+  padding: 1em;
+  top: 120%;
+  width: 11rem;
+  position: absolute;
+  border-radius: 0.2em;
+  border: 1px solid #ddd;
+  background-color: white;
+  box-shadow: var(--bui-box-shadow);
+`;
+
 const Docs = () => {
-  const [form, setForm] = useState({ username: "", password: "", isAdmin: false, gender: "" });
+  const [form, setForm] = useState({});
+  const [showCollapse, toggleCollapse] = useState(false);
   const [showOverlay, toggleOverlay] = useState(false);
   const [showDrawer, toggleDrawer] = useState(false);
   const [showModal, toggleModal] = useState(false);
@@ -81,29 +108,52 @@ const Docs = () => {
           <Stack>
             <Text as="h1" color="deepskyblue">🔮 Hello! Base-UI Docs </Text>
 
-            <Space className="border-gray" space="0.3em 1em" inset>
-              <Rail className="--v-center">
-                <Text>Theme as U like 😉</Text>
-                <Button onClick={() => changeTheme("one")} color="transparent">
-                  <MiniBox color="#666666" />
-                  <MiniBox color="#ff2266" />
-                  <MiniBox color="#3355ee" />
-                </Button>
-                <Button onClick={() => changeTheme("two")} color="transparent">
-                  <MiniBox color="#666666" />
-                  <MiniBox color="#673ab7" />
-                  <MiniBox color="#ffc107" />
-                </Button>
-                <Button onClick={() => changeTheme("three")} color="transparent">
-                  <MiniBox color="#666666" />
-                  <MiniBox color="#009688" />
-                  <MiniBox color="#8bc34a" />
-                </Button>
-              </Rail>
+            <Text as="h2">Dropdown</Text>
+            <Space inset space="0 1em">
+              <Menu>
+                <DropdownToggle as={Button} target="colors">
+                  <Text>Theme as U like 😉</Text>
+                </DropdownToggle>
+
+                <DropList name="colors" autoHide>
+                  <Stack>
+                    <Button onClick={() => changeTheme("one")} color="transparent">
+                      <Rail stretch className="--rail-spread --v-center">
+                        <span>One</span>
+                        <Rail gap="0">
+                          <MiniBox color="#666666" />
+                          <MiniBox color="#ff2266" />
+                          <MiniBox color="#3355ee" />
+                        </Rail>
+                      </Rail>
+                    </Button>
+                    <Button onClick={() => changeTheme("two")} color="transparent">
+                      <Rail stretch className="--rail-spread --v-center">
+                        <span>Two</span>
+                        <Rail gap="0">
+                          <MiniBox color="#666666" />
+                          <MiniBox color="#673ab7" />
+                          <MiniBox color="#ffc107" />
+                        </Rail>
+                      </Rail>
+                    </Button>
+                    <Button onClick={() => changeTheme("three")} color="transparent">
+                      <Rail stretch className="--rail-spread --v-center">
+                        <span>Three</span>
+                        <Rail gap="0">
+                          <MiniBox color="#666666" />
+                          <MiniBox color="#009688" />
+                          <MiniBox color="#8bc34a" />
+                        </Rail>
+                      </Rail>
+                    </Button>
+                  </Stack>
+                </DropList>
+              </Menu>
             </Space>
 
             <Text as="h2">Buttons</Text>
-            <Space inset>
+            <Space space="1em" inset>
               <Stack>
                 <h4>Button: Small</h4>
                 <Rail className="--stack-center">
@@ -129,8 +179,7 @@ const Docs = () => {
             </Space>
 
             <Text as="h2">Checkbox</Text>
-            <input type="checkbox" />
-            <Space inset>
+            <Space space="1em" inset>
               <Stack>
                 <h4>Uncontrolled</h4>
                 <Rail className="--stack-center">
@@ -157,7 +206,7 @@ const Docs = () => {
             </Space>
 
             <Text as="h2">Switch</Text>
-            <Space inset>
+            <Space space="1em" inset>
               <Stack>
                 <h4>Uncontrolled</h4>
                 <Rail className="--stack-center">
@@ -176,17 +225,33 @@ const Docs = () => {
             </Space>
 
             <Text as="h2">Panels</Text>
-            <Rail>
-              <Button onClick={() => toggleOverlay(!showOverlay)}>Overlay</Button>
-              <Button color="var(--akcent-one)" text="white" onClick={() => toggleModal(!showModal)}>Modal</Button>
-              <Button color="var(--akcent-two)" text="white" onClick={() => toggleDrawer(!showDrawer)}>Drawer</Button>
-            </Rail>
+            <Space space="1em" inset>
+              <Rail>
+                <Button onClick={() => toggleOverlay(!showOverlay)}>Overlay</Button>
+                <Button color="var(--akcent-one)" text="white" onClick={() => toggleModal(!showModal)}>Modal</Button>
+                <Button color="var(--akcent-two)" text="white" onClick={() => toggleDrawer(!showDrawer)}>Drawer</Button>
+              </Rail>
+            </Space>
+
+            <Text as="h2">Collapse</Text>
+            <Space space="1em" inset>
+              <Stack gap="0">
+                <div>
+                  <Button onClick={() => toggleCollapse(!showCollapse)} text="white" color="var(--akcent-two)">Toggle Colapse</Button>
+                </div>
+                <Collapse open={showCollapse} minHeight={36}>
+                  <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quibusdam, cum. Aliquid nulla distinctio fuga totam eum culpa molestias veritatis mollitia exercitationem, recusandae voluptates maxime nesciunt esse iste. Nihil, tempora quia.</p>
+                  <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quibusdam, cum. Aliquid nulla distinctio fuga totam eum culpa molestias veritatis mollitia exercitationem, recusandae voluptates maxime nesciunt esse iste. Nihil, tempora quia.</p>
+                  <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quibusdam, cum. Aliquid nulla distinctio fuga totam eum culpa molestias veritatis mollitia exercitationem, recusandae voluptates maxime nesciunt esse iste. Nihil, tempora quia.</p>
+                </Collapse>
+              </Stack>
+            </Space>
 
             <Text as="h2">Form</Text>
-            <Space inset >
+            <Space space="1em" inset>
               <Columns minSize="420px">
                 <Stack>
-                  <Form onSubmit={data => setForm({ ...data, isAdmin: data.isAdmin.checked })} includeCheckStatus>
+                  <Form onSubmit={data => setForm(data)} includeCheckStatus>
                     <Stack>
                       <Rail expandContent>
                         <input name="username" type="text" placeholder="Username" required className="base-ui-focus" />
@@ -215,20 +280,11 @@ const Docs = () => {
                 </Stack>
 
                 <Space breakpoint="920px" minmax="max" spaceBefore="0 1em" spaceAfter="1em 0 0" inset stretch>
-                  <Rail className="--stack-spread" stretch>
-                    <Stack gap="0.5em">
-                      <Text size="0.8em">Username</Text>
-                      <Text size="0.8em">Password</Text>
-                      <Text size="0.8em">Is Administrator</Text>
-                      <Text size="0.8em">Gender</Text>
-                    </Stack>
-                    <Stack gap="0.5em">
-                      <Text size="0.8em">{form.username}</Text>
-                      <Text size="0.8em">{form.password}</Text>
-                      <Text size="0.8em">{form.isAdmin ? "🐱‍👤" : "🐱‍💻"}</Text>
-                      <Text size="0.8em">{form.gender === "male" ? "👦" : "👩"}</Text>
-                    </Stack>
-                  </Rail>
+                  <pre>
+                    {
+                      JSON.stringify(form, null, 2)
+                    }
+                  </pre>
                 </Space>
 
               </Columns>
