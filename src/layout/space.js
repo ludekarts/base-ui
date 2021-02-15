@@ -1,20 +1,36 @@
 import styled from "styled-components";
 import PropTypes from "prop-types";
 
+
 const Space = styled.div`
   display: flex;
   width: ${({ stretch }) => stretch ? "100%" : "auto"};
-  ${({ size, inset, children }) => !children ? `margin: ${size} 0 0` : inset ? `padding: ${size}` : `margin: ${size}`};
+  ${({ breakpoint, minmax, space, inset, spaceBefore, spaceAfter }) => !breakpoint
+    ? inset ? `padding: ${space};` : `margin: ${space};`
+    : `
+      ${inset ? `padding: ${spaceBefore || space}` : `margin: ${spaceBefore || space}`};
+      @media (${minmax === "min" ? "min-width" : "max-width"}: ${breakpoint}) {
+        ${inset ? `padding: ${spaceAfter || space}` : `margin: ${spaceAfter || space}`};
+      }
+    `
+  }  
 `;
 
 Space.propTypes = {
-  size: PropTypes.string,
+  space: PropTypes.string,
   inset: PropTypes.bool,
   stretch: PropTypes.bool,
+
+  minmax: PropTypes.string,
+  breakpoint: PropTypes.string,
+  spaceBefore: PropTypes.string,
+  spaceAfter: PropTypes.string,
 };
 
 Space.defaultProps = {
-  size: "1em",
+  space: "1em 0 0",
+  minmax: "min",
+  inset: false,
   stretch: false,
 };
 

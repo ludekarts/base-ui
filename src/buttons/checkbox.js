@@ -31,6 +31,19 @@ const Input = styled.input`
       justify-content: center;      
       box-shadow: inset 0 0 0 0 transparent;
       transition: box-shadow .3s ease;
+
+      &::after {
+        content: "";
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: -1;
+        opacity: 0.5;
+        position: absolute;   
+        border-radius: inherit;      
+        transition: box-shadow .3s ease;
+      }
     }
     
     ${({ color, bg, rounded }) => `
@@ -43,6 +56,13 @@ const Input = styled.input`
       &:checked + span {
         box-shadow: 0 0 0 1.5rem ${color} inset; 
       }
+
+      &:focus + span {
+        &::after {     
+          border-radius: ${rounded ? "50%" : "0.2rem"};
+          box-shadow: 0 0 0 0.15rem ${color};          
+        }
+      }
     `};
 
   }
@@ -53,7 +73,6 @@ const Label = styled.label`
   height: 1.5rem;
   flex-shrink: 0;
   line-height: 1;
-  overflow: hidden;
   position: relative;
   align-items: center;
   display: inline-flex;

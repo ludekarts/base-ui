@@ -12,11 +12,23 @@ const Label = styled.label`
   display: inline-flex;
   
   & > input {
-    display: none;
+    opacity:0;
     &:checked + span {
       background-color: ${({ color, offColor }) => offColor || color};
       &::before {
         transform: translateX(1.2em) translateZ(0);
+      }    
+    }
+
+    &:checked:focus + span {
+      &::after {                
+        box-shadow: 0 0 0 3px  ${({ color, offColor }) => offColor || color};
+      }
+    }
+
+    &:focus + span {
+      &::after {                
+        box-shadow: 0 0 0 3px ${({ color }) => color};
       }
     }
   }
@@ -51,12 +63,25 @@ const Slider = styled.span`
     background-color: #FFFFFF;
     transition: transform .2s ease;
   }
+
+  &::after {
+    content: "";
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+    opacity: 0.5;
+    position: absolute;   
+    border-radius: inherit;      
+    transition: box-shadow .3s ease;
+  }
 `;
 
 const Switch = forwardRef((props, ref) => {
   const { id, name, type, color, size, offColor, squared, ...rest } = props;
   return (
-    <Label htmlFor={id || name} size={size} offColor={offColor}>
+    <Label htmlFor={id || name} size={size} color={color} offColor={offColor}>
       <input id={id || name} name={name} type={type} ref={ref} {...rest} />
       <Slider color={color} squared={squared} />
     </Label>
