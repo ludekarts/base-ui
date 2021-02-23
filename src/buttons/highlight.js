@@ -20,7 +20,7 @@ const ButtonWrapper = styled.button`
   background-color: transparent;
 
   & > span.base-ui-button-text {
-    z-index: 1;
+    z-index: 1;    
   }
   
   & > span.base-ui-button-effect {  

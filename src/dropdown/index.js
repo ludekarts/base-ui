@@ -4,14 +4,15 @@ import styled from "styled-components";
 
 // USAGE
 /*
+  import Dropdown from "@ludekarts/base-ui/dropdown";
+  ...
 
-<DropdownToggle target="dropdownName">
-  Content
-</DropdownToggle>
+  
+  <button data-bui-dropdown-target="dropdownName">Toggle my dropdown</button>
 
-<Dropdown name="dropdownName" onToggle={() => {}} autoHide>
-  Content
-</Dropdown>
+  <Dropdown name="dropdownName" onToggle={() => {}} autoHide>
+    Content
+  </Dropdown>
 
 */
 
@@ -33,25 +34,7 @@ const Container = styled.div`
   }
 `;
 
-const ToggleButton = styled.button`
-  position: relative;
-  cursor: pointer;
-  
-  &:focus {
-    outline: none;
-  }
-
-  &::before {
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    content: "";
-    position: absolute;
-  }
-`;
-
-export class Dropdown extends React.PureComponent {
+export default class Dropdown extends React.PureComponent {
 
   static propTypes = {
     onToggle: PropTypes.func,
@@ -71,7 +54,7 @@ export class Dropdown extends React.PureComponent {
 
   handleClickOutside = event => {
     // Click outside but on Toggle button.
-    if (event.target.dataset && event.target.dataset.dropToggle === this.props.name) {
+    if (event.target.dataset && event.target.dataset.buiDropdownTarget === this.props.name) {
       return this.setState({
         show: !this.state.show
       });
@@ -115,11 +98,3 @@ export class Dropdown extends React.PureComponent {
     )
   }
 }
-
-export const DropdownToggle = ({ target, ...props }) => (
-  <ToggleButton {...props} data-drop-toggle={target} />
-);
-
-DropdownToggle.propTypes = {
-  target: PropTypes.string.isRequired
-};

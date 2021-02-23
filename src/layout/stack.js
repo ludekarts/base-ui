@@ -2,14 +2,15 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 
 const Stack = styled.div`
-  
   display: flex;
   flex-direction: column;
   & > * + * {
     margin-top: ${({ gap }) => gap};
   }
   
-  ${({ stretch, breakpoint, gap, expandContent }) => !breakpoint ? "" : `  
+  ${({ stretch, breakpoint, gap, expandContent }) => !breakpoint ? `
+    ${stretch ? "width: 100%;" : ""}
+    ` : `  
     ${stretch ? "width: 100%;" : ""}
     
     @media (min-width: ${breakpoint}) {

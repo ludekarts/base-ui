@@ -25,3 +25,4 @@ export function hexToRGBA(hex, alpha = 1) {
 export function isHexColor(color) {
   return /^#([\da-f]{3}){1,2}$/i.test(color);
 }
+

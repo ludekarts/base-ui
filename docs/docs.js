@@ -3,14 +3,14 @@ import styled from "styled-components";
 
 // ---- Base-UI ----------------
 
-import { GlobalStyles, Text } from "../src";
-import { Container, Rail, Stack, Grid, Space, Columns } from "../src/layout";
 import { Button, Checkbox, Switch, Ghost, Underline, Highlight } from "../src/buttons";
-import Form from "../src/form";
+import { Container, Rail, Stack, Grid, Space, Columns } from "../src/layout";
 import { Drawer, Modal, Overlay } from "../src/panels";
-import { Dropdown, DropdownToggle } from "../src/dropdown";
-import Collapse from "../src/collapse";
 import { Image, Avatar } from "../src/media";
+import { GlobalStyles, Text } from "../src";
+import Dropdown from "../src/dropdown";
+import Collapse from "../src/collapse";
+import Form from "../src/form";
 
 import imageSrc from "./image.png";
 import avatarSrc from "./avatar.png";
@@ -54,6 +54,10 @@ const Wrapper = styled.div`
 
   .border-gray {
     border: 1px  solid #ccc;
+  }
+  
+  .sharpCorners {
+    border-radius: 0;
   }
 `;
 
@@ -121,6 +125,9 @@ const Docs = () => {
   const [showModal, toggleModal] = useState(false);
   const [theme, changeTheme] = useState("one");
   const [size, setSize] = useState("md");
+
+  const [emojiOpenIndex, selectEmojiIndex] = useState(0);
+
   return (
     <GlobalStyles>
       <Wrapper theme={theme}>
@@ -131,9 +138,9 @@ const Docs = () => {
             <Text as="h2">Dropdown</Text>
 
             <Menu>
-              <DropdownToggle as={Button} target="colors">
+              <Button data-bui-dropdown-target="colors">
                 <Text>Theme as U like 😉</Text>
-              </DropdownToggle>
+              </Button>
 
               <DropList name="colors" autoHide>
                 <Stack>
@@ -395,6 +402,47 @@ const Docs = () => {
 
             <Space space="0 0 3em" />
           </Stack>
+
+          <hr />
+
+          <Text as="h2">Composition: Accordion</Text>
+          <Space />
+          <Stack gap="0" stretch exppandContent>
+
+            <Button className="sharpCorners" onClick={() => selectEmojiIndex(0)}>
+              <Rail stretch>
+                Accordion One
+              </Rail>
+            </Button>
+            <Collapse open={emojiOpenIndex === 0}>
+              <Space space="1em" inset>
+                Accordion One Content...
+              </Space>
+            </Collapse>
+
+            <Button className="sharpCorners" onClick={() => selectEmojiIndex(1)}>
+              <Rail stretch>
+                Accordion Two
+              </Rail>
+            </Button>
+            <Collapse open={emojiOpenIndex === 1}>
+              <Space space="1em" inset>
+                Accordion Two Content...
+              </Space>
+            </Collapse>
+
+            <Button className="sharpCorners" onClick={() => selectEmojiIndex(2)}>
+              <Rail stretch>
+                Accordion Three
+              </Rail>
+            </Button>
+            <Collapse open={emojiOpenIndex === 2}>
+              <Space space="1em" inset>
+                Accordion Three Content...
+                  </Space>
+            </Collapse>
+          </Stack>
+
         </Container>
 
         <Overlay open={showOverlay} onClick={() => toggleOverlay(false)} />

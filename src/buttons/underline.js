@@ -21,6 +21,7 @@ const ButtonWrapper = styled.button`
 
   & > span.base-ui-button-text {
     z-index: 1;
+    width: 100%;
   }
   
   & > span.base-ui-button-effect {  
