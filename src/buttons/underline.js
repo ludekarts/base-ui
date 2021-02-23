@@ -1,48 +1,200 @@
+import React from "react";
 import styled from "styled-components";
 import PropTypes from "prop-types";
-import Button from "./basic";
 
-const UnderlineButton = styled(Button)`
+const ButtonWrapper = styled.button`
+  z-index: 1;
+  border: none;  
+  cursor: pointer;
+  font-size: 1rem;    
+  position: relative;
+  line-height: 1.3rem;
+  font-family: inherit;
+  display: inline-flex;
+  text-decoration: none;
+  justify-content: center;  
+  -moz-appearance: none;
+  -webkit-appearance: none;  
+  background-color: transparent;
+  transition: color .3s ease;
 
-  border-radius: initial;
-  
-  ${({ color, bg, inverse }) => `
-    background-color: ${inverse ? color : bg};
-    color: ${inverse ? bg : color};
-    &::after {
-      background-color: ${inverse ? bg : color};
-    }
-  `};
-
-  &::after {
-    bottom: 0;
-    left: 51%;
-    right: 51%;
-    height: 3px;
-    content: "";
-    position: absolute;
-    transition: left .3s ease, right .3s ease;    
+  & > span.base-ui-button-text {
+    z-index: 1;
   }
+  
+  & > span.base-ui-button-effect {  
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 0;        
+    position: absolute;
+    border-radius: inherit;      
+    transition: background-color .3s ease, box-shadow .3s ease;
 
-  &:hover {
-    filter: none;
-    &::after {
+    &::before {
+      content: "";
+      top: 0;
       left: 0;
       right: 0;
+      bottom: 0;      
+      position: absolute;   
+      border-radius: inherit;
+      background-color: rgba(0, 0 , 0, 0);
+      transition: background-color .3s ease, box-shadow .3s ease;
+    }
+
+    &::before {
+      opacity: 0.6;
     }
   }
+
+  ${({ size, text, color, inverse, active }) => `
+    ${size === "lg" ? "padding: 1rem 1.5rem;" : size === "sm" ? "padding: 0.2rem 0.5rem;" : "padding: 0.5rem 1rem;"}
+    color: ${inverse ? text : color};
+    
+    & > span.base-ui-button-effect {
+      background-color: ${inverse ? color : text};
+      &::after {
+        bottom: 0;
+        left: 51%;
+        right: 51%;
+        height: 3px;
+        content: "";
+        position: absolute;
+        border-radius: 0.2rem 0.2rem 0 0;
+        background-color: ${inverse ? text : color};
+        transition: left .3s ease, right .3s ease;  
+      }
+    }
+
+    &:focus {
+      outline: none;            
+      & > span.base-ui-button-effect::before {
+        box-shadow: 0 0 0 3px ${color === "#999999" || color === "transparent" ? "black" : color} ;       
+      }
+    }
+
+    &:hover, &.active {
+      & > span.base-ui-button-effect::after {
+        left: 0;
+        right: 0;
+      }
+    }
+
+    ${!active ? "" : `
+      color: ${inverse ? color : text};
+      & > span.base-ui-button-effect {
+        background-color: ${inverse ? text : color};
+      }
+
+      & > span.base-ui-button-effect::after {
+        left: 10%;
+        right: 10%;        
+        background-color: ${inverse ? color : text};
+      }
+    `}
+
+    &:active {
+      & > span.base-ui-button-effect {             
+        filter: brightness(0.9);              
+      }
+    }
+  `}
+
+  & > * {
+    pointer-events: none;
+  }
+
+  &:disabled {
+    pointer-events: none;
+    opacity: 0.6;
+  }  
+
 `;
 
-UnderlineButton.defaultProps = {
-  bg: "white",
-  active: 0,
-  inverse: 0,
-  color: "#222222",
-};
+const UnderlineButton = props => {
+  const { children, ...rest } = props;
+  return (
+    <ButtonWrapper {...rest}>
+      <span className="base-ui-button-effect"></span>
+      <span className="base-ui-button-text">{children}</span>
+    </ButtonWrapper>
+  );
+}
 
 UnderlineButton.propTypes = {
-  bg: PropTypes.string,
+  disabled: PropTypes.bool,
   color: PropTypes.string,
+  text: PropTypes.string,
+  type: PropTypes.string,
+  active: PropTypes.oneOfType([
+    PropTypes.bool,
+    PropTypes.number,
+  ]),
+  inverse: PropTypes.oneOfType([
+    PropTypes.bool,
+    PropTypes.number,
+  ]),
+
 };
 
+UnderlineButton.defaultProps = {
+  disabled: false,
+  inverse: false,
+  text: "inherit",
+  type: "button",
+  color: "#999999",
+};
+
+UnderlineButton.displayName = "UnderlineButton";
+
 export default UnderlineButton;
+
+
+
+
+// const UnderlineButton = styled(Button)`
+
+//   border-radius: initial;
+
+//   ${({ color, bg, inverse }) => `
+//     background-color: ${inverse ? color : bg};
+//     color: ${inverse ? bg : color};
+//     &::after {
+//       background-color: ${inverse ? bg : color};
+//     }
+//   `};
+
+//   &::after {
+    // bottom: 0;
+    // left: 51%;
+    // right: 51%;
+    // height: 3px;
+    // content: "";
+    // position: absolute;
+    // transition: left .3s ease, right .3s ease;    
+//   }
+
+//   &:hover {
+//     filter: none;
+//     &::after {
+      // left: 0;
+      // right: 0;
+//     }
+//   }
+// `;
+
+// UnderlineButton.defaultProps = {
+//   bg: "white",
+//   active: 0,
+//   inverse: 0,
+//   color: "#222222",
+// };
+
+// UnderlineButton.propTypes = {
+//   bg: PropTypes.string,
+//   color: PropTypes.string,
+// };
+
+// export default UnderlineButton;

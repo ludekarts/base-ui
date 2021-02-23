@@ -5,7 +5,7 @@ import styled from "styled-components";
 
 import { GlobalStyles, Text } from "../src";
 import { Container, Rail, Stack, Grid, Space, Columns } from "../src/layout";
-import { Button, Checkbox, Switch } from "../src/buttons";
+import { Button, Checkbox, Switch, Ghost, Underline, Highlight } from "../src/buttons";
 import Form from "../src/form";
 import { Drawer, Modal, Overlay } from "../src/panels";
 import { Dropdown, DropdownToggle } from "../src/dropdown";
@@ -155,26 +155,66 @@ const Docs = () => {
             <Text as="h2">Buttons</Text>
             <Space space="1em" inset>
               <Stack>
-                <h4>Button: Small</h4>
+                <h4>Button</h4>
                 <Rail className="--stack-center">
-                  <Button size="sm" >Small Color</Button>
-                  <Button size="sm" text="white" color="var(--akcent-one)">Small Bg</Button>
-                  <Button as="a" href="#" size="sm" text="white" color="var(--akcent-two)">Small Link</Button>
+                  <Button>Default</Button>
+                  <Button color="var(--akcent-one)" text="white">Color</Button>
+                  <Button color="var(--akcent-one)" text="white" inverse>Inverse</Button>
+                  <Button disabled>Disabled</Button>
                 </Rail>
 
-                <h4>Button: Normal</h4>
+                <h4>Ghost</h4>
                 <Rail className="--stack-center">
-                  <Button>Normal Color</Button>
-                  <Button text="white" color="var(--akcent-one)">Normal Bg</Button>
-                  <Button as="a" href="#" text="white" color="var(--akcent-two)">Normal Link</Button>
+                  <Ghost>Default</Ghost>
+                  <Ghost color="var(--akcent-two)" text="white">Color</Ghost>
+                  <Ghost color="var(--akcent-two)" text="white" rounded>Rounded</Ghost>
+                  <Ghost color="var(--akcent-two)" text="white" inverse>Inverse</Ghost>
+                  <Ghost color="var(--akcent-two)" text="white" uppercase>Uppercase</Ghost>
+                  <Ghost disabled>Disabled</Ghost>
                 </Rail>
 
-                <h4>Button: Large</h4>
+                <h4>Underline</h4>
                 <Rail className="--stack-center">
-                  <Button size="lg" >Large Color</Button>
-                  <Button size="lg" text="white" color="var(--akcent-one)">Large Bg</Button>
+                  <Underline>Default</Underline>
+                  <Underline color="var(--akcent-one)" text="white">Color</Underline>
+                  <Underline color="var(--akcent-one)" text="white" inverse>Inverse</Underline>
+                  <Underline color="var(--akcent-one)" text="white" active>Active</Underline>
+                  <Underline disabled>Disabled</Underline>
+                </Rail>
+
+
+                <h4>Highlight</h4>
+                <Rail className="--stack-center">
+                  <Highlight>⛌</Highlight>
+                  <Highlight color="var(--akcent-two)" outline activeText="white">⛌</Highlight>
+                  <Highlight color="var(--akcent-two)" square>⛌</Highlight>
+                  <Highlight color="var(--akcent-two)" active activeText="white">⛌</Highlight>
+                  <Highlight size="sm" color="var(--akcent-two)">⛌</Highlight>
+                  <Highlight size="md" color="var(--akcent-two)">⛌</Highlight>
+                  <Highlight size="lg" color="var(--akcent-two)">⛌</Highlight>
+                </Rail>
+
+
+                {/* <Button text="white" color="var(--akcent-one)">Regular Bg</Button>
                   <Button as="a" href="#" size="lg" text="white" color="var(--akcent-two)">Large Link</Button>
+
+                <h4>Ghost</h4>
+                <Rail className="--stack-center">
+                  <Ghost>Default</Ghost>
+                  <Ghost inverse color="var(--akcent-one)">Inverse</Ghost>
+                  <Ghost rounded color="var(--akcent-two)">Rounded</Ghost>
                 </Rail>
+
+                <h4>Underline</h4>
+                <Rail className="--stack-center">
+                  <Underline size="sm">Small Default</Underline>
+                  <Underline size="md" inverse color="var(--akcent-one)">Regular Inverse</Underline>
+                  <Underline size="lg" rounded color="var(--akcent-two)">Large Rounded</Underline>
+                  <Underline size="lg" rounded color="var(--akcent-two)" className="active">Large Rounded</Underline>
+                </Rail>
+
+                <h4>Highlight</h4>
+               */}
               </Stack>
             </Space>
 
