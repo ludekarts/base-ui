@@ -6,12 +6,13 @@ const ButtonWrapper = styled.button`
   z-index: 1;
   border: none;  
   cursor: pointer;
-  font-size: 1rem;    
+  font-size: 1em;    
   position: relative;
-  line-height: 1.3rem;
+  line-height: 1.3em;
   font-family: inherit;
   display: inline-flex;
   text-decoration: none;
+  align-items: center;
   justify-content: center;  
   -moz-appearance: none;
   -webkit-appearance: none;  
@@ -50,7 +51,8 @@ const ButtonWrapper = styled.button`
   }
 
   ${({ size, text, color, inverse, active }) => `
-    ${size === "lg" ? "padding: 1rem 1.5rem;" : size === "sm" ? "padding: 0.2rem 0.5rem;" : "padding: 0.5rem 1rem;"}
+    ${size === "lg" ? "padding: 0.8em 1.5em;" : size === "sm" ? "padding: 0.3em 0.8em;" : "padding: 0.5em 1em;"}
+    font-size: ${size === "lg" ? "1rem" : size === "sm" ? "0.85rem" : "1em"};
     color: ${inverse ? text : color};
     
     & > span.base-ui-button-effect {
@@ -62,7 +64,7 @@ const ButtonWrapper = styled.button`
         height: 3px;
         content: "";
         position: absolute;
-        border-radius: 0.2rem 0.2rem 0 0;
+        border-radius: 0.2em 0.2em 0 0;
         background-color: ${inverse ? text : color};
         transition: left .3s ease, right .3s ease;  
       }

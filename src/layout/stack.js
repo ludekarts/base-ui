@@ -2,14 +2,16 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 
 const Stack = styled.div`
-  width: 100%;
+  
   display: flex;
   flex-direction: column;
   & > * + * {
     margin-top: ${({ gap }) => gap};
   }
   
-  ${({ breakpoint, gap, expandContent }) => !breakpoint ? "" : `  
+  ${({ stretch, breakpoint, gap, expandContent }) => !breakpoint ? "" : `  
+    ${stretch ? "width: 100%;" : ""}
+    
     @media (min-width: ${breakpoint}) {
       flex-direction: row;      
       
@@ -27,11 +29,13 @@ Stack.displayName = "Stack";
 Stack.propTypes = {
   gap: PropTypes.string,
   breakpoint: PropTypes.string,
+  stretch: PropTypes.bool,
   expandContent: PropTypes.bool,
 };
 
 Stack.defaultProps = {
   gap: "1em",
+  stretch: false,
   expandContent: false,
 };
 

@@ -10,6 +10,10 @@ import Form from "../src/form";
 import { Drawer, Modal, Overlay } from "../src/panels";
 import { Dropdown, DropdownToggle } from "../src/dropdown";
 import Collapse from "../src/collapse";
+import { Image, Avatar } from "../src/media";
+
+import imageSrc from "./image.png";
+import avatarSrc from "./avatar.png";
 
 const Wrapper = styled.div`
   font-family: "Lato", sans-serif;
@@ -64,17 +68,32 @@ const Box = styled.div`
   width: 100%;
   height: 80px;
   display: flex;
-  align-items: center;
   background-color: #ddd;
+  align-items: center;
   justify-content: center;
 
   &.nostretch {
     width: auto;
   }
 
+  &.no-center {
+    align-items: flex-start;
+    justify-content: flex-start;
+  }
+
+  &.no-bg {
+    background-color: transparent;
+  }
+
   &.reular {
     width: auto;
     height: auto;
+  }
+
+  &.fixbox {
+    width: 220px;   
+    height: auto; 
+    min-height: 120px;
   }
 `;
 
@@ -101,6 +120,7 @@ const Docs = () => {
   const [showDrawer, toggleDrawer] = useState(false);
   const [showModal, toggleModal] = useState(false);
   const [theme, changeTheme] = useState("one");
+  const [size, setSize] = useState("md");
   return (
     <GlobalStyles>
       <Wrapper theme={theme}>
@@ -109,112 +129,90 @@ const Docs = () => {
             <Text as="h1" color="deepskyblue">🔮 Hello! Base-UI Docs </Text>
 
             <Text as="h2">Dropdown</Text>
-            <Space inset space="0 1em">
-              <Menu>
-                <DropdownToggle as={Button} target="colors">
-                  <Text>Theme as U like 😉</Text>
-                </DropdownToggle>
 
-                <DropList name="colors" autoHide>
-                  <Stack>
-                    <Button onClick={() => changeTheme("one")} color="transparent">
-                      <Rail stretch className="--rail-spread --v-center">
-                        <span>One</span>
-                        <Rail gap="0">
-                          <MiniBox color="#666666" />
-                          <MiniBox color="#ff2266" />
-                          <MiniBox color="#3355ee" />
-                        </Rail>
-                      </Rail>
-                    </Button>
-                    <Button onClick={() => changeTheme("two")} color="transparent">
-                      <Rail stretch className="--rail-spread --v-center">
-                        <span>Two</span>
-                        <Rail gap="0">
-                          <MiniBox color="#666666" />
-                          <MiniBox color="#673ab7" />
-                          <MiniBox color="#ffc107" />
-                        </Rail>
-                      </Rail>
-                    </Button>
-                    <Button onClick={() => changeTheme("three")} color="transparent">
-                      <Rail stretch className="--rail-spread --v-center">
-                        <span>Three</span>
-                        <Rail gap="0">
-                          <MiniBox color="#666666" />
-                          <MiniBox color="#009688" />
-                          <MiniBox color="#8bc34a" />
-                        </Rail>
-                      </Rail>
-                    </Button>
-                  </Stack>
-                </DropList>
-              </Menu>
-            </Space>
+            <Menu>
+              <DropdownToggle as={Button} target="colors">
+                <Text>Theme as U like 😉</Text>
+              </DropdownToggle>
 
-            <Text as="h2">Buttons</Text>
+              <DropList name="colors" autoHide>
+                <Stack>
+                  <Button onClick={() => changeTheme("one")} color="transparent">
+                    <Rail stretch className="--rail-spread --v-center">
+                      <span>One</span>
+                      <Rail gap="0">
+                        <MiniBox color="#666666" />
+                        <MiniBox color="#ff2266" />
+                        <MiniBox color="#3355ee" />
+                      </Rail>
+                    </Rail>
+                  </Button>
+                  <Button onClick={() => changeTheme("two")} color="transparent">
+                    <Rail stretch className="--rail-spread --v-center">
+                      <span>Two</span>
+                      <Rail gap="0">
+                        <MiniBox color="#666666" />
+                        <MiniBox color="#673ab7" />
+                        <MiniBox color="#ffc107" />
+                      </Rail>
+                    </Rail>
+                  </Button>
+                  <Button onClick={() => changeTheme("three")} color="transparent">
+                    <Rail stretch className="--rail-spread --v-center">
+                      <span>Three</span>
+                      <Rail gap="0">
+                        <MiniBox color="#666666" />
+                        <MiniBox color="#009688" />
+                        <MiniBox color="#8bc34a" />
+                      </Rail>
+                    </Rail>
+                  </Button>
+                </Stack>
+              </DropList>
+            </Menu>
+
+            <Rail>
+              <Text as="h2">Buttons</Text>
+              <Button size="sm" onClick={() => setSize("sm")}>SM</Button>
+              <Button size="sm" onClick={() => setSize("md")}>MD</Button>
+              <Button size="sm" onClick={() => setSize("lg")}>LG</Button>
+            </Rail>
             <Space space="1em" inset>
               <Stack>
                 <h4>Button</h4>
                 <Rail className="--stack-center">
-                  <Button>Default</Button>
-                  <Button color="var(--akcent-one)" text="white">Color</Button>
-                  <Button color="var(--akcent-one)" text="white" inverse>Inverse</Button>
-                  <Button disabled>Disabled</Button>
+                  <Button size={size}>Default</Button>
+                  <Button size={size} color="var(--akcent-one)" text="white">Color</Button>
+                  <Button size={size} color="var(--akcent-one)" text="white" inverse>Inverse</Button>
+                  <Button size={size} disabled>Disabled</Button>
                 </Rail>
 
                 <h4>Ghost</h4>
                 <Rail className="--stack-center">
-                  <Ghost>Default</Ghost>
-                  <Ghost color="var(--akcent-two)" text="white">Color</Ghost>
-                  <Ghost color="var(--akcent-two)" text="white" rounded>Rounded</Ghost>
-                  <Ghost color="var(--akcent-two)" text="white" inverse>Inverse</Ghost>
-                  <Ghost color="var(--akcent-two)" text="white" uppercase>Uppercase</Ghost>
-                  <Ghost disabled>Disabled</Ghost>
+                  <Ghost size={size}>Default</Ghost>
+                  <Ghost size={size} color="var(--akcent-two)" text="white">Color</Ghost>
+                  <Ghost size={size} color="var(--akcent-two)" text="white" rounded>Rounded</Ghost>
+                  <Ghost size={size} color="var(--akcent-two)" text="white" inverse>Inverse</Ghost>
+                  <Ghost size={size} color="var(--akcent-two)" text="white" uppercase>Uppercase</Ghost>
+                  <Ghost size={size} disabled>Disabled</Ghost>
                 </Rail>
 
                 <h4>Underline</h4>
                 <Rail className="--stack-center">
-                  <Underline>Default</Underline>
-                  <Underline color="var(--akcent-one)" text="white">Color</Underline>
-                  <Underline color="var(--akcent-one)" text="white" inverse>Inverse</Underline>
-                  <Underline color="var(--akcent-one)" text="white" active>Active</Underline>
-                  <Underline disabled>Disabled</Underline>
-                </Rail>
-
-
-                <h4>Highlight</h4>
-                <Rail className="--stack-center">
-                  <Highlight>⛌</Highlight>
-                  <Highlight color="var(--akcent-two)" outline activeText="white">⛌</Highlight>
-                  <Highlight color="var(--akcent-two)" square>⛌</Highlight>
-                  <Highlight color="var(--akcent-two)" active activeText="white">⛌</Highlight>
-                  <Highlight size="sm" color="var(--akcent-two)">⛌</Highlight>
-                  <Highlight size="md" color="var(--akcent-two)">⛌</Highlight>
-                  <Highlight size="lg" color="var(--akcent-two)">⛌</Highlight>
-                </Rail>
-
-
-                {/* <Button text="white" color="var(--akcent-one)">Regular Bg</Button>
-                  <Button as="a" href="#" size="lg" text="white" color="var(--akcent-two)">Large Link</Button>
-
-                <h4>Ghost</h4>
-                <Rail className="--stack-center">
-                  <Ghost>Default</Ghost>
-                  <Ghost inverse color="var(--akcent-one)">Inverse</Ghost>
-                  <Ghost rounded color="var(--akcent-two)">Rounded</Ghost>
-                </Rail>
-
-                <h4>Underline</h4>
-                <Rail className="--stack-center">
-                  <Underline size="sm">Small Default</Underline>
-                  <Underline size="md" inverse color="var(--akcent-one)">Regular Inverse</Underline>
-                  <Underline size="lg" rounded color="var(--akcent-two)">Large Rounded</Underline>
-                  <Underline size="lg" rounded color="var(--akcent-two)" className="active">Large Rounded</Underline>
+                  <Underline size={size}>Default</Underline>
+                  <Underline size={size} color="var(--akcent-one)" text="white">Color</Underline>
+                  <Underline size={size} color="var(--akcent-one)" text="white" inverse>Inverse</Underline>
+                  <Underline size={size} color="var(--akcent-one)" text="white" active>Active</Underline>
+                  <Underline size={size} disabled>Disabled</Underline>
                 </Rail>
 
                 <h4>Highlight</h4>
-               */}
+                <Rail className="--stack-center">
+                  <Highlight size={size}>⛌</Highlight>
+                  <Highlight size={size} color="var(--akcent-two)" outline activeText="white">⛌</Highlight>
+                  <Highlight size={size} color="var(--akcent-two)" square>⛌</Highlight>
+                  <Highlight size={size} color="var(--akcent-two)" active activeText="white">⛌</Highlight>
+                </Rail>
               </Stack>
             </Space>
 
@@ -261,6 +259,39 @@ const Docs = () => {
                   <Switch name="s5" size="md" squared color="var(--akcent-one)" offColor="#ccc" />
                   <Switch name="s6" size="lg" squared color="var(--akcent-two)" />
                 </Rail>
+              </Stack>
+            </Space>
+
+            <Text as="h2">Media</Text>
+            <Space space="1em" inset>
+              <Stack>
+                <h4>Image</h4>
+                <Rail>
+                  <Stack gap="0.2em" className="--v-center">
+                    <Image src={imageSrc} size="auto" alt="Base UI - basic ui components library" />
+                    <div>Full size image</div>
+                  </Stack>
+                  <Box className="fixbox no-bg no-center">
+                    <Stack gap="0.7em" className="--v-center">
+                      <Image src={imageSrc} alt="Base UI - basic ui components library" />
+                      <div>Fit image</div>
+                    </Stack>
+                  </Box>
+                  <Box className="fixbox no-bg no-center">
+                    <Stack gap="0.7em" className="--v-center">
+                      <Image src="#" alt="Broken image" />
+                      <div>Broken image</div>
+                    </Stack>
+                  </Box>
+                </Rail>
+
+                <h4>Avatar</h4>
+                <Rail>
+                  <Avatar src={avatarSrc} alt="Avatar" />
+                  <Avatar src="#" alt="Broken avatar" />
+                  <Avatar src={avatarSrc} alt="Avatar rounded" rounded="0.7em" />
+                </Rail>
+
               </Stack>
             </Space>
 

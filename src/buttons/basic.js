@@ -1,20 +1,19 @@
 import React from "react";
 import styled from "styled-components";
 import PropTypes from "prop-types";
-import { Button } from ".";
 
 const ButtonWrapper = styled.button`
   z-index: 1;
   border: none;  
-  cursor: pointer;
-  font-size: 1rem;    
+  cursor: pointer;  
   position: relative;
-  line-height: 1.3rem;
+  line-height: 1.3em;
   font-family: inherit;
   display: inline-flex;
   text-decoration: none;
-  border-radius: 0.2rem;
-  justify-content: center;  
+  border-radius: 0.2em;
+  justify-content: center; 
+  align-items: center; 
   -moz-appearance: none;
   -webkit-appearance: none;  
   background-color: transparent;
@@ -48,9 +47,10 @@ const ButtonWrapper = styled.button`
   }
 
   ${({ size, text, color, inverse }) => `
-    ${size === "lg" ? "padding: 1rem 1.5rem;" : size === "sm" ? "padding: 0.2rem 0.5rem;" : "padding: 0.5rem 1rem;"}
+    ${size === "lg" ? "padding: 0.8em 1.5em;" : size === "sm" ? "padding: 0.3em 0.8em;" : "padding: 0.5em 1em;"}
+    font-size: ${size === "lg" ? "1rem" : size === "sm" ? "0.85rem" : "1em"};
     color: ${inverse ? color : text};
-    
+            
     & > span.base-ui-button-effect {  
       background-color: ${inverse ? text : color};      
     }
