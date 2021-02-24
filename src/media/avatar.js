@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 import styled from "styled-components";
-import Image from "../image";
+import Image from "./image";
 
 const AvatarImage = styled(Image)`
   border-radius: ${({ rounded }) => rounded};

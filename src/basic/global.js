@@ -2,7 +2,6 @@ import React from "react";
 import { createGlobalStyle } from "styled-components";
 
 const Styles = createGlobalStyle`
-
   .base-ui {
 
     --bui-box-shadow: 0px 9px 9px -11px rgba(0, 0, 0, 0.5);
@@ -169,9 +168,11 @@ const Styles = createGlobalStyle`
 
 `;
 
-export default ({ children }) => (
-  <div className="base-ui">
-    {children}
-    <Styles />
-  </div>
-);
+export default function GlobalStyles({ children }) {
+  return (
+    <div className="base-ui">
+      {children}
+      <Styles />
+    </div>
+  );
+}

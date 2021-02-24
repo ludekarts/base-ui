@@ -1,4 +1,7 @@
+import React from "react";
+import PropTypes from "prop-types";
 import styled from "styled-components";
+import Overlay from "./overlay";
 
 export const Center = styled.div`
   top: 0;
@@ -56,3 +59,32 @@ export const Content = styled.div`
   overflow-x: hidden;
   padding: 0 1.2rem 1.2rem 1.2rem;
 `;
+
+const Modal = props => {
+  const { children, open, onClose } = props;
+  return (
+    <Overlay open={open} tint={0.7} onClick={onClose}>
+      <Center>
+        <Panel onClick={event => event.stopPropagation()}>
+          {
+            !onClose ? null :
+              <Close onClick={onClose} size="2em">⛌</Close>
+          }
+          <Content>{children}</Content>
+        </Panel>
+      </Center>
+    </Overlay>
+  );
+}
+
+Modal.defaultProps = {
+  open: false,
+};
+
+Modal.propTypes = {
+  open: PropTypes.bool,
+  onClose: PropTypes.func,
+  children: PropTypes.node,
+};
+
+export default Modal;

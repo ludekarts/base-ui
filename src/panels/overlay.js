@@ -1,4 +1,3 @@
-import React, { useEffect } from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
@@ -30,7 +29,6 @@ const Overlay = styled.div`
       transition: opacity ${duration}s ease ${delayIn}s, transform ${duration}s ease ${delayIn}s;
     `}
 `;
-
 
 Overlay.propTypes = {
   open: PropTypes.bool.isRequired,

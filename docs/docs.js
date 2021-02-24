@@ -5,12 +5,9 @@ import styled from "styled-components";
 
 import { Button, Checkbox, Switch, Ghost, Underline, Highlight } from "../src/buttons";
 import { Container, Rail, Stack, Grid, Space, Columns } from "../src/layout";
+import { GlobalStyles, Text, Dropdown, Collapse, Form } from "../src/basic";
 import { Drawer, Modal, Overlay } from "../src/panels";
 import { Image, Avatar } from "../src/media";
-import { GlobalStyles, Text } from "../src";
-import Dropdown from "../src/dropdown";
-import Collapse from "../src/collapse";
-import Form from "../src/form";
 
 import imageSrc from "./image.png";
 import avatarSrc from "./avatar.png";
@@ -405,7 +402,8 @@ const Docs = () => {
 
           <hr />
 
-          <Text as="h2">Composition: Accordion</Text>
+          <Text as="h2">Accordion</Text>
+          <Text font="monospace" color="#333">Composition of Button, Rail, Collapse and useState</Text>
           <Space />
           <Stack gap="0" stretch exppandContent>
 
