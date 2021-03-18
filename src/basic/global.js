@@ -2,6 +2,7 @@ import React from "react";
 import { createGlobalStyle } from "styled-components";
 
 const Styles = createGlobalStyle`
+
   .base-ui {
 
     --bui-box-shadow: 0px 9px 9px -11px rgba(0, 0, 0, 0.5);
@@ -16,6 +17,15 @@ const Styles = createGlobalStyle`
     & *::before,
     & *::after {
       box-sizing: border-box;
+    }
+
+    /* Enable children to expand vertically by using flex-grow property */
+    
+    &.full-stack {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
     }
 
     /* Spacing */
@@ -34,6 +44,10 @@ const Styles = createGlobalStyle`
 
     & .--space-4x {
       margin: var(--bui-space-4x);
+    }
+
+    & .--expand-content > * {
+      width: 100%;
     }
 
   /* Spacing Inset */
@@ -56,15 +70,15 @@ const Styles = createGlobalStyle`
 
     /* Verical & Horizontal Alignment */
 
-    & .--stack-start  {
+    & .--stack-start, .--v-start {
       align-items: flex-start;
     }
 
-    & .--stack-end {
+    & .--stack-end, .--v-end {
       align-items: flex-end;
     }
 
-    & .--stack-stretch {
+    & .--stack-stretch, .--v-stretch {
       align-items: stretch;
     }
 
@@ -72,11 +86,11 @@ const Styles = createGlobalStyle`
       align-items: center;
     }
 
-    & .--rail-end {
+    & .--rail-end, .--h-end {
       justify-content: flex-end;
     }
    
-    & .--rail-start {
+    & .--rail-start, .--h-start  {
       justify-content: flex-start;
     }
 
@@ -84,93 +98,56 @@ const Styles = createGlobalStyle`
       justify-content: center;
     }
 
-    & .--rail-spread {
+    & .--rail-spread, .--h-spread {
       justify-content: space-between;
     }
 
-    & .--rail-evenly {
+    & .--rail-evenly, .--h-evenly {
       justify-content: space-evenly;
     } 
 
-    & .--rail-around {
+    & .--rail-around, .--h-around {
       justify-content: space-around;
     } 
 
     /* Default focus */
 
-    & .base-ui-focus {      
+    & .--focusable {      
         transition: box-shadow .3s ease;
       &:focus {
         outline: none;
         box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.6);
       }
     }
-  }
 
+    /* Cover Link */
 
+    & a.--cover-link {
+      position: initial;
+      &::after {
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 0;
+        content: "";
+        position: absolute;
+      }
+    }
 
-/* Messahe Bubble 
-
-[data-bubble] {
-  position: relative;
-  overflow: visible !important;
-
-  &.active::after {
-    top: -2.5em;   
-    opacity: 1;
-    color: white;
-    max-width: 100%;
-    max-height: 100%;
-    border-radius: 0.25em;
-    // Forward 
-    transition: 
-      top 0.3s ease-in, 
-      color 0.3s ease-in, 
-      opacity 0.3s ease-in, 
-      max-width 0.5s ease, 
-      max-height 0.3s ease;
-  }
-
-  &::after {
-    top: 0;
-    opacity: 0; 
-    max-width: 0.2em;
-    max-height: 0.5em;
-    border-radius: 0.25em;   
-    color: var(--cm-green); 
-    // Backward 
-    transition: 
-      top 0.3s ease .25s, 
-      opacity 0.3s ease .25s, 
-      color 0.3s ease, 
-      max-width 0.3s ease, 
-      max-height 0.3s ease;
-
-    left: 50%;   
-    font-size: 0.9em;
-    overflow: hidden;
-    position: absolute;
-    text-align: center;
-    pointer-events: none;
-    padding: 0.1em 0.3em;    
-
-   
-    text-transform: uppercase;
-    content: attr(data-bubble);
-    transform: translate(-50%);
-    background-color: var(--cm-green);
+    /* Capitalize first letter */
     
+    & .caps-first-letter {
+      &::first-letter {
+        text-transform: uppercase;
+      }
+    }
   }
-}*/
-
-
-// ---- Global Utilities ---------------
-
 `;
 
-export default function GlobalStyles({ children }) {
+export default function GlobalStyles({ children, className }) {
   return (
-    <div className="base-ui">
+    <div className={`base-ui ${className}`}>
       {children}
       <Styles />
     </div>

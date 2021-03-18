@@ -18,6 +18,8 @@ import styled from "styled-components";
 const Rail = styled.div`  
   display: flex;
   flex-direction: row;
+
+  
   
   ${({ gap, expandContent, stretch, wrapContent }) => `
     ${stretch ? "width: 100%;" : ""}
@@ -27,8 +29,13 @@ const Rail = styled.div`
     }  
     ${wrapContent ? `
       flex-wrap: wrap;      
-      & > *  {
+      margin-bottom: calc(${gap} * 0.5 * -1);
+      & > * {
         margin: 0 ${gap} calc(${gap} * 0.5) 0;      
+
+        &:last-child {
+          margin-right: 0;
+        }
       }
     ` : `
       & > * + * {
@@ -55,12 +62,14 @@ Rail.propTypes = {
   gap: PropTypes.string,
   breakpoint: PropTypes.string,
   stretch: PropTypes.bool,
+  wrapContent: PropTypes.bool,
   expandContent: PropTypes.bool,
 };
 
 Rail.defaultProps = {
   gap: "1em",
   stretch: false,
+  wrapContent: false,
   expandContent: false,
 };
 

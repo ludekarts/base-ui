@@ -12,6 +12,8 @@ import { Image, Avatar } from "../src/media";
 import imageSrc from "./image.png";
 import avatarSrc from "./avatar.png";
 
+import Icon from "./info";
+
 const Wrapper = styled.div`
   font-family: "Lato", sans-serif;
   color: #222222;
@@ -65,10 +67,21 @@ const MiniBox = styled.span`
   background-color: ${({ color }) => color || "#666"};
 `;
 
+const Badge = styled.span`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 3em;
+  height: 1.5em;
+  border-radius: 1em;
+  background-color: ${({ color }) => color || "#666"};
+`;
+
 const Box = styled.div`
   width: 100%;
   height: 80px;
   display: flex;
+  min-width: 80px;
   background-color: #ddd;
   align-items: center;
   justify-content: center;
@@ -114,6 +127,29 @@ const DropList = styled(Dropdown)`
   box-shadow: var(--bui-box-shadow);
 `;
 
+const TextIcon = props => {
+  const { children, icon } = props;
+  return (
+    <Rail gap="0.5em">
+      <span>{children}</span>
+      {
+        icon && <Icon />
+      }
+    </Rail>
+  );
+}
+
+const SwitchIcon = props => {
+  const { children, icon } = props;
+  return (
+    <Rail gap="0.5em">
+      {
+        icon ? <Icon /> : children
+      }
+    </Rail>
+  );
+}
+
 const Docs = () => {
   const [form, setForm] = useState({});
   const [showCollapse, toggleCollapse] = useState(false);
@@ -123,7 +159,8 @@ const Docs = () => {
   const [theme, changeTheme] = useState("one");
   const [size, setSize] = useState("md");
 
-  const [emojiOpenIndex, selectEmojiIndex] = useState(0);
+  const [hasIcon, toggleIcons] = useState(false);
+  const [accordionOpenIndex, selectAccordionIndex] = useState(0);
 
   return (
     <GlobalStyles>
@@ -131,9 +168,7 @@ const Docs = () => {
         <Container>
           <Stack>
             <Text as="h1" color="deepskyblue">🔮 Hello! Base-UI Docs </Text>
-
             <Text as="h2">Dropdown</Text>
-
             <Menu>
               <Button data-bui-dropdown-target="colors">
                 <Text>Theme as U like 😉</Text>
@@ -180,42 +215,81 @@ const Docs = () => {
               <Button size="sm" onClick={() => setSize("sm")}>SM</Button>
               <Button size="sm" onClick={() => setSize("md")}>MD</Button>
               <Button size="sm" onClick={() => setSize("lg")}>LG</Button>
+              <Button size="sm" onClick={() => toggleIcons(!hasIcon)}>Icons</Button>
             </Rail>
             <Space space="1em" inset>
               <Stack>
                 <h4>Button</h4>
                 <Rail className="--stack-center">
-                  <Button size={size}>Default</Button>
-                  <Button size={size} color="var(--akcent-one)" text="white">Color</Button>
-                  <Button size={size} color="var(--akcent-one)" text="white" inverse>Inverse</Button>
-                  <Button size={size} disabled>Disabled</Button>
+                  <Button size={size}>
+                    <TextIcon icon={hasIcon}>Default</TextIcon>
+                  </Button>
+                  <Button size={size} color="var(--akcent-one)" text="white">
+                    <TextIcon icon={hasIcon}>Color</TextIcon>
+                  </Button>
+                  <Button size={size} color="var(--akcent-one)" text="white" inverse>
+                    <TextIcon icon={hasIcon}>Inverse</TextIcon>
+                  </Button>
+                  <Button size={size} disabled>
+                    <TextIcon icon={hasIcon}>Disabled</TextIcon>
+                  </Button>
                 </Rail>
 
                 <h4>Ghost</h4>
                 <Rail className="--stack-center">
-                  <Ghost size={size}>Default</Ghost>
-                  <Ghost size={size} color="var(--akcent-two)" text="white">Color</Ghost>
-                  <Ghost size={size} color="var(--akcent-two)" text="white" rounded>Rounded</Ghost>
-                  <Ghost size={size} color="var(--akcent-two)" text="white" inverse>Inverse</Ghost>
-                  <Ghost size={size} color="var(--akcent-two)" text="white" uppercase>Uppercase</Ghost>
-                  <Ghost size={size} disabled>Disabled</Ghost>
+                  <Ghost size={size}>
+                    <TextIcon icon={hasIcon}>Default</TextIcon>
+                  </Ghost>
+                  <Ghost size={size} color="var(--akcent-two)" text="white">
+                    <TextIcon icon={hasIcon}>Color</TextIcon>
+                  </Ghost>
+                  <Ghost size={size} color="var(--akcent-two)" text="white" rounded>
+                    <TextIcon icon={hasIcon}>Rounded</TextIcon>
+                  </Ghost>
+                  <Ghost size={size} color="var(--akcent-two)" text="white" inverse>
+                    <TextIcon icon={hasIcon}>Inverse</TextIcon>
+                  </Ghost>
+                  <Ghost size={size} color="var(--akcent-two)" text="white" uppercase>
+                    <TextIcon icon={hasIcon}>Uppercase</TextIcon>
+                  </Ghost>
+                  <Ghost size={size} disabled>
+                    <TextIcon icon={hasIcon}>Disabled</TextIcon>
+                  </Ghost>
                 </Rail>
 
                 <h4>Underline</h4>
                 <Rail className="--stack-center">
-                  <Underline size={size}>Default</Underline>
-                  <Underline size={size} color="var(--akcent-one)" text="white">Color</Underline>
-                  <Underline size={size} color="var(--akcent-one)" text="white" inverse>Inverse</Underline>
-                  <Underline size={size} color="var(--akcent-one)" text="white" active>Active</Underline>
-                  <Underline size={size} disabled>Disabled</Underline>
+                  <Underline size={size}>
+                    <TextIcon icon={hasIcon}>Default</TextIcon>
+                  </Underline>
+                  <Underline size={size} color="var(--akcent-one)" text="white" >
+                    <TextIcon icon={hasIcon}>Color</TextIcon>
+                  </Underline>
+                  <Underline size={size} color="var(--akcent-one)" text="white" inverse>
+                    <TextIcon icon={hasIcon}>Inverse</TextIcon>
+                  </Underline>
+                  <Underline size={size} color="var(--akcent-one)" text="white" active>
+                    <TextIcon icon={hasIcon}>Active</TextIcon>
+                  </Underline>
+                  <Underline size={size} disabled>
+                    <TextIcon icon={hasIcon}>Disabled</TextIcon>
+                  </Underline>
                 </Rail>
 
                 <h4>Highlight</h4>
                 <Rail className="--stack-center">
-                  <Highlight size={size}>⛌</Highlight>
-                  <Highlight size={size} color="var(--akcent-two)" outline activeText="white">⛌</Highlight>
-                  <Highlight size={size} color="var(--akcent-two)" square>⛌</Highlight>
-                  <Highlight size={size} color="var(--akcent-two)" active activeText="white">⛌</Highlight>
+                  <Highlight size={size}>
+                    <SwitchIcon icon={hasIcon}>⛌</SwitchIcon>
+                  </Highlight>
+                  <Highlight size={size} color="var(--akcent-two)" outline activeText="white">
+                    <SwitchIcon icon={hasIcon}>⛌</SwitchIcon>
+                  </Highlight>
+                  <Highlight size={size} color="var(--akcent-two)" square>
+                    <SwitchIcon icon={hasIcon}>⛌</SwitchIcon>
+                  </Highlight>
+                  <Highlight size={size} color="var(--akcent-two)" active activeText="white">
+                    <SwitchIcon icon={hasIcon}>⛌</SwitchIcon>
+                  </Highlight>
                 </Rail>
               </Stack>
             </Space>
@@ -372,6 +446,18 @@ const Docs = () => {
               <Box className="nostretch --space-4x-i">3</Box>
             </Rail>
 
+            <Text as="h2">Rail:wrapContent</Text>
+            <Box className="fixbox --space-i">
+              <Rail wrapContent>
+                <Badge>1</Badge>
+                <Badge>2</Badge>
+                <Badge>3</Badge>
+                <Badge>4</Badge>
+                <Badge>5</Badge>
+                <Badge>6</Badge>
+              </Rail>
+            </Box>
+
             <Text as="h2">Stack</Text>
             <Stack breakpoint="700px" className="--rail-end">
               <Box className="--space-4x-i">4</Box>
@@ -405,39 +491,39 @@ const Docs = () => {
           <Text as="h2">Accordion</Text>
           <Text font="monospace" color="#333">Composition of Button, Rail, Collapse and useState</Text>
           <Space />
-          <Stack gap="0" stretch exppandContent>
+          <Stack gap="0" stretch expandContent>
 
-            <Button className="sharpCorners" onClick={() => selectEmojiIndex(0)}>
+            <Button className="sharpCorners" onClick={() => selectAccordionIndex(0)}>
               <Rail stretch>
                 Accordion One
               </Rail>
             </Button>
-            <Collapse open={emojiOpenIndex === 0}>
+            <Collapse open={accordionOpenIndex === 0}>
               <Space space="1em" inset>
                 Accordion One Content...
               </Space>
             </Collapse>
 
-            <Button className="sharpCorners" onClick={() => selectEmojiIndex(1)}>
+            <Button className="sharpCorners" onClick={() => selectAccordionIndex(1)}>
               <Rail stretch>
                 Accordion Two
               </Rail>
             </Button>
-            <Collapse open={emojiOpenIndex === 1}>
+            <Collapse open={accordionOpenIndex === 1}>
               <Space space="1em" inset>
                 Accordion Two Content...
               </Space>
             </Collapse>
 
-            <Button className="sharpCorners" onClick={() => selectEmojiIndex(2)}>
+            <Button className="sharpCorners" onClick={() => selectAccordionIndex(2)}>
               <Rail stretch>
                 Accordion Three
               </Rail>
             </Button>
-            <Collapse open={emojiOpenIndex === 2}>
+            <Collapse open={accordionOpenIndex === 2}>
               <Space space="1em" inset>
                 Accordion Three Content...
-                  </Space>
+              </Space>
             </Collapse>
           </Stack>
 

@@ -4,20 +4,18 @@ import styled from "styled-components";
 const Stack = styled.div`
   display: flex;
   flex-direction: column;
-  & > * + * {
-    margin-top: ${({ gap }) => gap};
-  }
   
-  ${({ stretch, breakpoint, gap, expandContent }) => !breakpoint ? `
+  ${({ stretch, gap, expandContent }) => `
     ${stretch ? "width: 100%;" : ""}
-    ` : `  
-    ${stretch ? "width: 100%;" : ""}
-    
+    ${expandContent ? "& > * { width: 100% !important; }" : ""}
+    & > * + * {
+      margin-top: ${gap};
+    }  
+  `};
+  
+  ${({ breakpoint, gap }) => !breakpoint ? "" : `
     @media (min-width: ${breakpoint}) {
-      flex-direction: row;      
-      
-      ${expandContent ? "& > * { width: 100%; }" : ""}
-
+      flex-direction: row;            
       & > * + * {
         margin-top: unset;
         margin-left: ${gap};

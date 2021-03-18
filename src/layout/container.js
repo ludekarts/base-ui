@@ -6,8 +6,8 @@ const Container = styled.div`
   display: flex;  
   padding: 0 1.5em;  
   flex-direction: column;
-  ${({ maxW, offsetTop }) => `
-    max-width: ${maxW};
+  ${({ maxWidth, offsetTop }) => `
+    max-width: ${maxWidth};
     margin: ${offsetTop} auto 1em;
   `};
 `;
@@ -15,12 +15,12 @@ const Container = styled.div`
 Container.displayName = "Containter";
 
 Container.propTypes = {
-  maxW: PropTypes.string,
+  maxWidth: PropTypes.string,
   offsetTop: PropTypes.string,
 };
 
 Container.defaultProps = {
-  maxW: "78rem",
+  maxWidth: "78rem",
   offsetTop: "2rem",
 };
 

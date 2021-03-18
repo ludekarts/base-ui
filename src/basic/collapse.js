@@ -13,16 +13,17 @@ const Wrapper = styled.div`
 `;
 
 const Collapse = props => {
+  const { open, ...rest } = props;
   const [height, setHeight] = useState(0);
   const wrapper = useRef();
 
   useEffect(() => {
     wrapper.current &&
       setHeight(wrapper.current.scrollHeight);
-  }, []);
+  }, [open]);
 
   return (
-    <Wrapper {...props} height={height} ref={wrapper} />
+    <Wrapper {...rest} open={open} height={height} ref={wrapper} />
   );
 }
 
@@ -39,46 +40,3 @@ Collapse.defaultProps = {
 };
 
 export default Collapse;
-
-/*
-
-
-export default class Colapse extends React.PureComponent {
-
-  container = React.createRef();
-
-  state = {
-    height: 0,
-  };
-
-  static propTypes = {
-    maxHeight: PropTypes.number,
-    open: PropTypes.bool.isRequired,
-  };
-
-  static defaultProps = {
-    open: false,
-  };
-
-  componendDidMount() {
-    this.setState({
-      height: this.container.current.scrollHeight
-    });
-  }
-
-  componentDidUpdate(prevProps) {
-    if (prevProps.children !== this.props.children) {
-      this.setState({
-        height: this.container.current.scrollHeight
-      });
-    }
-  }
-
-  render() {
-    return (
-      <Container {...this.props} height={this.state.height} ref={this.container} />
-    )
-  }
-}
-
-*/

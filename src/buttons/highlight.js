@@ -21,6 +21,9 @@ const ButtonWrapper = styled.button`
 
   & > span.base-ui-button-text {
     z-index: 1;    
+    display: flex;    
+    align-items: center;
+    justify-content: center;
   }
   
   & > span.base-ui-button-effect {  
@@ -29,6 +32,7 @@ const ButtonWrapper = styled.button`
     right: 0;
     bottom: 0;
     z-index: 0;        
+    display: flex;
     position: absolute;
     border-radius: inherit;      
     
@@ -63,7 +67,7 @@ const ButtonWrapper = styled.button`
     width: 1em;
     height: 1em;
     padding: 1em;
-    color: ${outline ? color : "inherit"};
+    color: ${outline ? color : activeText};
     border-radius: ${square ? "0.2em" : "50%"};
 
     & > span.base-ui-button-effect {
@@ -75,16 +79,26 @@ const ButtonWrapper = styled.button`
       background-color: ${color};
       transform: translate3d(-50%, -50%, 0) scale(0.2);
     }    
-    
+
+    & svg {
+      fill: ${color};
+      tarnsition: fill .3s ease;
+    }
+  
     &:focus {
       outline: none;                  
       & > span.base-ui-button-effect::before {
-        box-shadow: 0 0 0 3px ${color === "rgba(0, 0, 0, 0.2)" || color === "transparent" ? "black" : color} ;      
+        box-shadow: 0 0 0 3px ${color === "rgba(0, 0, 0, 0.15)" || color === "transparent" ? "black" : color} ;      
       }
     }
 
     &:hover {
       color: ${activeText};
+      
+      & svg {
+        fill: ${activeText === "inherit" ? "rgba(0, 0, 0, 0.5)" : activeText};
+      }
+
       & > span.base-ui-button-effect::after {       
         opacity: 1;        
         transform: translate3d(-50%, -50%, 0) scale(1);
@@ -93,6 +107,11 @@ const ButtonWrapper = styled.button`
 
     ${!active ? "" : `    
       color: ${activeText};
+
+      & svg {
+        fill: ${activeText};
+      }
+      
       & > span.base-ui-button-effect::after {       
         opacity: 1;        
         transform: translate3d(-50%, -50%, 0) scale(1);
@@ -124,101 +143,34 @@ const HighlightButton = props => {
       <span className="base-ui-button-text">{children}</span>
     </ButtonWrapper>
   );
-}
+};
 
 
 HighlightButton.displayName = "HighlightButton";
-HighlightButton.propTypes = {
-  bg: PropTypes.string,
-  color: PropTypes.string,
-};
-
-HighlightButton.defaultProps = {
-  color: "rgba(0, 0, 0, 0.2)",
-  activeText: "inherit"
-};
-
-export default HighlightButton;
-
-/*
-import styled from "styled-components";
-import PropTypes from "prop-types";
-
-const HighlightButton = styled.button`
-  z-index: 0;
-  border: none;
-  flex-shrink: 0;
-  background: none;
-  border-radius: 50%;
-  position: relative;
-  align-items: center;
-  display: inline-flex;
-  justify-content: center;
-
-  ${({ size, color }) => `
-    width: ${size};
-    height: ${size};
-
-    &:hover::before {
-      background-color:${color};
-    }
-  `}
-
-  &:focus {
-    outline: none;
-  }
-
-  &::before {
-    top: 50%;
-    left: 50%;
-    content: "";
-    width: 60%;
-    height: 60%;
-    z-index: -1;
-    cursor: pointer;
-    position: absolute;
-    border-radius: 50%;
-    background-color: rgba(0, 0, 0, 0);
-    transform: translateX(-50%) translateY(-50%);
-    transition: width 0.3s ease, height 0.3s ease, background-color 0.3s ease;
-  }
-
-  &:hover::before {
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    border-radius: 50%;
-    transform: translateX(-50%) translateY(-50%);
-  }
-
-  ${({ active, color }) => !active ? "" : `
-    &::before {
-      width: 100%;
-      height: 100%;
-      position: absolute;
-      border-radius: 50%;
-      background-color:${color};
-      transform: translateX(-50%) translateY(-50%);
-    }
-  `}
-`;
-
-HighlightButton.displayName = "HighlightButton";
-
 HighlightButton.propTypes = {
   size: PropTypes.string,
   color: PropTypes.string,
-  type: PropTypes.string,
-  active: PropTypes.bool,
+  activeText: PropTypes.string,
+  square: PropTypes.oneOfType([
+    PropTypes.bool,
+    PropTypes.number,
+  ]),
+  outline: PropTypes.oneOfType([
+    PropTypes.bool,
+    PropTypes.number,
+  ]),
+  active: PropTypes.oneOfType([
+    PropTypes.bool,
+    PropTypes.number,
+  ]),
 };
 
 HighlightButton.defaultProps = {
-  size: "2em",
-  active: false,
-  type: "button",
-  color: "rgba(0, 0, 0, 0.1)",
+  active: 0,
+  square: 0,
+  outline: 0,
+  activeText: "inherit",
+  color: "rgba(0, 0, 0, 0.15)",
 };
 
 export default HighlightButton;
-
-*/

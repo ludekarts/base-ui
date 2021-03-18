@@ -22,6 +22,10 @@ const ButtonWrapper = styled.button`
   & > span.base-ui-button-text {
     z-index: 1;
     width: 100%;
+    height: 100%;
+    display: flex;    
+    align-items: center;
+    justify-content: center;
   }
   
   & > span.base-ui-button-effect {  
@@ -30,9 +34,10 @@ const ButtonWrapper = styled.button`
     right: 0;
     bottom: 0;
     z-index: 0;        
+    display: flex;
     position: absolute;
     border-radius: inherit;      
-    transition: background-color .3s ease, box-shadow .3s ease;
+    transition: background-color .3s ease, box-shadow .3s ease, filter .3s ease;
 
     &::before {
       content: "";
@@ -71,6 +76,11 @@ const ButtonWrapper = styled.button`
       }
     }
 
+    & svg {
+      fill: ${inverse ? text : color};
+      transition: fill .3s ease;
+    }
+
     &:focus {
       outline: none;            
       & > span.base-ui-button-effect::before {
@@ -78,15 +88,31 @@ const ButtonWrapper = styled.button`
       }
     }
 
-    &:hover, &.active {
+    &.active {
+      color: ${inverse ? color : text};
+     
+      & svg {
+        fill: ${inverse ? color : text};
+      }
+
+      & > span.base-ui-button-effect {
+        background-color: ${inverse ? text : color};
+      }
+
       & > span.base-ui-button-effect::after {
-        left: 0;
-        right: 0;
+        left: 10%;
+        right: 10%;        
+        background-color: ${inverse ? color : text};
       }
     }
 
     ${!active ? "" : `
       color: ${inverse ? color : text};
+
+      & svg {
+        fill: ${inverse ? color : text};
+      }
+
       & > span.base-ui-button-effect {
         background-color: ${inverse ? text : color};
       }
@@ -98,9 +124,25 @@ const ButtonWrapper = styled.button`
       }
     `}
 
+    &:hover {
+      & > span.base-ui-button-effect {
+        filter: brightness(0.9);              
+        &::after {
+          left: 0;
+          right: 0;
+        }
+      }      
+    }
+
     &:active {
       & > span.base-ui-button-effect {             
         filter: brightness(0.9);              
+      }
+      
+      & > span.base-ui-button-effect::after {
+        left: 10%;
+        right: 10%;        
+        background-color: ${inverse ? color : text};
       }
     }
   `}
@@ -144,7 +186,8 @@ UnderlineButton.propTypes = {
 
 UnderlineButton.defaultProps = {
   disabled: false,
-  inverse: false,
+  inverse: 0,
+  active: 0,
   text: "inherit",
   type: "button",
   color: "#999999",

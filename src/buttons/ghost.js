@@ -21,6 +21,10 @@ const ButtonWrapper = styled.button`
   & > span.base-ui-button-text {
     z-index: 1;
     width: 100%;
+    height: 100%;
+    display: flex;    
+    align-items: center;
+    justify-content: center;
   }
   
   & > span.base-ui-button-effect {  
@@ -28,7 +32,8 @@ const ButtonWrapper = styled.button`
     left: 0;
     right: 0;
     bottom: 0;
-    z-index: 0;        
+    z-index: 0;      
+    display: flex;  
     position: absolute;
     border-radius: inherit;      
     transition: background-color .3s ease, box-shadow .3s ease;
@@ -62,6 +67,11 @@ const ButtonWrapper = styled.button`
       background-color: ${inverse ? color : text};
     }
 
+    & svg {
+      fill: ${inverse ? text : color};
+      transition: fill .3s ease;
+    }
+
     &:focus {
       outline: none;            
       & > span.base-ui-button-effect::before {
@@ -71,13 +81,23 @@ const ButtonWrapper = styled.button`
 
     &:hover, &.active {
       color: ${inverse ? color : text};
+    
+      & svg {
+        fill: ${inverse ? color : text};
+      }
+
       & > span.base-ui-button-effect {
         background-color: ${inverse ? text : color};        
       }
     }
 
     ${!active ? "" : `
-     color: ${inverse ? color : text};
+      color: ${inverse ? color : text};
+
+      & svg {
+        fill: ${inverse ? color : text};
+      }
+      
       & > span.base-ui-button-effect {
         background-color: ${inverse ? text : color};        
       }
@@ -136,7 +156,10 @@ GhostButton.propTypes = {
 
 GhostButton.defaultProps = {
   disabled: false,
-  inverse: false,
+  uppercase: 0,
+  inverse: 0,
+  rounded: 0,
+  active: 0,
   text: "inherit",
   type: "button",
   color: "#999999",
