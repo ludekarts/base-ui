@@ -28,6 +28,18 @@ const Styles = createGlobalStyle`
       flex-direction: column;
     }
 
+    /* FLex modifiers */
+
+    & .--flex-column {
+      display: flex;
+      flex-direction: column;
+    }
+
+    & .--flex-row-reverse {
+      display: flex;
+      flex-direction: row-reverse;
+    }
+
     /* Spacing */
 
     & .--space {

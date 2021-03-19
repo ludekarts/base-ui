@@ -2,16 +2,21 @@ import styled from "styled-components";
 import PropTypes from "prop-types";
 
 const Columns = styled.div`
-  width: 100%;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
 
-  & > * {
-    flex: 1 1 ${({ minSize }) => minSize};
-    margin: 0; 
-  }
+  ${({ minSize, gap }) => `
+    margin: calc(${gap} / 2 * -1);
+
+    & > * {
+      flex: 1 1 ${minSize};
+      margin: calc(${gap} / 2);    
+    }
+
+  `}  
 `;
+
 
 Columns.displayName = "Columns";
 Columns.propTypes = {
