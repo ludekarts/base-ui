@@ -27,6 +27,7 @@ const Sidebar = styled.div`
 `;
 
 Sidebar.displayName = "Sidebar";
+
 Sidebar.propTypes = {
   gap: PropTypes.string,
   breakAt: PropTypes.string,

@@ -2,8 +2,9 @@ import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import Overlay from "./overlay";
+import Close from "../buttons/close";
 
-export const Center = styled.div`
+const Center = styled.div`
   top: 0;
   left: 0;
   width: 100%;
@@ -14,7 +15,7 @@ export const Center = styled.div`
   justify-content: center;
 `;
 
-export const Panel = styled.div`
+const Panel = styled.div`
   margin: 1em;
   width: 100%;
   display: flex;
@@ -29,32 +30,15 @@ export const Panel = styled.div`
   flex-direction: column;
   box-sizing: border-box;
   box-shadow: 0px 9px 9px -11px rgba(0, 0, 0, 0.5);
-`;
 
-export const Close = styled.button`
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
-  border: none;
-  width: 1.8rem;
-  height: 1.8rem;
-  cursor: pointer;
-  border-radius: 50%;
-  align-items: center;
-  background-color: #eee;
-  justify-content: center;
-
-  &:hover, &:focus {    
-    outline: none;
-    background-color: #ddd;
-  }
-
-  &:focus {
-    box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.6);
+  & button.close {
+    top: 1rem;
+    right: 1rem;
+    position: absolute;
   }
 `;
-export const Content = styled.div`
-  
+
+const Content = styled.div`
   overflow-y: auto;
   overflow-x: hidden;
   padding: 0 1.2rem 1.2rem 1.2rem;
@@ -68,7 +52,7 @@ const Modal = props => {
         <Panel onClick={event => event.stopPropagation()}>
           {
             !onClose ? null :
-              <Close onClick={onClose} size="2em">⛌</Close>
+              <Close onClick={onClose} size="2em" className="close" />
           }
           <Content>{children}</Content>
         </Panel>

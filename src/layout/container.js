@@ -3,11 +3,11 @@ import styled from "styled-components";
 
 const Container = styled.div`
   width: 100%;
-  display: flex;  
-  padding: 0 1.5em;  
+  display: flex;    
   flex-direction: column;
-  ${({ maxWidth, offsetTop }) => `
-    max-width: ${maxWidth};
+  ${({ mxw, offsetTop, spacing }) => `
+    max-width: ${mxw};
+    padding: ${spacing};
     margin: ${offsetTop} auto 1em;
   `};
 `;
@@ -15,13 +15,15 @@ const Container = styled.div`
 Container.displayName = "Containter";
 
 Container.propTypes = {
-  maxWidth: PropTypes.string,
+  mxw: PropTypes.string,
+  spacing: PropTypes.string,
   offsetTop: PropTypes.string,
 };
 
 Container.defaultProps = {
-  maxWidth: "78rem",
+  mxw: "78rem",
   offsetTop: "2rem",
+  spacing: "0 1.5em",
 };
 
 export default Container;

@@ -3,21 +3,58 @@ import React, { useState } from "react";
 
 // ---- Docs UI ----------------
 
-import { Wrapper, MiniBox, Badge, Box, Menu, DropList, TextIcon, SwitchIcon } from "./styled";
+import { Wrapper, MiniBox, Box, Menu, DropList, TextIcon, SwitchIcon, MobileMenu } from "./styled";
 import imageSrc from "./assets/image.png";
 import avatarSrc from "./assets/avatar.png";
 
 // ---- Base-UI ----------------
 
-import { Button, Checkbox, Switch, Ghost, Underline, Highlight } from "../src/buttons";
+import { Button, Checkbox, Switch, Ghost, Underline, Highlight, Close } from "../src/buttons";
 import { Container, Rail, Stack, Grid, Space, Columns, Sidebar } from "../src/layout";
-import { GlobalStyles, Text, Collapse, Form } from "../src/basic";
+import { GlobalStyles, Text, Collapse, Form, Badge } from "../src/basic";
 import { Drawer, Modal, Overlay } from "../src/panels";
 import { Image, Avatar } from "../src/media";
 
+const CoverTest = () => {
+  return (
+    <GlobalStyles fullCover off>
+      <Wrapper>
+        <Container spacing="1em 1.5em">
+          <Text as="h1" color="var(--akcent-one)">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</Text>
+          <p>Cras ornare arcu eu suscipit scelerisque. Phasellus et tempor velit, id sodales augue. Ut ut tortor venenatis, congue leo non, venenatis augue. Quisque at eros eu ex sagittis finibus et et dolor. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum eget est justo. Praesent hendrerit, orci ac egestas ullamcorper, ex lacus posuere urna, in eleifend libero ligula eu ligula. Nam et augue aliquet, mollis eros posuere, porttitor libero. In hac habitasse platea dictumst. Phasellus orci mi, suscipit sed vehicula ut, venenatis non orci. Nulla mollis felis et ante eleifend iaculis. Vestibulum laoreet tortor quis ante blandit, et iaculis mauris tempor.</p>
+          <p>Proin aliquet ultricies pulvinar. Quisque ut erat imperdiet, venenatis velit venenatis, lacinia odio. Vivamus maximus sapien urna, nec rutrum massa viverra at. Suspendisse nec urna arcu. Quisque felis sapien, mattis a commodo id, posuere eget risus. Praesent consequat velit non rhoncus suscipit. Ut elementum nibh ac ipsum fermentum sagittis. Sed faucibus hendrerit lectus, in aliquet nisl pellentesque in. Sed vehicula arcu non commodo pellentesque. Phasellus nec ipsum accumsan, convallis eros sed, ullamcorper magna. Fusce sed mollis ipsum. Nullam id risus eget tortor vulputate eleifend. Vestibulum in dignissim nulla. Maecenas sagittis nisl nisi, vitae tempor arcu semper non. Maecenas lobortis eget risus sed imperdiet.</p>
+          <p>Nulla sed nibh non metus consequat ullamcorper et non lorem. Pellentesque vitae felis eros. Curabitur sed eleifend ante. Ut vel vulputate purus. Quisque ac commodo mauris, ut placerat lectus. Fusce sagittis augue lacus, et feugiat justo porttitor vel. Morbi varius maximus varius. Donec pharetra augue ut risus fringilla, ut interdum purus molestie. Curabitur ut urna et mi scelerisque aliquet vitae nec tellus. Cras interdum quam vitae metus pellentesque, non dapibus sem cursus. Aliquam tempor semper maximus.</p>
+          <Text as="h2" color="var(--akcent-one)">Duis condimentum nibh ut turpis ornare laoreet.</Text>
+          <p>Maecenas arcu massa, aliquet sed laoreet sit amet, molestie ut ex. Praesent sit amet vestibulum sem. Morbi eget ligula non dui cursus vestibulum. Aenean arcu dui, blandit vitae risus quis, euismod lacinia eros. Vestibulum semper purus vitae dui elementum, suscipit egestas tellus cursus. Sed molestie neque vitae augue varius, id tempus tellus placerat. Nulla a accumsan lorem, convallis elementum dolor. Sed dictum eros id placerat tristique. Nulla efficitur, velit id ullamcorper bibendum, metus quam scelerisque arcu, ut sodales sapien massa sed arcu. Fusce at neque libero. Mauris commodo, odio vel facilisis malesuada, justo nisl suscipit orci, sit amet hendrerit risus diam ut neque.</p>
+          <p>Proin nec vulputate nisl. Donec sed lectus vel dolor interdum tincidunt. Pellentesque consequat felis nec ipsum fringilla, id lacinia justo imperdiet. Nulla id eros at dolor varius placerat quis sed lacus. Maecenas et velit non nisl mattis pharetra vitae a sapien. Vivamus in mauris suscipit, vehicula nisi et, sollicitudin augue. Curabitur lorem ipsum, bibendum in egestas id, congue vitae dui. Ut volutpat sapien massa, sed aliquet ex commodo sit amet. Aenean faucibus lacus ut risus suscipit, quis molestie urna imperdiet. Interdum et malesuada fames ac ante ipsum primis in faucibus. Curabitur elementum vehicula leo, in molestie urna ultricies ac. Aliquam viverra, leo nec commodo laoreet, mauris nulla mattis nisl, eu rutrum lacus turpis et odio. Fusce sit amet diam nec odio porta dignissim vitae sed nisl. Curabitur orci quam, tincidunt sit amet lacus ut, sodales malesuada sem.</p>
+          <p>Etiam ornare orci fermentum enim placerat volutpat. Mauris at purus massa. Vestibulum scelerisque venenatis tempor. Nulla sollicitudin neque vitae neque pretium, condimentum scelerisque elit pharetra. Sed at turpis mollis, viverra odio et, venenatis urna. Phasellus sed justo nulla. Vestibulum lacinia auctor consectetur. Maecenas malesuada volutpat aliquam. Vivamus iaculis, neque sed egestas pellentesque, metus massa facilisis lorem, sed faucibus leo ante a mauris. Donec aliquet odio quis massa vulputate, sit amet fermentum tellus lobortis. Etiam id volutpat dui. Sed at facilisis justo, sit amet maximus mi. Nunc tempor feugiat eleifend.</p>
+          <p>Morbi ac diam est. Morbi sagittis nulla cursus enim vestibulum, eu congue est sagittis. Suspendisse sit amet arcu ut eros consectetur facilisis at eget elit. Cras eget dignissim mauris. Integer porta vitae turpis eu blandit. Sed pharetra ipsum quis neque finibus luctus. Nullam lacinia nulla justo, in pharetra arcu sagittis at. Nam nec justo non erat venenatis tempor ut eget ipsum.</p>
+          <p>Curabitur volutpat, erat a volutpat pellentesque, justo neque molestie ipsum, ut malesuada ipsum mauris eu lacus. Vivamus facilisis dapibus diam, id suscipit augue placerat in. Nunc fermentum imperdiet tellus sed laoreet. Nullam in leo sit amet orci ornare auctor. Vivamus elementum, lacus eget imperdiet dignissim, eros ante molestie est, sit amet consectetur orci mi tristique nunc. Ut tempus arcu ut enim pharetra porttitor. Quisque rhoncus diam purus, in laoreet erat facilisis sed.</p>
+          <p>Sed aliquet semper justo. Aenean et sem enim. Mauris consectetur auctor ante, nec cursus tortor tincidunt vehicula. Proin auctor turpis eu turpis rhoncus, sit amet dictum leo ornare. In id nulla sem. Aliquam lorem magna, auctor vitae euismod nec, volutpat et enim. Sed vel lorem sit amet felis luctus imperdiet vitae ut velit. Nulla mi velit, laoreet sed elit sed, elementum ultrices velit. Sed ipsum ligula, vehicula sed venenatis a, luctus et mauris. Pellentesque non augue augue. Morbi non leo lorem. Cras eros sem, molestie eu ante et, posuere rhoncus orci. Sed dignissim ligula et tellus tincidunt tristique. Vivamus tempus tincidunt urna ut fermentum.</p>
+          <p>Maecenas rutrum eros diam, vitae faucibus orci finibus et. Curabitur varius venenatis tincidunt. Nam convallis condimentum pharetra. Morbi consequat pretium enim, in congue nibh. Fusce magna metus, ultrices et purus in, aliquet accumsan dolor. Curabitur lacinia congue bibendum. Quisque bibendum, risus ac euismod varius, purus odio pellentesque ante, vitae auctor magna neque non arcu. Aliquam quis posuere risus. Donec vestibulum commodo cursus. Quisque hendrerit mollis velit, eget accumsan nulla posuere et.</p>
+          <p>Sed consectetur non lorem sed maximus. Etiam ut diam bibendum, ultricies elit sit amet, pharetra diam. Nunc eleifend consequat elit. Aliquam condimentum placerat eros, nec scelerisque ante commodo quis. Sed convallis scelerisque rutrum. Aenean ultrices lorem in ipsum hendrerit lacinia. Phasellus id purus et nisl mollis hendrerit in sagittis purus. Curabitur eget neque porttitor, pretium ligula sed, interdum lorem. Suspendisse egestas justo sit amet purus tempor aliquet. Praesent posuere lorem ut feugiat viverra. Mauris nec tortor at mi interdum malesuada.</p>
+          <p>Suspendisse at tempor eros. Curabitur nec nisi vel erat cursus consequat vel quis neque. Nam lorem felis, viverra eget purus et, facilisis laoreet magna. Vivamus in maximus lectus, vel fermentum lectus. Donec urna elit, dictum vitae consequat eget, gravida aliquam ex. Fusce sed ultricies mauris, ut finibus ante. Aenean purus magna, sodales ut justo sit amet, sollicitudin posuere nulla. Pellentesque id blandit dui, ut tempor lacus. Quisque ullamcorper sem quis elit hendrerit condimentum.</p>
+          <p>Nam eu tellus vel mauris pharetra gravida lacinia id tortor. Phasellus ac viverra sapien. Maecenas et elementum erat, sit amet blandit velit. Vivamus efficitur nec nunc vel tincidunt. Nunc sit amet ligula commodo ipsum placerat tempor mattis vitae risus. Nunc fringilla dui et lectus hendrerit porta. Pellentesque eu purus nec lorem tempor interdum eu sed tellus. Integer dignissim lectus augue, vel volutpat ante consectetur non. In hac habitasse platea dictumst. Phasellus euismod risus ut velit commodo suscipit. Nam eget mauris id leo malesuada mollis eu quis lorem. Phasellus euismod sapien nec pellentesque placerat.</p>
+          <p>Sed tempor dapibus volutpat. Nullam vel orci lectus. Phasellus ac dolor sit amet risus pellentesque hendrerit in vel augue. Proin vitae ligula non turpis vestibulum faucibus. In feugiat eros erat, vitae cursus nulla malesuada non. Sed sed egestas arcu, eu viverra metus. In vitae purus semper, venenatis lorem id, malesuada elit. Donec fringilla dolor id augue auctor imperdiet. Phasellus nec sollicitudin quam. Mauris vitae ipsum fringilla, sodales turpis ac, interdum odio. Duis a ultricies nisl. Nulla vel aliquet nisi.</p>
+          <p> Praesent sit amet mauris tristique, mollis mi eget, volutpat libero. Vivamus eget sapien viverra ligula finibus pretium. Nullam laoreet auctor mollis. Integer fringilla, erat et tristique ultrices, enim erat scelerisque nulla, et efficitur ante nibh in magna. Sed sed libero elit. Nam et pellentesque enim, et cursus risus. Maecenas ornare turpis eu nibh dictum dignissim. Vivamus a orci erat. Donec tempus lacus mi, vel pharetra arcu porttitor viverra. Nunc ac iaculis ex. Donec in viverra leo, quis vestibulum leo. Aenean aliquet purus in metus tincidunt, id imperdiet ligula molestie. Curabitur a elit tortor. Quisque tempus tincidunt rhoncus.</p>
+        </Container>
+        <MobileMenu>
+          <Space space="0 0.5em" inset>
+            <Rail className="--h-spread" stretch>
+              <Ghost rounded color="var(--akcent-one)">◄</Ghost>
+              <Ghost rounded color="black">🞅</Ghost>
+              <Ghost rounded color="var(--akcent-two)">▣</Ghost>
+            </Rail>
+          </Space>
+        </MobileMenu>
+      </Wrapper>
+    </GlobalStyles>
+  );
+}
 
 const Docs = () => {
   const [form, setForm] = useState({});
+  const [badges, setBadges] = useState(Array.from(Array(12).keys()));
   const [showCollapse, toggleCollapse] = useState(false);
   const [showOverlay, toggleOverlay] = useState(false);
   const [showDrawer, toggleDrawer] = useState(false);
@@ -27,6 +64,12 @@ const Docs = () => {
 
   const [hasIcon, toggleIcons] = useState(false);
   const [accordionOpenIndex, selectAccordionIndex] = useState(0);
+
+  const closeBadge = index => {
+    const update = [...badges];
+    update.splice(index, 1);
+    setBadges(update);
+  }
 
   return (
     <GlobalStyles>
@@ -261,9 +304,6 @@ const Docs = () => {
                 </Collapse>
               </Stack>
             </Space>
-            {/* 
-                */}
-
 
             <Text as="h2">Form</Text>
             {/* Notice "--flex-column" class to enforce <Columns/> to grow full width without applying width:100% which brakes layout */}
@@ -313,13 +353,24 @@ const Docs = () => {
 
             <Text as="h2">Rail:wrapContent</Text>
             <Box className="fixbox --space-i">
-              <Rail wrapContent>
-                <Badge>1</Badge>
-                <Badge>2</Badge>
-                <Badge>3</Badge>
-                <Badge>4</Badge>
-                <Badge>5</Badge>
-                <Badge>6</Badge>
+              <Rail gap="0.5em" wrapContent>
+                {
+                  badges.map((badge, index) =>
+                    <Badge
+                      mnw="5em"
+                      size={size}
+                      key={`badge-${badge}`}
+                      className="--h-spread"
+                      color={badge % 2 ? "var(--akcent-one)" : "var(--akcent-two)"}>
+                      <span className="--stretch-block --center-text">{badge}</span>
+                      <Close
+                        color="rgba(0,0,0,0.4)"
+                        text="rgba(255, 255, 255, 0.6)"
+                        onClick={() => closeBadge(index)}
+                        focusColor="rgba(255, 255, 255, 0.6)" />
+                    </Badge>
+                  )
+                }
               </Rail>
             </Box>
 
@@ -415,4 +466,5 @@ const Docs = () => {
 }
 
 
-render(<Docs />, document.getElementById("app"));
+render(<CoverTest />, document.getElementById("app"));
+// render(<Docs />, document.getElementById("app"));

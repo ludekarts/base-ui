@@ -15,6 +15,8 @@ const Grid = styled.div`
   }
 `;
 
+Grid.displayName = "Grid";
+
 Grid.propTypes = {
   gap: PropTypes.string,
   size: PropTypes.string,

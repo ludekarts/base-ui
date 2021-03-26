@@ -2,8 +2,8 @@ import React from "react";
 import { createGlobalStyle } from "styled-components";
 
 const Styles = createGlobalStyle`
-
-  .base-ui {
+    
+  :root {
 
     --bui-box-shadow: 0px 9px 9px -11px rgba(0, 0, 0, 0.5);
     --bui-lift-shadow: 0px 23px 18px -21px rgba(0, 0, 0, 0.7);
@@ -21,12 +21,29 @@ const Styles = createGlobalStyle`
 
     /* Enable children to expand vertically by using flex-grow property */
     
-    &.full-stack {
+    ${({ fullCover }) => !fullCover ? `` : `     
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;      
+     
+      & body {
+        margin: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+      }
+    `}
+
+    /* Full cover */
+
+    & .full-cover {
+      margin: 0;
       width: 100%;
       height: 100%;
       display: flex;
       flex-direction: column;
-    }
+    }    
 
     /* FLex modifiers */
 
@@ -154,14 +171,25 @@ const Styles = createGlobalStyle`
         text-transform: uppercase;
       }
     }
+
+    /* Common */
+
+    & .--stretch-block {
+      display: block;
+      width: 100%;
+    }
+
+    & .--center-text {
+      text-align: center;
+    }
   }
 `;
 
-export default function GlobalStyles({ children, className }) {
+export default function GlobalStyles({ children, fullCover }) {
   return (
-    <div className={`base-ui ${className}`}>
+    <>
       {children}
-      <Styles />
-    </div>
+      <Styles fullCover={fullCover} />
+    </>
   );
 }

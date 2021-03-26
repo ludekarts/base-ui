@@ -92,9 +92,8 @@ export const Box = styled.div`
   }
 
   &.fixbox {
-    width: 220px;   
-    height: auto; 
-    min-height: 120px;
+    width: 15.5em;   
+    height: auto;     
   }
 `;
 
@@ -112,6 +111,14 @@ export const DropList = styled(Dropdown)`
   border: 1px solid #ddd;
   background-color: white;
   box-shadow: var(--bui-box-shadow);
+`;
+
+export const MobileMenu = styled.div`
+  bottom: 0;
+  width: 100%;
+  position: fixed;
+  padding: 0.5em;
+  background-color: #eee;
 `;
 
 export const TextIcon = props => {

@@ -30,9 +30,9 @@ const Rail = styled.div`
     ${wrapContent ? `
       flex-wrap: wrap;      
       margin-bottom: calc(${gap} * 0.5 * -1);
+      margin-right: -${gap};
       & > * {
         margin: 0 ${gap} calc(${gap} * 0.5) 0;      
-
         &:last-child {
           margin-right: 0;
         }
@@ -58,6 +58,7 @@ const Rail = styled.div`
 `;
 
 Rail.displayName = "Rail";
+
 Rail.propTypes = {
   gap: PropTypes.string,
   breakpoint: PropTypes.string,

@@ -2,6 +2,7 @@ import React, { forwardRef } from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import Overlay from "./overlay";
+import Close from "../buttons/close";
 
 const Wrapper = styled.div`
   bottom: 0;
@@ -22,31 +23,13 @@ const Wrapper = styled.div`
     right: ${open ? "0" : `calc(-${width} - 4em)`};
     position: ${nested ? "absolute" : "fixed"};
   `};
-`;
 
-const Close = styled.button`
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
-  border: none;
-  width: 1.8rem;
-  height: 1.8rem;
-  cursor: pointer;
-  border-radius:50%;
-  align-items: center;
-  background-color: #eee;
-  justify-content: center;
-
-  &:hover, &:focus {    
-    outline: none;
-    background-color: #ddd;
-  }
-
-  &:focus {
-    box-shadow: 0 0 0 3px rgba(66,153,225, .6);
+  & button.close {
+    top: 1rem;
+    right: 1rem;
+    position: absolute;
   }
 `;
-
 
 const Drawer = forwardRef((props, ref) => {
   const { children, open, onClose, nested, top, width, ...rest } = props;
@@ -55,7 +38,7 @@ const Drawer = forwardRef((props, ref) => {
       <Wrapper {...rest} open={open} nested={nested} top={top} width={width} onClick={event => event.stopPropagation()} ref={ref}>
         {
           !onClose ? null :
-            <Close onClick={onClose} type="button">⛌</Close>
+            <Close onClick={onClose} size="2em" className="close" />
         }
         {children}
       </Wrapper>

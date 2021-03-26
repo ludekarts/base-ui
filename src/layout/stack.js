@@ -25,6 +25,7 @@ const Stack = styled.div`
 `;
 
 Stack.displayName = "Stack";
+
 Stack.propTypes = {
   gap: PropTypes.string,
   breakpoint: PropTypes.string,
