@@ -19,9 +19,7 @@ export const Wrapper = styled.div`
   --akcent-two: #8bc34a;
   `}
 
-  
   & input, & pre {
-    width: 100%;
     padding: 0.8em 1em;
     border: 1px solid #ddd;
   }

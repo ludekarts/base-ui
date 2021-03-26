@@ -6,7 +6,6 @@ const Cover = styled.div`
   height: 100%;
   display: flex;
   flex-direction: column;
-
 `;
 
 Cover.displayName = "Cover";

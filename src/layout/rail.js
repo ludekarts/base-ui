@@ -9,7 +9,7 @@ import styled from "styled-components";
 /* 
   import { Rail } from @ludekarts/base-ui/layout;
   
-  <Rail gap="1em" breakpoint="500px" expandContent stretch wrapContent >
+  <Rail gap="1em" breakpoint="500px" wrapContent >
     ...
   </Rail>
 
@@ -18,15 +18,12 @@ import styled from "styled-components";
 const Rail = styled.div`  
   display: flex;
   flex-direction: row;
-
   
-  
-  ${({ gap, expandContent, stretch, wrapContent }) => `
-    ${stretch ? "width: 100%;" : ""}
-    ${expandContent ? "& > * { width: 100%; }" : ""}
+  ${({ gap, wrapContent }) => `
     & > * + * {
       margin-left: ${gap};
     }  
+    
     ${wrapContent ? `
       flex-wrap: wrap;      
       margin-bottom: calc(${gap} * 0.5 * -1);
@@ -62,16 +59,12 @@ Rail.displayName = "Rail";
 Rail.propTypes = {
   gap: PropTypes.string,
   breakpoint: PropTypes.string,
-  stretch: PropTypes.bool,
   wrapContent: PropTypes.bool,
-  expandContent: PropTypes.bool,
 };
 
 Rail.defaultProps = {
   gap: "1em",
-  stretch: false,
   wrapContent: false,
-  expandContent: false,
 };
 
 export default Rail;

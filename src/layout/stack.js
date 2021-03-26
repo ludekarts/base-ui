@@ -5,14 +5,10 @@ const Stack = styled.div`
   display: flex;
   flex-direction: column;
   
-  ${({ stretch, gap, expandContent }) => `
-    ${stretch ? "width: 100%;" : ""}
-    ${expandContent ? "& > * { width: 100% !important; }" : ""}
-    & > * + * {
-      margin-top: ${gap};
-    }  
-  `};
-  
+  & > * + * {
+    margin-top: ${({ gap }) => gap};
+  }  
+    
   ${({ breakpoint, gap }) => !breakpoint ? "" : `
     @media (min-width: ${breakpoint}) {
       flex-direction: row;            
@@ -29,14 +25,10 @@ Stack.displayName = "Stack";
 Stack.propTypes = {
   gap: PropTypes.string,
   breakpoint: PropTypes.string,
-  stretch: PropTypes.bool,
-  expandContent: PropTypes.bool,
 };
 
 Stack.defaultProps = {
   gap: "1em",
-  stretch: false,
-  expandContent: false,
 };
 
 export default Stack;

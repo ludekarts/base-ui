@@ -174,6 +174,16 @@ const Styles = createGlobalStyle`
 
     /* Common */
 
+    & .--stretch {
+      width: 100%;
+    }
+
+    & .--expand-content {
+      & > * { 
+        width: 100%; 
+      }
+    }
+
     & .--stretch-block {
       display: block;
       width: 100%;
@@ -181,6 +191,14 @@ const Styles = createGlobalStyle`
 
     & .--center-text {
       text-align: center;
+    }
+   
+    & .--right-text {
+      text-align: right;
+    }
+   
+    & .--left-text {
+      text-align: left;
     }
   }
 `;

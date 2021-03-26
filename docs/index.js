@@ -40,7 +40,7 @@ const CoverTest = () => {
         </Container>
         <MobileMenu>
           <Space space="0 0.5em" inset>
-            <Rail className="--h-spread" stretch>
+            <Rail className="--h-spread --stretch" >
               <Ghost rounded color="var(--akcent-one)">◄</Ghost>
               <Ghost rounded color="black">🞅</Ghost>
               <Ghost rounded color="var(--akcent-two)">▣</Ghost>
@@ -311,7 +311,7 @@ const Docs = () => {
               <Columns minSize="400px">
                 <Form onSubmit={data => setForm(data)} includeCheckStatus>
                   <Stack>
-                    <Rail expandContent>
+                    <Rail className="--expand-content">
                       <input name="username" type="text" placeholder="Username" required className="base-ui-focus" />
                       <input name="password" type="password" placeholder="Password" required className="base-ui-focus" />
                     </Rail>
@@ -411,10 +411,10 @@ const Docs = () => {
           <Text as="h2">Accordion</Text>
           <Text font="monospace" color="#333">Composition of Button, Rail, Collapse and useState</Text>
           <Space />
-          <Stack gap="0" stretch expandContent>
+          <Stack gap="0" className="--stretch --expand-content">
 
             <Button className="sharpCorners" onClick={() => selectAccordionIndex(0)}>
-              <Rail stretch>
+              <Rail className="--stretch">
                 Accordion One
               </Rail>
             </Button>
@@ -425,7 +425,7 @@ const Docs = () => {
             </Collapse>
 
             <Button className="sharpCorners" onClick={() => selectAccordionIndex(1)}>
-              <Rail stretch>
+              <Rail className="--stretch">
                 Accordion Two
               </Rail>
             </Button>
@@ -436,7 +436,7 @@ const Docs = () => {
             </Collapse>
 
             <Button className="sharpCorners" onClick={() => selectAccordionIndex(2)}>
-              <Rail stretch>
+              <Rail className="--stretch">
                 Accordion Three
               </Rail>
             </Button>
@@ -466,5 +466,5 @@ const Docs = () => {
 }
 
 
-render(<CoverTest />, document.getElementById("app"));
-// render(<Docs />, document.getElementById("app"));
+// render(<CoverTest />, document.getElementById("app"));
+render(<Docs />, document.getElementById("app"));
