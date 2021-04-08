@@ -31,26 +31,38 @@ const Wrapper = styled.div`
   }
 `;
 
-const Drawer = forwardRef((props, ref) => {
+const DrawerPanel = forwardRef((props, ref) => {
   const { children, open, onClose, nested, top, width, ...rest } = props;
   return (
-    <Overlay open={open} onClick={onClose} tint={0.7}>
-      <Wrapper {...rest} open={open} nested={nested} top={top} width={width} onClick={event => event.stopPropagation()} ref={ref}>
-        {
-          !onClose ? null :
-            <Close onClick={onClose} size="2em" className="close" />
-        }
-        {children}
-      </Wrapper>
-    </Overlay>
+    <Wrapper {...rest} open={open} nested={nested} top={top} width={width} onClick={event => event.stopPropagation()} ref={ref}>
+      {
+        !onClose ? null :
+          <Close onClick={onClose} size="2em" className="close" />
+      }
+      {children}
+    </Wrapper>
+  )
+});
+
+const Drawer = forwardRef((props, ref) => {
+  const { noOverlay, open, onClose } = props;
+  return (
+    noOverlay ? (
+      <DrawerPanel {...props} ref={ref} />
+    ) : (
+      <Overlay open={open} onClick={onClose} tint={0.7}>
+        <DrawerPanel {...props} ref={ref} />
+      </Overlay>
+    )
   );
-})
+});
 
 Drawer.propTypes = {
   open: PropTypes.bool,
   top: PropTypes.string,
   nested: PropTypes.bool,
   width: PropTypes.string,
+  noOverlay: PropTypes.bool,
 };
 
 Drawer.defaultProps = {
@@ -58,6 +70,7 @@ Drawer.defaultProps = {
   top: "0",
   nested: false,
   width: "18rem",
+  noOverlay: false,
 };
 
 Drawer.displayName = "Drawer";

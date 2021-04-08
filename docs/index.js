@@ -10,10 +10,115 @@ import avatarSrc from "./assets/avatar.png";
 // ---- Base-UI ----------------
 
 import { Button, Checkbox, Switch, Ghost, Underline, Highlight, Close } from "../src/buttons";
-import { Container, Rail, Stack, Grid, Space, Columns, Sidebar } from "../src/layout";
+import { Container, Rail, Stack, Grid, Space, Columns, Sidebar, Cover } from "../src/layout";
 import { GlobalStyles, Text, Collapse, Form, Badge } from "../src/basic";
 import { Drawer, Modal, Overlay } from "../src/panels";
 import { Image, Avatar } from "../src/media";
+
+const componentsList = {
+  "Button": Button,
+  "Ghost": Ghost,
+  "Underline": Underline,
+  "Highlight": Highlight,
+};
+
+const classesList = [
+  "--space",
+  "--space-2x",
+  "--space-3x",
+  "--space-4x",
+
+  "--space-i",
+  "--space-2x-i",
+  "--space-3x-i",
+  "--space-4x-i",
+
+  "--stretch",
+  "--epand-content",
+]
+
+function Playground(props) {
+  const { component, ...rest } = props;
+  const Render = component;
+  component && console.log(Object.keys(Render.propTypes));
+  return component ?
+    <div>
+      <Render {...rest} />
+    </div> :
+    <div>Select component</div>;
+}
+
+const Interactive = () => {
+  const [showOptions, toggleOptions] = useState(false);
+  const [currentComponent, setCurrentComponent] = useState();
+  const [classes, setClasses] = useState("");
+
+  const selectComponent = event => {
+    if (event.target.matches("button")) {
+      const name = event.target.textContent;
+      setCurrentComponent(name);
+    }
+  };
+
+  const selectClasses = event => {
+    if (event.target.matches("button")) {
+      const klass = event.target.textContent;
+      setClasses(`${classes} ${klass}`);
+    }
+  }
+
+  return (
+    <GlobalStyles>
+      <Wrapper>
+        <Container>
+          <Stack>
+            <Text as="h1" color="deepskyblue">🔮 Hello! Base-UI Docs</Text>
+            <Rail>
+              <Button size="sm" onClick={() => toggleOptions(!showOptions)}>Options</Button>
+            </Rail>
+
+            <Cover>
+              <Playground
+                className={classes}
+                component={componentsList[currentComponent]}>
+                {currentComponent}
+              </Playground>
+            </Cover>
+
+          </Stack>
+        </Container>
+
+        <Drawer width="400px" open={showOptions} onClose={() => toggleOptions(false)} noOverlay>
+          <Space inset space="2em 0 1em" className="--expand-content">
+            <Columns minSize="100px">
+              <Stack gap="0.3em" onClick={selectComponent}>
+                <h3>Components</h3>
+                {
+                  Object.keys(componentsList).map(name =>
+                    <button key={name} className="--text-left">{name}</button>
+                  )
+                }
+              </Stack>
+              <Stack gap="0.3em" onClick={selectClasses}>
+                <h3>Classes</h3>
+                {
+                  classesList.map(klass =>
+                    <button key={klass} className="--text-right">{klass}</button>
+                  )
+                }
+              </Stack>
+            </Columns>
+          </Space>
+        </Drawer>
+      </Wrapper>
+    </GlobalStyles>
+  )
+};
+
+function getPropsDescription(params) {
+
+}
+
 
 const CoverTest = () => {
   return (
@@ -61,7 +166,6 @@ const Docs = () => {
   const [showModal, toggleModal] = useState(false);
   const [theme, changeTheme] = useState("one");
   const [size, setSize] = useState("md");
-
   const [hasIcon, toggleIcons] = useState(false);
   const [accordionOpenIndex, selectAccordionIndex] = useState(0);
 
@@ -125,6 +229,7 @@ const Docs = () => {
               <Button size="sm" onClick={() => setSize("md")}>MD</Button>
               <Button size="sm" onClick={() => setSize("lg")}>LG</Button>
               <Button size="sm" onClick={() => toggleIcons(!hasIcon)}>Icons</Button>
+              <Button size="sm" onClick={() => toggleOptions(true)}>Options</Button>
             </Rail>
             <Space space="1em" inset>
               <Stack>
@@ -362,7 +467,7 @@ const Docs = () => {
                       key={`badge-${badge}`}
                       className="--h-spread"
                       color={badge % 2 ? "var(--akcent-one)" : "var(--akcent-two)"}>
-                      <span className="--stretch-block --center-text">{badge}</span>
+                      <span className="--stretch-block --text-center">{badge}</span>
                       <Close
                         color="rgba(0,0,0,0.4)"
                         text="rgba(255, 255, 255, 0.6)"
@@ -467,4 +572,5 @@ const Docs = () => {
 
 
 // render(<CoverTest />, document.getElementById("app"));
-render(<Docs />, document.getElementById("app"));
+// render(<Docs />, document.getElementById("app"));
+render(<Interactive />, document.getElementById("app"));

@@ -75,10 +75,6 @@ const Styles = createGlobalStyle`
       margin: var(--bui-space-4x);
     }
 
-    & .--expand-content > * {
-      width: 100%;
-    }
-
   /* Spacing Inset */
 
     & .--space-i {
@@ -189,15 +185,15 @@ const Styles = createGlobalStyle`
       width: 100%;
     }
 
-    & .--center-text {
+    & .--text-center {
       text-align: center;
     }
    
-    & .--right-text {
+    & .--text-right {
       text-align: right;
     }
    
-    & .--left-text {
+    & .--text-left {
       text-align: left;
     }
   }
