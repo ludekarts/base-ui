@@ -1,7 +1,7 @@
 import React from "react";
 import Icon from "./icons/info";
 import styled from "styled-components";
-import { Dropdown } from "../src/basic";
+import { Dropdown } from "../src/panels";
 import { Rail } from "../src/layout";
 
 export const Wrapper = styled.div`
@@ -117,6 +117,13 @@ export const MobileMenu = styled.div`
   position: fixed;
   padding: 0.5em;
   background-color: #eee;
+`;
+
+export const SomeContainer = styled.div`
+  width: 100%;
+  max-width: 100%; 
+  height: 340px;
+  background-color: #ddd;
 `;
 
 export const TextIcon = props => {

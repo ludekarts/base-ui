@@ -95,10 +95,11 @@ const Checkbox = forwardRef((props, ref) => {
 Checkbox.displayName = "Checkbox";
 
 Checkbox.propTypes = {
+  id: PropTypes.string,
+  name: PropTypes.string.isRequired,
   bg: PropTypes.string,
   color: PropTypes.string,
   rounded: PropTypes.bool,
-  name: PropTypes.string.isRequired,
   type: PropTypes.oneOf(["checkbox", "radio"]),
 };
 

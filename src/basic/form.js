@@ -3,10 +3,6 @@ import PropTypes from "prop-types";
 
 // USAGE:
 /* 
-
-  import From from "/components/composit/form";
-  ...
-
   const handleSubmit = data => {
     // data: object with all input fields name and their values => { inputName: inputValue }.
   };
@@ -39,16 +35,20 @@ Form.propTypes = {
 };
 
 Form.defaultProps = {
-  // If set to TRUE all checkboxes will report their chcek status.
+  // If set to TRUE all checkboxes will report their check-status.
   includeCheckStatus: false,
 };
+
+
+Form.formInputsToObject = formInputsToObject;
+Form.hardFormReset = hardFormReset;
 
 export default Form;
 
 
 // ---- Helpers ----------------
 
-export function formInputsToObject(form, options = { includeCheckStatus: false }) {
+function formInputsToObject(form, options = { includeCheckStatus: false }) {
   return Array.from(form.elements).reduce(
     (acc, element) => {
       if (element.name) {
@@ -75,7 +75,7 @@ export function formInputsToObject(form, options = { includeCheckStatus: false }
     }, {});
 }
 
-export function hardFormReset(form, options = { resetValue: false }) {
+function hardFormReset(form, options = { resetValue: false }) {
   Object.values(form.elements).forEach(input =>
     input.type === "checkbox" && (input.checked = options.resetValue)
   );

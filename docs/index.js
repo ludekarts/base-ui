@@ -1,9 +1,9 @@
 import { render } from "react-dom";
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 
 // ---- Docs UI ----------------
 
-import { Wrapper, MiniBox, Box, Menu, DropList, TextIcon, SwitchIcon, MobileMenu } from "./styled";
+import { Wrapper, MiniBox, Box, Menu, DropList, TextIcon, SwitchIcon, MobileMenu, SomeContainer } from "./styled";
 import imageSrc from "./assets/image.png";
 import avatarSrc from "./assets/avatar.png";
 
@@ -158,8 +158,11 @@ const CoverTest = () => {
 }
 
 const Docs = () => {
+  const imperativeForm = useRef();
   const [form, setForm] = useState({});
+  const [imperativeValues, setIperativeValues] = useState({});
   const [badges, setBadges] = useState(Array.from(Array(12).keys()));
+  const [checkToggleStat, setCheckToggleStat] = useState(false);
   const [showCollapse, toggleCollapse] = useState(false);
   const [showOverlay, toggleOverlay] = useState(false);
   const [showDrawer, toggleDrawer] = useState(false);
@@ -174,6 +177,18 @@ const Docs = () => {
     update.splice(index, 1);
     setBadges(update);
   }
+
+  const imperativeToggle = () => {
+    const nextState = !checkToggleStat;
+    Form.hardFormReset(imperativeForm.current, { resetValue: nextState })
+    setCheckToggleStat(nextState);
+  }
+
+  const imperativeStates = () => {
+    setIperativeValues(Form.formInputsToObject(imperativeForm.current, { includeCheckStatus: true }));
+  }
+
+
 
   return (
     <GlobalStyles>
@@ -449,6 +464,24 @@ const Docs = () => {
               </Columns>
             </Space>
 
+            <Text as="h2">Form Utilities</Text>
+            <Form ref={imperativeForm}>
+              <Columns minSize="400px">
+                <Rail className="--v-start">
+                  <Checkbox name="f1" value="Pixy" color="var(--akcent-one)" />
+                  <Checkbox name="f2" value="Dixy" color="var(--akcent-one)" />
+                  <Checkbox name="f3" value="Mixy" color="var(--akcent-one)" />
+                  <Button size="sm" onClick={imperativeToggle}>Toggle All</Button>
+                  <Button size="sm" onClick={imperativeStates}>Show states</Button>
+                </Rail>
+                <pre>
+                  {
+                    JSON.stringify(imperativeValues, null, 2)
+                  }
+                </pre>
+              </Columns>
+            </Form>
+
             <Text as="h2">Rail</Text>
             <Rail breakpoint="400px" className="--rail-spread">
               <Box className="nostretch --space-4x-i">1</Box>
@@ -511,6 +544,15 @@ const Docs = () => {
             <Space space="0 0 3em" />
           </Stack>
 
+          <Text as="h2">Cover</Text>
+          <SomeContainer>
+            <Cover className="--v-center --h-center">
+              <Space space="0 0 0 auto">Top right corner</Space>
+              <Space space="auto">Center content</Space>
+              <Space space="0 auto 0 0">Bottom left corner</Space>
+            </Cover>
+          </SomeContainer>
+
           <hr />
 
           <Text as="h2">Accordion</Text>
@@ -566,11 +608,11 @@ const Docs = () => {
           <p>This is a sample modal content...</p>
         </Modal>
       </Wrapper>
-    </GlobalStyles>
+    </GlobalStyles >
   );
 }
 
 
 // render(<CoverTest />, document.getElementById("app"));
-// render(<Docs />, document.getElementById("app"));
-render(<Interactive />, document.getElementById("app"));
+render(<Docs />, document.getElementById("app"));
+// render(<Interactive />, document.getElementById("app"));

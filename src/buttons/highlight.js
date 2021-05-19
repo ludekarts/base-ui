@@ -63,7 +63,7 @@ const ButtonWrapper = styled.button`
   }
 
   ${({ size, color, activeText, square, outline, active }) => `
-    font-size: ${size === "lg" ? "1.5rem" : size === "sm" ? "0.57rem" : "1em"};
+    font-size: ${size === "lg" ? "1.5rem" : size === "sm" ? "0.55rem" : "1em"};
     width: 1em;
     height: 1em;
     padding: 1em;

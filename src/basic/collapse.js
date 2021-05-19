@@ -30,7 +30,6 @@ const Collapse = props => {
 Collapse.displayName = "Collapse";
 Collapse.propTypes = {
   open: PropTypes.bool,
-  height: PropTypes.number,
   maxHeight: PropTypes.number,
   minHeight: PropTypes.number,
 };

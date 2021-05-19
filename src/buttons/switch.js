@@ -92,11 +92,12 @@ const Switch = forwardRef((props, ref) => {
 Switch.displayName = "Switch";
 
 Switch.propTypes = {
+  name: PropTypes.string.isRequired,
+  id: PropTypes.string,
   size: PropTypes.string,
   color: PropTypes.string,
   squared: PropTypes.bool,
   offColor: PropTypes.string,
-  name: PropTypes.string.isRequired,
   type: PropTypes.oneOf(["checkbox", "radio"]),
 };
 

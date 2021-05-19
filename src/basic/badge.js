@@ -18,8 +18,6 @@ const Badge = styled.div`
 Badge.displayName = "Badge";
 Badge.propTypes = {
   justify: PropTypes.string,
-  children: PropTypes.node,
-  onClose: PropTypes.func,
   color: PropTypes.string,
   mnw: PropTypes.string,
 };

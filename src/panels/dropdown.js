@@ -4,13 +4,13 @@ import styled from "styled-components";
 
 // USAGE
 /*
-  import Dropdown from "@ludekarts/base-ui/dropdown";
+  import { Dropdown } from "@ludekarts/base-ui";
   ...
 
   
   <button data-bui-dropdown-target="dropdownName">Toggle my dropdown</button>
 
-  <Dropdown name="dropdownName" onToggle={() => {}} autoHide>
+  <Dropdown name="dropdownName" onToggle={toggleState => {}} autoHide>
     Content
   </Dropdown>
 

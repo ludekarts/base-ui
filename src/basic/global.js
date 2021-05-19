@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { createGlobalStyle } from "styled-components";
 
 const Styles = createGlobalStyle`
@@ -93,7 +93,7 @@ const Styles = createGlobalStyle`
       padding: var(--bui-space-4x);
     }
 
-    /* Verical & Horizontal Alignment */
+    /* Vertical & Horizontal Alignment */
 
     & .--stack-start, .--v-start {
       align-items: flex-start;
@@ -201,9 +201,9 @@ const Styles = createGlobalStyle`
 
 export default function GlobalStyles({ children, fullCover }) {
   return (
-    <>
+    <Fragment>
       {children}
       <Styles fullCover={fullCover} />
-    </>
+    </Fragment>
   );
 }

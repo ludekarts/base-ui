@@ -62,6 +62,7 @@ Drawer.propTypes = {
   top: PropTypes.string,
   nested: PropTypes.bool,
   width: PropTypes.string,
+  onClose: PropTypes.func,
   noOverlay: PropTypes.bool,
 };
 
