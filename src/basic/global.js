@@ -57,7 +57,7 @@ const Styles = createGlobalStyle`
       flex-direction: row-reverse;
     }
 
-    /* Spacing */
+    /* Spacing outside */
 
     & .--space {
       margin: var(--bui-space);
@@ -75,6 +75,71 @@ const Styles = createGlobalStyle`
       margin: var(--bui-space-4x);
     }
 
+    & .--space-t {
+      margin-top: var(--bui-space);
+    }
+
+    & .--space-t-2x {
+      margin-top: var(--bui-space-2x);
+    }
+
+    & .--space-t-3x {
+      margin-top: var(--bui-space-3x);
+    }
+
+    & .--space-t-4x {
+      margin-top: var(--bui-space-4x);
+    }
+    
+    & .--space-l {
+      margin-left: var(--bui-space);
+    }
+
+    & .--space-l-2x {
+      margin-left: var(--bui-space-2x);
+    }
+
+    & .--space-l-3x {
+      margin-left: var(--bui-space-3x);
+    }
+
+    & .--space-l-4x {
+      margin-left: var(--bui-space-4x);
+    }
+   
+    & .--space-b {
+      margin-bottom: var(--bui-space);
+    }
+
+    & .--space-b-2x {
+      margin-bottom: var(--bui-space-2x);
+    }
+
+    & .--space-b-3x {
+      margin-bottom: var(--bui-space-3x);
+    }
+
+    & .--space-b-4x {
+      margin-bottom: var(--bui-space-4x);
+    }
+
+    & .--space-r {
+      margin-right: var(--bui-space);
+    }
+
+    & .--space-r-2x {
+      margin-right: var(--bui-space-2x);
+    }
+
+    & .--space-r-3x {
+      margin-right: var(--bui-space-3x);
+    }
+
+    & .--space-r-4x {
+      margin-right: var(--bui-space-4x);
+    }
+
+
   /* Spacing Inset */
 
     & .--space-i {
@@ -91,6 +156,70 @@ const Styles = createGlobalStyle`
 
     & .--space-4x-i {
       padding: var(--bui-space-4x);
+    }
+
+    & .--space-t-i {
+      padding-top: var(--bui-space);
+    }
+
+    & .--space-t-2x-i {
+      padding-top: var(--bui-space-2x);
+    }
+
+    & .--space-t-3x-i {
+      padding-top: var(--bui-space-3x);
+    }
+
+    & .--space-t-4x-i {
+      padding-top: var(--bui-space-4x);
+    }
+    
+    & .--space-l-i {
+      padding-left: var(--bui-space);
+    }
+
+    & .--space-l-2x-i {
+      padding-left: var(--bui-space-2x);
+    }
+
+    & .--space-l-3x-i {
+      padding-left: var(--bui-space-3x);
+    }
+
+    & .--space-l-4x-i {
+      padding-left: var(--bui-space-4x);
+    }
+   
+    & .--space-b-i {
+      padding-bottom: var(--bui-space);
+    }
+
+    & .--space-b-2x-i {
+      padding-bottom: var(--bui-space-2x);
+    }
+
+    & .--space-b-3x-i {
+      padding-bottom: var(--bui-space-3x);
+    }
+
+    & .--space-b-4x-i {
+      padding-bottom: var(--bui-space-4x);
+    }
+
+    & .--space-r-i {
+      padding-right: var(--bui-space);
+    }
+
+    & .--space-r-2x-i {
+      padding-right: var(--bui-space-2x);
+    }
+
+    & .--space-r-3x-i {
+      padding-right: var(--bui-space-3x);
+    }
+
+    & .--space-r-4x-i {
+      padding-right: var(--bui-space-4x);
     }
 
     /* Vertical & Horizontal Alignment */
@@ -162,7 +291,8 @@ const Styles = createGlobalStyle`
 
     /* Capitalize first letter */
     
-    & .caps-first-letter {
+    & .caps-first-letter,  /* for backward compatibility */
+    & .--first-letter-caps {
       &::first-letter {
         text-transform: uppercase;
       }

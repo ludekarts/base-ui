@@ -10,11 +10,18 @@ const Label = styled.label`
   flex-shrink: 0;
   position: relative;  
   display: inline-flex;
-  
+
   & > input {
     opacity:0;
+    
+    ${({ offColor }) => !offColor ? `` : `
+      & + span  {
+        background-color:${offColor};
+      }
+    `}
+
     &:checked + span {
-      background-color: ${({ color, offColor }) => offColor || color};
+      background-color: ${({ color }) => color};
       &::before {
         transform: translateX(1.2em) translateZ(0);
       }    
@@ -22,7 +29,7 @@ const Label = styled.label`
 
     &:checked:focus + span {
       &::after {                
-        box-shadow: 0 0 0 3px  ${({ color, offColor }) => offColor || color};
+        box-shadow: 0 0 0 3px  ${({ color }) => color};
       }
     }
 

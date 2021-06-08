@@ -1,6 +1,7 @@
 import React, { useRef, useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
+import { debounce } from "../utils";
 
 const Wrapper = styled.div`
   overflow: hidden;
@@ -17,10 +18,16 @@ const Collapse = props => {
   const [height, setHeight] = useState(0);
   const wrapper = useRef();
 
+  const updateOnResize = debounce(() => {
+    setHeight(wrapper.current.scrollHeight);
+  }, 400);
+
+  useEffect(updateOnResize, [open]);
+
   useEffect(() => {
-    wrapper.current &&
-      setHeight(wrapper.current.scrollHeight);
-  }, [open]);
+    window.addEventListener("resize", updateOnResize);
+    return () => window.removeEventListener("resize", updateOnResize);
+  }, []);
 
   return (
     <Wrapper {...rest} open={open} height={height} ref={wrapper} />

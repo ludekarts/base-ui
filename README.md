@@ -12,7 +12,7 @@ Wrapper component that provides all base-ui utility classes.
 ```
   import { GlobalStyles } from "@ludekarts/base-ui";
 
-  const App = props => <GlobalStyles><App/></GlobalStyles>; 
+  const App = props => <GlobalStyles><App/></GlobalStyles>;
 ```
 
 **Props**
@@ -30,7 +30,7 @@ Wrapper component that provides all base-ui utility classes.
 
 | Class name | Description |
 |------------|-------------|
-| `--flex-column` | Changes flex display to column | 
+| `--flex-column` | Changes flex display to column |
 | `--flex-row-reverse` | Reverse elements oreder in flex row |
 
 
@@ -38,12 +38,13 @@ Wrapper component that provides all base-ui utility classes.
 
 | Class name | Description |
 |------------|-------------|
-| `--stretch` | Set element width to 100% | 
+| `--stretch` | Set element width to 100% |
 | `--stretch-block` | Diplay as block element and set width to 100% |
 | `--expand-content` | Set width of element children to 100% |
 | `--text-center` | Center text |
 | `--text-right` | Align text right |
 | `--text-left` | Align text left |
+| `--first-letter-caps` | Capitalize first letter |
 
 
 **Spacing outside (margin)**
@@ -54,6 +55,22 @@ Wrapper component that provides all base-ui utility classes.
 | `--space-2x` | Set margin of 1rem |
 | `--space-3x` | Set margin of 1.5rem |
 | `--space-4x` | Set margin of 2rem |
+| `--space-t` | Set margin top of 0.5rem |
+| `--space-t-2x` | Set margin top of 1rem |
+| `--space-t-3x` | Set margin top of 1.5rem |
+| `--space-t-4x` | Set margin top of 2rem |
+| `--space-r` | Set margin right of 0.5rem |
+| `--space-r-2x` | Set margin right of 1rem |
+| `--space-r-3x` | Set margin right of 1.5rem |
+| `--space-r-4x` | Set margin right of 2rem |
+| `--space-b` | Set margin bottom of 0.5rem |
+| `--space-b-2x` | Set margin bottom of 1rem |
+| `--space-b-3x` | Set margin bottom of 1.5rem |
+| `--space-b-4x` | Set margin bottom of 2rem |
+| `--space-l` | Set margin left of 0.5rem |
+| `--space-l-2x` | Set margin left of 1rem |
+| `--space-l-3x` | Set margin left of 1.5rem |
+| `--space-l-4x` | Set margin left of 2rem |
 
 
 **Spacing inset (padding)**
@@ -61,31 +78,47 @@ Wrapper component that provides all base-ui utility classes.
 | Class name | Description |
 |------------|-------------|
 | `--space-i` | Set padding of 0.5rem |
-| `--space-i-2x` | Set padding of 1rem |
-| `--space-i-3x` | Set padding of 1.5rem |
-| `--space-i-4x` | Set padding of 2rem |
+| `--space-2x-i` | Set padding of 1rem |
+| `--space-3x-i` | Set padding of 1.5rem |
+| `--space-4x-i` | Set padding of 2rem |
+| `--space-t-i` | Set padding top of 0.5rem |
+| `--space-t-2x-i` | Set padding top of 1rem |
+| `--space-t-3x-i` | Set padding top of 1.5rem |
+| `--space-t-4x-i` | Set padding top of 2rem |
+| `--space-r-i` | Set padding right of 0.5rem |
+| `--space-r-2x-i` | Set padding right of 1rem |
+| `--space-r-3x-i` | Set padding right of 1.5rem |
+| `--space-r-4x-i` | Set padding right of 2rem |
+| `--space-b-i` | Set padding bottom of 0.5rem |
+| `--space-b-2x-i` | Set padding bottom of 1rem |
+| `--space-b-3x-i` | Set padding bottom of 1.5rem |
+| `--space-b-4x-i` | Set padding bottom of 2rem |
+| `--space-l-i` | Set padding left of 0.5rem |
+| `--space-l-2x-i` | Set padding left of 1rem |
+| `--space-l-3x-i` | Set padding left of 1.5rem |
+| `--space-l-4x-i` | Set padding left of 2rem |
 
 
 **Verical flex alignment**
 
-| Class name | Description |
-|------------|-------------|
-| `--v-start` | Align content to the TOP of the element |
-| `--v-end` | Align content to the BOTTOM of the element |
-| `--v-stretch` | Stretch content vertically |
-| `--v-center` | Align content to the CENTER of the element |
+| Class name | Alias | Description |
+|------------|-------|-------------|
+| `--v-start` | `--stack-start` | Align content to the TOP of the element |
+| `--v-end` | `--stack-end` | Align content to the BOTTOM of the element |
+| `--v-stretch` | `--stack-stretch` | Stretch content vertically |
+| `--v-center` | `--stack-center` | Align content to the CENTER of the element |
 
 
 **Horizontal flex alignment**
 
-| Class name | Description |
-|------------|-------------|
-| `--h-start` | Align content to the SATRT of the element |
-| `--h-end` | Align content to the END of the element |
-| `--h-center` | Align content to the CENTER of the element |
-| `--h-spread` | Spread content to the sides of the element |
-| `--h-evenly` | Spread content to evenly across the element |
-| `--h-around` | Spread content with wcen space between inside the element |
+| Class name | Alias | Description |
+|------------|-------|-------------|
+| `--h-start` | `--rail-start` | Align content to the SATRT of the element |
+| `--h-end` | `--rail-end` | Align content to the END of the element |
+| `--h-center` | `--rail-center` | Align content to the CENTER of the element |
+| `--h-spread` | `--rail-spread` | Spread content to the sides of the element |
+| `--h-evenly` | `--rail-evenly` | Spread content to evenly across the element |
+| `--h-around` | `--rail-around` | Spread content with wcen space between inside the element |
 
 
 **Default focus**
@@ -139,7 +172,7 @@ Regular form with customized **onSubmit** handler with utilities for handling fo
   import { Form } from "@ludekarts/base-ui";
 
   . . .
-  
+
   const handleSubmit = data => {
     // data: object with all input fields names and their values e.g: { inputName: inputValue }.
   };
@@ -234,7 +267,7 @@ Simple, regular button.
 | **disabled** | bool | false | Disable state |
 | **inverse** | bool/number | false/0 | Inverse colors |
 
-> **NOTE:** 
+> **NOTE:**
 >
 > All buttons have *inverse* prop as `bool/number` - this is a hack that allows to convert button into Link tag from react-router-dom. When using as Link set numeric value for *inverse* prop.
 
@@ -618,7 +651,7 @@ Displats image with additional fallback error to image placeholder.
 
 ### Avatar
 
-Image with same width and height. 
+Image with same width and height.
 
 ```
   import { Avatar } from "@ludekarts/base-ui/media";
@@ -665,7 +698,7 @@ Black animated panel that covers entire screen.
 | **delayIn** | number | 0 | Delay for in-animation |
 | **delayOut** | number | 0 | Delay for out-animation |
 | **duration** | number | 0.3 | Animation duration |
- 
+
 
 ### Drawer
 
@@ -725,7 +758,7 @@ Animated dropdown panel that can be triggered by adding `data-bui-dropdown-targe
 
 ```
   import { Dropdown } from "@ludekarts/base-ui/panels";
-  
+
   . . .
 
   <button data-bui-dropdown-target="dropdownName">Toggle my dropdown</button>

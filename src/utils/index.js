@@ -26,3 +26,17 @@ export function isHexColor(color) {
   return /^#([\da-f]{3}){1,2}$/i.test(color);
 }
 
+
+// Debounce callback fn.
+export function debounce(callback, delay, immediate) {
+  let timeout;
+  return (...args) => {
+    const later = () => {
+      timeout = null;
+      !immediate && callback(...args);
+    };
+    clearTimeout(timeout);
+    timeout = setTimeout(later, delay);
+    immediate && !timeout && callback(...args);
+  };
+};
