@@ -7,11 +7,11 @@ const Columns = styled.div`
   justify-content: center;
 
   ${({ minSize, gap }) => `
-    margin: calc(${gap} / 2 * -1);
+    margin: 0 calc(${gap} / 2 * -1) calc(${gap} * -1);
 
     & > * {
       flex: 1 1 ${minSize};
-      margin: calc(${gap} / 2);    
+      margin: 0 calc(${gap} / 2) ${gap};    
     }
 
   `}  
