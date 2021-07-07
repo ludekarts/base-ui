@@ -294,6 +294,9 @@ const Docs = () => {
                   <Underline size={size} color="var(--akcent-one)" text="white" >
                     <TextIcon icon={hasIcon}>Color</TextIcon>
                   </Underline>
+                  <Underline size={size} color="var(--akcent-one)" text="white" outlineFocus>
+                    <TextIcon icon={hasIcon} >Outline focus</TextIcon>
+                  </Underline>
                   <Underline size={size} color="var(--akcent-one)" text="white" inverse>
                     <TextIcon icon={hasIcon}>Inverse</TextIcon>
                   </Underline>
@@ -489,7 +492,7 @@ const Docs = () => {
               <Box className="nostretch --space-4x-i">3</Box>
             </Rail>
 
-            <Text as="h2">Rail:wrapContent</Text>
+            <Text as="h2">Rail (wrapContent)</Text>
             <Box className="fixbox --space-i">
               <Rail gap="0.5em" wrapContent>
                 {
@@ -512,7 +515,7 @@ const Docs = () => {
               </Rail>
             </Box>
 
-            <Text as="h2">Stack</Text>
+            <Text as="h2">Stack (with breakpoint)</Text>
             <Stack breakpoint="700px" className="--rail-end">
               <Box className="--space-4x-i">4</Box>
               <Box className="--space-4x-i">5</Box>
@@ -535,10 +538,16 @@ const Docs = () => {
               <Box>14</Box>
             </Columns>
 
-            <Text as="h2">Sidebar</Text>
+            <Text as="h2">Sidebar (left)</Text>
             <Sidebar>
               <Box>Sidebar</Box>
               <Box>Content</Box>
+            </Sidebar>
+
+            <Text as="h2">Sidebar (right)</Text>
+            <Sidebar right>
+              <Box>Content</Box>
+              <Box>Sidebar</Box>
             </Sidebar>
 
             <Space space="0 0 3em" />

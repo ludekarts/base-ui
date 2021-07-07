@@ -29,7 +29,7 @@ const Rail = styled.div`
       margin-bottom: calc(${gap} * 0.5 * -1);
       margin-right: -${gap};
       & > * {
-        margin: 0 ${gap} calc(${gap} * 0.5) 0;      
+        margin: 0 ${gap} calc(${gap} * 0.75) 0;      
         &:last-child {
           margin-right: 0;
         }

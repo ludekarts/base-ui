@@ -44,6 +44,8 @@ Wrapper component that provides all base-ui utility classes.
 | `--text-center` | Center text |
 | `--text-right` | Align text right |
 | `--text-left` | Align text left |
+| `--text-bold ` | Display bold text |
+| `--text-italic` | Display italic text |
 | `--first-letter-caps` | Capitalize first letter |
 
 
@@ -295,6 +297,7 @@ Button with animated underline .
 | **disabled** | bool | false | Disable state |
 | **active** | bool/number | false/0 | Active state |
 | **inverse** | bool/number | false/0 | Inverse colors |
+| **outlineFocus** | bool/number | false/0 | Apply outline focus |
 
 
 ### Ghost

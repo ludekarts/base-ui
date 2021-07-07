@@ -326,6 +326,14 @@ const Styles = createGlobalStyle`
     & .--text-left {
       text-align: left;
     }
+   
+    & .--text-bold {
+      font-weight: bold;
+    }
+    
+    & .--text-italic {
+      font-style: italic;
+    }
   }
 `;
 

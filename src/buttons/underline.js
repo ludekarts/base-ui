@@ -48,7 +48,7 @@ const ButtonWrapper = styled.button`
       position: absolute;   
       border-radius: inherit;
       background-color: rgba(0, 0 , 0, 0);
-      transition: background-color .3s ease, box-shadow .3s ease;
+      transition: background-color .3s ease, box-shadow .3s ease, opacity .3s ease;
     }
 
     &::before {
@@ -56,7 +56,7 @@ const ButtonWrapper = styled.button`
     }
   }
 
-  ${({ size, text, color, inverse, active }) => `
+  ${({ size, text, color, inverse, active, outlineFocus }) => `
     ${size === "lg" ? "padding: 0.8em 1.5em;" : size === "sm" ? "padding: 0.3em 0.8em;" : "padding: 0.5em 1em;"}
     font-size: ${size === "lg" ? "1rem" : size === "sm" ? "0.85rem" : "1em"};
     color: ${inverse ? text : color};
@@ -81,13 +81,22 @@ const ButtonWrapper = styled.button`
       transition: fill .3s ease;
     }
 
-    &:focus {
-      outline: none;            
-      & > span.base-ui-button-effect::before {
-        box-shadow: 0 0 0 3px ${color === "#999999" || color === "transparent" ? "black" : color} ;       
+    ${outlineFocus ? `
+      &:focus {
+        outline: none;            
+        & > span.base-ui-button-effect::before {
+          box-shadow: 0 0 0 3px ${color === "#999999" || color === "transparent" ? "black" : color} ;       
+        }
       }
-    }
-
+    ` : `
+      &:focus {
+        outline: none;            
+        & > span.base-ui-button-effect:before {          
+          background-color: rgba(0, 0 , 0, .3);
+        }
+      }
+    `}
+    
     &.active {
       color: ${inverse ? color : text};
      
@@ -102,7 +111,6 @@ const ButtonWrapper = styled.button`
       & > span.base-ui-button-effect::after {
         left: 10%;
         right: 10%;        
-        background-color: ${inverse ? color : text};
       }
     }
 
@@ -141,8 +149,7 @@ const ButtonWrapper = styled.button`
       
       & > span.base-ui-button-effect::after {
         left: 10%;
-        right: 10%;        
-        background-color: ${inverse ? color : text};
+        right: 10%;
       }
     }
   `}
@@ -181,11 +188,15 @@ UnderlineButton.propTypes = {
     PropTypes.bool,
     PropTypes.number,
   ]),
-
+  outlineFocus: PropTypes.oneOfType([
+    PropTypes.bool,
+    PropTypes.number,
+  ]),
 };
 
 UnderlineButton.defaultProps = {
   disabled: false,
+  outlineFocus: 0,
   inverse: 0,
   active: 0,
   text: "inherit",
@@ -197,50 +208,3 @@ UnderlineButton.displayName = "UnderlineButton";
 
 export default UnderlineButton;
 
-
-
-
-// const UnderlineButton = styled(Button)`
-
-//   border-radius: initial;
-
-//   ${({ color, bg, inverse }) => `
-//     background-color: ${inverse ? color : bg};
-//     color: ${inverse ? bg : color};
-//     &::after {
-//       background-color: ${inverse ? bg : color};
-//     }
-//   `};
-
-//   &::after {
-    // bottom: 0;
-    // left: 51%;
-    // right: 51%;
-    // height: 3px;
-    // content: "";
-    // position: absolute;
-    // transition: left .3s ease, right .3s ease;    
-//   }
-
-//   &:hover {
-//     filter: none;
-//     &::after {
-      // left: 0;
-      // right: 0;
-//     }
-//   }
-// `;
-
-// UnderlineButton.defaultProps = {
-//   bg: "white",
-//   active: 0,
-//   inverse: 0,
-//   color: "#222222",
-// };
-
-// UnderlineButton.propTypes = {
-//   bg: PropTypes.string,
-//   color: PropTypes.string,
-// };
-
-// export default UnderlineButton;
