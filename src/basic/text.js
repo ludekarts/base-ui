@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 // Text enhancement component.
 const Text = styled.span`
-  ${({ color, size, spacing, weight, padding, transform, ellypsis, lh, block, font }) => `
+  ${({ color, size, spacing, weight, padding, transform, ellipsis, lh, block, font }) => `
     ${block ? "display: block; width: 100%;" : "display: inline-block;"}
     ${color ? `color:${color};` : ""}
     ${size ? `font-size:${size};` : ""}
@@ -12,7 +12,7 @@ const Text = styled.span`
     ${padding ? `padding:${padding};` : ""}
     ${weight ? `font-weight:${weight};` : ""}
     ${transform ? `text-transform:${transform};` : ""}
-    ${ellypsis ? `
+    ${ellipsis ? `
       width:100%;
       overflow: hidden;
       white-space: nowrap;
@@ -31,14 +31,14 @@ Text.propTypes = {
   spacing: PropTypes.string,
   padding: PropTypes.string,
   transform: PropTypes.string,
-  ellypsis: PropTypes.bool,
+  ellipsis: PropTypes.bool,
   block: PropTypes.bool,
 };
 
 Text.defaultProps = {
   padding: "0",
   block: false,
-  ellypsis: false,
+  ellipsis: false,
 };
 
 export default Text;

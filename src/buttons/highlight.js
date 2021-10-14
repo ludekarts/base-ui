@@ -82,7 +82,7 @@ const ButtonWrapper = styled.button`
 
     & svg {
       fill: ${color};
-      tarnsition: fill .3s ease;
+      transition: fill .3s ease;
     }
   
     &:focus {

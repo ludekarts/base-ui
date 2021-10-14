@@ -62,7 +62,7 @@ const Styles = createGlobalStyle`
     & .--space {
       margin: var(--bui-space);
     }
-
+    
     & .--space-2x {
       margin: var(--bui-space-2x);
     }
@@ -90,7 +90,7 @@ const Styles = createGlobalStyle`
     & .--space-t-4x {
       margin-top: var(--bui-space-4x);
     }
-    
+        
     & .--space-l {
       margin-left: var(--bui-space);
     }
@@ -139,6 +139,23 @@ const Styles = createGlobalStyle`
       margin-right: var(--bui-space-4x);
     }
 
+    /* Space for flex containers - push content */
+
+    & .--space-top {
+      margin-bottom: auto;
+    }
+    
+    & .--space-left {
+      margin-right: auto;
+    }
+    
+    & .--space-right {
+      margin-left: auto;
+    }
+
+    & .--space-bottom {
+      margin-top: auto;
+    }
 
   /* Spacing Inset */
 
@@ -221,6 +238,7 @@ const Styles = createGlobalStyle`
     & .--space-r-4x-i {
       padding-right: var(--bui-space-4x);
     }
+    
 
     /* Vertical & Horizontal Alignment */
 

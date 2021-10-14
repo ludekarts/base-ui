@@ -11,7 +11,6 @@ const ButtonWrapper = styled.button`
   font-family: inherit;
   display: inline-flex;
   text-decoration: none;
-  border-radius: 0.2em;
   justify-content: center; 
   align-items: center; 
   -moz-appearance: none;
@@ -52,10 +51,11 @@ const ButtonWrapper = styled.button`
     }
   }
 
-  ${({ size, text, color, inverse }) => `
+  ${({ size, text, color, inverse, radius }) => `    
     ${size === "lg" ? "padding: 0.8em 1.5em;" : size === "sm" ? "padding: 0.3em 0.8em;" : "padding: 0.5em 1em;"}
     font-size: ${size === "lg" ? "1rem" : size === "sm" ? "0.85rem" : "1em"};
     color: ${inverse ? color : text};
+    border-radius: ${radius};
             
     & > span.base-ui-button-effect {  
       background-color: ${inverse ? text : color};      
@@ -108,6 +108,7 @@ const BasicButton = props => {
 
 BasicButton.propTypes = {
   disabled: PropTypes.bool,
+  radius: PropTypes.string,
   color: PropTypes.string,
   text: PropTypes.string,
   type: PropTypes.string,
@@ -120,6 +121,7 @@ BasicButton.propTypes = {
 BasicButton.defaultProps = {
   disabled: false,
   inverse: 0,
+  radius: "0.2em",
   text: "inherit",
   type: "button",
   color: "#DDDDDD",

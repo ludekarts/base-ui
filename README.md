@@ -53,26 +53,31 @@ Wrapper component that provides all base-ui utility classes.
 
 | Class name | Description |
 |------------|-------------|
-| `--space` | Set margin of 0.5rem |
-| `--space-2x` | Set margin of 1rem |
-| `--space-3x` | Set margin of 1.5rem |
-| `--space-4x` | Set margin of 2rem |
-| `--space-t` | Set margin top of 0.5rem |
-| `--space-t-2x` | Set margin top of 1rem |
-| `--space-t-3x` | Set margin top of 1.5rem |
-| `--space-t-4x` | Set margin top of 2rem |
-| `--space-r` | Set margin right of 0.5rem |
-| `--space-r-2x` | Set margin right of 1rem |
-| `--space-r-3x` | Set margin right of 1.5rem |
-| `--space-r-4x` | Set margin right of 2rem |
-| `--space-b` | Set margin bottom of 0.5rem |
-| `--space-b-2x` | Set margin bottom of 1rem |
-| `--space-b-3x` | Set margin bottom of 1.5rem |
-| `--space-b-4x` | Set margin bottom of 2rem |
-| `--space-l` | Set margin left of 0.5rem |
-| `--space-l-2x` | Set margin left of 1rem |
-| `--space-l-3x` | Set margin left of 1.5rem |
-| `--space-l-4x` | Set margin left of 2rem |
+| `--space` | Set margin to 0.5rem |
+| `--space-2x` | Set margin to 1rem |
+| `--space-3x` | Set margin to 1.5rem |
+| `--space-4x` | Set margin to 2rem |
+| `--space-t` | Set margin top to 0.5rem |
+| `--space-t-2x` | Set margin top to 1rem |
+| `--space-t-3x` | Set margin top to 1.5rem |
+| `--space-t-4x` | Set margin top to 2rem |
+| `--space-r` | Set margin right to 0.5rem |
+| `--space-r-2x` | Set margin right to 1rem |
+| `--space-r-3x` | Set margin right to 1.5rem |
+| `--space-r-4x` | Set margin right to 2rem |
+| `--space-b` | Set margin bottom to 0.5rem |
+| `--space-b-2x` | Set margin bottom to 1rem |
+| `--space-b-3x` | Set margin bottom to 1.5rem |
+| `--space-b-4x` | Set margin bottom to 2rem |
+| `--space-l` | Set margin left to 0.5rem |
+| `--space-l-2x` | Set margin left to 1rem |
+| `--space-l-3x` | Set margin left to 1.5rem |
+| `--space-l-4x` | Set margin left to 2rem |
+| `--space-top` | Set margin bottom to auto (use in flex container) |
+| `--space-left` | Set margin right to auto (use in flex container) |
+| `--space-right` | Set margin left to auto (use in flex container) |
+| `--space-bottom` | Set margin top to auto (use in flex container) |
+
 
 
 **Spacing inset (padding)**
@@ -162,7 +167,7 @@ Component for convinient text formatting.
 | **spacing** | string | undefined | Margin |
 | **padding** | string | 0 | Padding |
 | **transform** | string | false | Text transform |
-| **ellypsis** | boolean | false | Crop text with ellypsis |
+| **ellipsis** | boolean | false | Crop text with ellipsis |
 | **block** | boolean | false | Display as block |
 
 

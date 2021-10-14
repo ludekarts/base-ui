@@ -63,8 +63,7 @@ const Input = styled.input`
           box-shadow: 0 0 0 0.15rem ${color};          
         }
       }
-    `};
-
+    `}
   }
 `;
 
@@ -79,6 +78,14 @@ const Label = styled.label`
   justify-content: center;  
 `;
 
+const Dot = styled.span`
+  width: 0.5em;
+  height: 0.5em;
+  display: block;
+  border-radius: 50%;
+  background-color: white;
+`;
+
 
 // ----  Checkbox ----------------
 
@@ -87,7 +94,7 @@ const Checkbox = forwardRef((props, ref) => {
   return (
     <Label htmlFor={id || name} color={color} bg={bg} rounded={rounded}>
       <Input id={id || name} name={name} type={type} color={color} bg={bg} rounded={rounded} ref={ref} {...rest} />
-      <span>{rounded ? "•" : "✓"}</span>
+      <span>{rounded ? <Dot /> : "✓"}</span>
     </Label>
   );
 });
