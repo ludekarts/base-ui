@@ -43,6 +43,10 @@ export const Wrapper = styled.div`
   .sharpCorners {
     border-radius: 0;
   }
+
+  h5 {
+    margin: 0.5em 0;
+  }
 `;
 
 export const MiniBox = styled.span`
@@ -149,3 +153,8 @@ export const SwitchIcon = props => {
   );
 }
 
+export const Nav = styled.nav`
+  width: 100%;
+  display: flex;
+  background-color: ${({ bg = "white" }) => bg};
+`;

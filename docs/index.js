@@ -3,7 +3,7 @@ import React, { useState, useRef } from "react";
 
 // ---- Docs UI ----------------
 
-import { Wrapper, MiniBox, Box, Menu, DropList, TextIcon, SwitchIcon, MobileMenu, SomeContainer } from "./styled";
+import { Wrapper, MiniBox, Box, Menu, DropList, TextIcon, SwitchIcon, MobileMenu, SomeContainer, Nav } from "./styled";
 import imageSrc from "./assets/image.png";
 import avatarSrc from "./assets/avatar.png";
 
@@ -13,7 +13,7 @@ import { Button, Checkbox, Switch, Ghost, Underline, Highlight, Close } from "..
 import { Container, Rail, Stack, Grid, Space, Columns, Sidebar, Cover } from "../src/layout";
 import { GlobalStyles, Text, Collapse, Form, Badge } from "../src/basic";
 import { Drawer, Modal, Overlay } from "../src/panels";
-import { Image, Avatar } from "../src/media";
+import { Image, Avatar, AspectRatio } from "../src/media";
 
 const componentsList = {
   "Button": Button,
@@ -167,6 +167,8 @@ const Docs = () => {
   const [showOverlay, toggleOverlay] = useState(false);
   const [showDrawer, toggleDrawer] = useState(false);
   const [showModal, toggleModal] = useState(false);
+  const [ratio, setRatio] = useState("16:9");
+  const [navItem, setNavItem] = useState(-1);
   const [theme, changeTheme] = useState("one");
   const [size, setSize] = useState("md");
   const [hasIcon, toggleIcons] = useState(false);
@@ -287,6 +289,7 @@ const Docs = () => {
                 </Rail>
 
                 <h4>Underline</h4>
+
                 <Rail className="--stack-center" wrapContent>
                   <Underline size={size}>
                     <TextIcon icon={hasIcon}>Default</TextIcon>
@@ -307,6 +310,30 @@ const Docs = () => {
                     <TextIcon icon={hasIcon}>Disabled</TextIcon>
                   </Underline>
                 </Rail>
+
+                <h5>Underline in navigation</h5>
+                <Nav bg="var(--akcent-two)">
+                  <Rail className="--rail-spread --stretch">
+                    <Rail gap="0">
+                      <Underline color="var(--akcent-two)" text="white" size={size} active={navItem === 0} onClick={() => setNavItem(0)}>
+                        <TextIcon icon={hasIcon}>Home</TextIcon>
+                      </Underline>
+                      <Underline color="var(--akcent-two)" text="white" size={size} active={navItem === 1} onClick={() => setNavItem(1)}>
+                        <TextIcon icon={hasIcon}>Blog</TextIcon>
+                      </Underline>
+                      <Underline className="active-inverse" color="var(--akcent-two)" text="white" size={size} active={navItem === 2} onClick={() => setNavItem(2)}>
+                        <TextIcon icon={hasIcon}>About</TextIcon>
+                      </Underline>
+                      <Underline className="active-inverse" disabled color="var(--akcent-two)" text="white" size={size}>
+                        <TextIcon icon={hasIcon}>Disabled</TextIcon>
+                      </Underline>
+                    </Rail>
+                    <Underline color="var(--akcent-two)" inverse text="white" size={size} active={navItem === 3} onClick={() => setNavItem(3)}>
+                      <TextIcon icon={hasIcon}>Settings</TextIcon>
+                    </Underline>
+                  </Rail>
+                </Nav>
+
 
                 <h4>Highlight</h4>
                 <Rail className="--stack-center" >
@@ -401,6 +428,31 @@ const Docs = () => {
                   <Avatar src="#" alt="Broken avatar" />
                   <Avatar src={avatarSrc} alt="Avatar rounded" rounded="0.7em" />
                 </Rail>
+
+                <Rail className="--rail-spread --stretch --v-center">
+                  <h4>AspectRatio</h4>
+                  <Rail>
+                    <Button size="sm" onClick={() => setRatio("16:9")}>16:9 (video)</Button>
+                    <Button size="sm" onClick={() => setRatio("8:5")}>8:5</Button>
+                    <Button size="sm" onClick={() => setRatio("3:2")}>3:2</Button>
+                    <Button size="sm" onClick={() => setRatio("4:3")}>4:3</Button>
+                    <Button size="sm" onClick={() => setRatio("1:1")}>1:1 (square)</Button>
+                  </Rail>
+                </Rail>
+                <Grid size="10rem" className="--expand-content">
+                  <AspectRatio ratio={ratio}>
+                    <Box>{ratio}</Box>
+                  </AspectRatio>
+                  <AspectRatio ratio={ratio} >
+                    <Box>{ratio}</Box>
+                  </AspectRatio>
+                  <AspectRatio ratio={ratio} >
+                    <Box>{ratio}</Box>
+                  </AspectRatio>
+                  <AspectRatio ratio={ratio} >
+                    <Box>{ratio}</Box>
+                  </AspectRatio>
+                </Grid>
 
               </Stack>
             </Space>

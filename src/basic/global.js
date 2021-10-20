@@ -141,19 +141,19 @@ const Styles = createGlobalStyle`
 
     /* Space for flex containers - push content */
 
-    & .--space-top {
+    & .--push-top {
       margin-bottom: auto;
     }
     
-    & .--space-left {
+    & .--push-left {
       margin-right: auto;
     }
     
-    & .--space-right {
+    & .--push-right {
       margin-left: auto;
     }
 
-    & .--space-bottom {
+    & .--push-bottom {
       margin-top: auto;
     }
 
@@ -351,6 +351,10 @@ const Styles = createGlobalStyle`
     
     & .--text-italic {
       font-style: italic;
+    }
+    
+    & .--text-no-wrap {
+      white-space: nowrap;
     }
   }
 `;

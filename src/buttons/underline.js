@@ -29,6 +29,7 @@ const ButtonWrapper = styled.button`
   }
   
   & > span.base-ui-button-effect {  
+    /* Button's effec container */
     top: 0;
     left: 0;
     right: 0;
@@ -40,44 +41,46 @@ const ButtonWrapper = styled.button`
     transition: background-color .3s ease, box-shadow .3s ease, filter .3s ease;
 
     &::before {
+      /* Button background */
       content: "";
       top: 0;
       left: 0;
       right: 0;
       bottom: 0;      
+      opacity: 0.6;
       position: absolute;   
       border-radius: inherit;
       background-color: rgba(0, 0 , 0, 0);
       transition: background-color .3s ease, box-shadow .3s ease, opacity .3s ease;
     }
 
-    &::before {
-      opacity: 0.6;
+    &::after {
+      /* Button underline */
+      bottom: 0;
+      left: 51%;
+      right: 51%;
+      height: 3px;
+      content: "";
+      position: absolute;
+      border-radius: 0.2em 0.2em 0 0;
+      transition: left .3s ease, right .3s ease; 
     }
   }
 
   ${({ size, text, color, inverse, active, outlineFocus }) => `
     ${size === "lg" ? "padding: 0.8em 1.5em;" : size === "sm" ? "padding: 0.3em 0.8em;" : "padding: 0.5em 1em;"}
     font-size: ${size === "lg" ? "1rem" : size === "sm" ? "0.85rem" : "1em"};
-    color: ${inverse ? text : color};
+    color: ${inverse ? color : text};
     
     & > span.base-ui-button-effect {
-      background-color: ${inverse ? color : text};
-      &::after {
-        bottom: 0;
-        left: 51%;
-        right: 51%;
-        height: 3px;
-        content: "";
-        position: absolute;
-        border-radius: 0.2em 0.2em 0 0;
-        background-color: ${inverse ? text : color};
-        transition: left .3s ease, right .3s ease;  
+      background-color: ${inverse ? text : color};
+      &::after {         
+        background-color: ${inverse ? color : text};
       }
     }
 
     & svg {
-      fill: ${inverse ? text : color};
+      fill: ${inverse ? color : text};
       transition: fill .3s ease;
     }
 
@@ -105,16 +108,35 @@ const ButtonWrapper = styled.button`
       }
 
       & > span.base-ui-button-effect {
-        background-color: ${inverse ? text : color};
+        background-color: ${inverse ? color : text};
       }
 
       & > span.base-ui-button-effect::after {
         left: 10%;
         right: 10%;        
+        background-color: ${inverse ? color : text};
+      }
+
+      &.active-inverse {
+        color: ${inverse ? text : color};
+
+        & svg {
+          fill: ${inverse ? text : color};
+        }
+
+        & > span.base-ui-button-effect {
+          background-color: ${inverse ? color : text};
+        }
+
+        & > span.base-ui-button-effect::after {
+          left: 10%;
+          right: 10%;        
+          background-color: ${inverse ? text : color};
+        }
       }
     }
 
-    ${!active ? "" : `
+    ${!active ? `` : `
       color: ${inverse ? color : text};
 
       & svg {
@@ -129,6 +151,24 @@ const ButtonWrapper = styled.button`
         left: 10%;
         right: 10%;        
         background-color: ${inverse ? color : text};
+      }
+
+      &.active-inverse {
+        color: ${inverse ? text : color};
+
+        & svg {
+          fill: ${inverse ? text : color};
+        }
+
+        & > span.base-ui-button-effect {
+          background-color: ${inverse ? color : text};
+        }
+
+        & > span.base-ui-button-effect::after {
+          left: 10%;
+          right: 10%;        
+          background-color: ${inverse ? text : color};
+        }
       }
     `}
 
@@ -199,8 +239,8 @@ UnderlineButton.defaultProps = {
   outlineFocus: 0,
   inverse: 0,
   active: 0,
-  text: "inherit",
   type: "button",
+  text: "#000000",
   color: "#999999",
 };
 

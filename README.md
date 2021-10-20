@@ -46,6 +46,7 @@ Wrapper component that provides all base-ui utility classes.
 | `--text-left` | Align text left |
 | `--text-bold ` | Display bold text |
 | `--text-italic` | Display italic text |
+| `--text-no-wrap` | Do not wrap text |
 | `--first-letter-caps` | Capitalize first letter |
 
 
@@ -73,12 +74,6 @@ Wrapper component that provides all base-ui utility classes.
 | `--space-l-2x` | Set margin left to 1rem |
 | `--space-l-3x` | Set margin left to 1.5rem |
 | `--space-l-4x` | Set margin left to 2rem |
-| `--space-top` | Set margin bottom to auto (use in flex container) |
-| `--space-left` | Set margin right to auto (use in flex container) |
-| `--space-right` | Set margin left to auto (use in flex container) |
-| `--space-bottom` | Set margin top to auto (use in flex container) |
-
-
 
 **Spacing inset (padding)**
 
@@ -104,6 +99,15 @@ Wrapper component that provides all base-ui utility classes.
 | `--space-l-2x-i` | Set padding left of 1rem |
 | `--space-l-3x-i` | Set padding left of 1.5rem |
 | `--space-l-4x-i` | Set padding left of 2rem |
+
+**Push content in flex containers (margin)**
+
+| Class name | Description |
+|------------|-------------|
+| `--push-top` | Set margin bottom to auto |
+| `--push-left` | Set margin right to auto |
+| `--push-right` | Set margin left to auto |
+| `--push-bottom` | Set margin top to auto |
 
 
 **Verical flex alignment**
@@ -276,7 +280,7 @@ Simple, regular button.
 
 > **NOTE:**
 >
-> All buttons have *inverse* prop as `bool/number` - this is a hack that allows to convert button into Link tag from react-router-dom. When using as Link set numeric value for *inverse* prop.
+> All buttons have *inverse* prop type defined as `bool/number` - this allows to convert button into `Link` tag from react-router-dom. When used as Link set *numeric values* for the *inverse* prop.
 
 
 ### Underline
@@ -296,13 +300,15 @@ Button with animated underline .
 | Prop name | Type | Default | Description |
 |-----------|------|---------|-------------|
 | **size** | string | md | Button size, one of: [lg, md, sm] |
-| **text** | string | inherit | Text color |
+| **text** | string | #000000 | Text color |
 | **color** | string | #999999 | Background color |
 | **type** | string | button | Button type. To use thie component as a Submin button we need to specify `submit` type |
 | **disabled** | bool | false | Disable state |
-| **active** | bool/number | false/0 | Active state |
-| **inverse** | bool/number | false/0 | Inverse colors |
-| **outlineFocus** | bool/number | false/0 | Apply outline focus |
+| **active** | bool/number | 0 | Active state |
+| **inverse** | bool/number | 0 | Inverse colors |
+| **outlineFocus** | bool/number | 0 | Apply outline focus |
+| **.active** | className |  | Same as `active` prop |
+| **.active-inverse** | className |  | Inverse colors of active state |
 
 
 ### Ghost
@@ -599,6 +605,7 @@ Displays children (only 2) as a sidebar and main content.
 | **gap** | string | 1em | Space between sidebar nad content |
 | **breakAt** | string | 50% | Minial content width |
 | **sideWidth** | string | 15em | Sidebar width |
+| **right** | boolean | false | Places sidebar on the right side |
 
 
 ### Space
@@ -676,6 +683,38 @@ Image with same width and height.
 | **size** | string | 3rem | Avatar width & height |
 | **rounded** | string | 50% | Amount of corners rounding |
 
+### AspectRatio
+
+Renders container size with given ratio
+
+```
+  import { AspectRatio } from "@ludekarts/base-ui/media";
+
+  . . .
+
+  <AspectRatio>
+    Content
+  </AspectRatio>
+```
+
+**Props**
+
+| Prop name | Type | Default | Description |
+|-----------|------|---------|-------------|
+| **ratio** | string | video | One of the value form table below |
+| **turnOffAt** | string | undefined | Max-width to turn off scaling |
+
+**Ratios**
+
+| Prop value |
+|------------|
+| video  |
+| 16:9   |
+| 8:5    |
+| 3:2    |
+| 4:3    |
+| 1:1    |
+| square |
 
 ---
 
