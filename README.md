@@ -274,6 +274,7 @@ Simple, regular button.
 | **size** | string | md | Button size, one of: [lg, md, sm] |
 | **text** | string | inherit | Text color |
 | **color** | string | #DDDDDD | Background color |
+| **radius** | string | 0.2em | Button rounded corner |
 | **type** | string | button | Button type. To use thie component as a Submin button we need to specify `submit` type |
 | **disabled** | bool | false | Disable state |
 | **inverse** | bool/number | false/0 | Inverse colors |
@@ -336,6 +337,7 @@ Button with thick border empty inside.
 | **inverse** | bool/number | false/0 | Inverse colors |
 | **uppercase** | bool/number | false/0 | Uppercase text |
 | **rounded** | bool/number | false/0 | Set rounded corners |
+| **.no-text-bg** | className |  | Disables text color background |
 
 
 ### Highlight

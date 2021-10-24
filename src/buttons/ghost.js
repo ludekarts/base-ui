@@ -36,7 +36,7 @@ const ButtonWrapper = styled.button`
     display: flex;  
     position: absolute;
     border-radius: inherit;      
-    transition: background-color .3s ease, box-shadow .3s ease;
+    transition: background-color .3s ease, box-shadow .3s ease, filter .3s ease;
 
     &::before {
       content: "";
@@ -67,6 +67,12 @@ const ButtonWrapper = styled.button`
       background-color: ${inverse ? color : text};
     }
 
+    &.no-text-bg {
+      & > span.base-ui-button-effect {
+        background-color: ${inverse ? color : "transparent"};
+      }
+    }
+
     & svg {
       fill: ${inverse ? text : color};
       transition: fill .3s ease;
@@ -89,7 +95,20 @@ const ButtonWrapper = styled.button`
       & > span.base-ui-button-effect {
         background-color: ${inverse ? text : color};        
       }
+
+      &.no-text-bg {
+        & > span.base-ui-button-effect {
+          background-color: ${inverse ? "transparent" : color};        
+        }
+      }
     }
+
+    &.active:hover {
+      & > span.base-ui-button-effect {             
+        filter: brightness(0.9);              
+      }
+    }
+      
 
     ${!active ? "" : `
       color: ${inverse ? color : text};
@@ -101,6 +120,19 @@ const ButtonWrapper = styled.button`
       & > span.base-ui-button-effect {
         background-color: ${inverse ? text : color};        
       }
+
+      &.no-text-bg {
+        & > span.base-ui-button-effect {
+          background-color: ${inverse ? "transparent" : color};        
+        }
+      }
+
+      &:hover {
+        & > span.base-ui-button-effect {             
+          filter: brightness(0.9);              
+        }
+      }
+      
     `}
 
     &:active {

@@ -190,8 +190,6 @@ const Docs = () => {
     setIperativeValues(Form.formInputsToObject(imperativeForm.current, { includeCheckStatus: true }));
   }
 
-
-
   return (
     <GlobalStyles>
       <Wrapper theme={theme}>
@@ -261,6 +259,9 @@ const Docs = () => {
                   <Button size={size} color="var(--akcent-one)" text="white" inverse>
                     <TextIcon icon={hasIcon}>Inverse</TextIcon>
                   </Button>
+                  <Button size={size} color="var(--akcent-one)" text="white" radius="0.5em">
+                    <TextIcon icon={hasIcon}>Radius</TextIcon>
+                  </Button>
                   <Button size={size} disabled>
                     <TextIcon icon={hasIcon}>Disabled</TextIcon>
                   </Button>
@@ -283,9 +284,15 @@ const Docs = () => {
                   <Ghost size={size} color="var(--akcent-two)" text="white" uppercase>
                     <TextIcon icon={hasIcon}>Uppercase</TextIcon>
                   </Ghost>
+                  <div className="bg-gray">
+                    <Ghost size={size} color="var(--akcent-two)" text="white" className="no-text-bg">
+                      <TextIcon icon={hasIcon}>No text bg</TextIcon>
+                    </Ghost>
+                  </div>
                   <Ghost size={size} disabled>
                     <TextIcon icon={hasIcon}>Disabled</TextIcon>
                   </Ghost>
+
                 </Rail>
 
                 <h4>Underline</h4>
