@@ -59,12 +59,14 @@ Rail.displayName = "Rail";
 Rail.propTypes = {
   gap: PropTypes.string,
   breakpoint: PropTypes.string,
-  wrapContent: PropTypes.bool,
+  wrapContent: PropTypes.oneOfType([
+    PropTypes.bool,
+    PropTypes.number,
+  ]),
 };
 
 Rail.defaultProps = {
   gap: "1em",
-  wrapContent: false,
 };
 
 export default Rail;

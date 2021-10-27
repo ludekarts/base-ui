@@ -188,10 +188,6 @@ GhostButton.propTypes = {
 
 GhostButton.defaultProps = {
   disabled: false,
-  uppercase: 0,
-  inverse: 0,
-  rounded: 0,
-  active: 0,
   text: "inherit",
   type: "button",
   color: "#999999",

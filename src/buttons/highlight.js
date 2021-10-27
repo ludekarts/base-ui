@@ -166,9 +166,6 @@ HighlightButton.propTypes = {
 };
 
 HighlightButton.defaultProps = {
-  active: 0,
-  square: 0,
-  outline: 0,
   activeText: "inherit",
   color: "rgba(0, 0, 0, 0.15)",
 };

@@ -143,7 +143,7 @@ Wrapper component that provides all base-ui utility classes.
 
 | Class name | Description |
 |------------|-------------|
-| `--cover-link` | Parent container need to have style `position:relative` to make it works. Applied on a link provides large click area |
+| `--cover-link > a.--link` | Sets element postion to `relative` and changes interlan `<a/>` tag with `--link` class into "cover glass" |
 
 
 ### Text
@@ -277,11 +277,11 @@ Simple, regular button.
 | **radius** | string | 0.2em | Button rounded corner |
 | **type** | string | button | Button type. To use thie component as a Submin button we need to specify `submit` type |
 | **disabled** | bool | false | Disable state |
-| **inverse** | bool/number | false/0 | Inverse colors |
+| **inverse** | bool/number | undefined | Inverse colors |
 
 > **NOTE:**
 >
-> All buttons have *inverse* prop type defined as `bool/number` - this allows to convert button into `Link` tag from react-router-dom. When used as Link set *numeric values* for the *inverse* prop.
+> All buttons have their boolean attributes defined as `bool/number` type. This allows to convert a button into `Link` tag from react-router-dom. When used as Link set *boolean attribute (e.g. inverse)* should ne set to numeric value: `1/0`.
 
 
 ### Underline
@@ -305,9 +305,9 @@ Button with animated underline .
 | **color** | string | #999999 | Background color |
 | **type** | string | button | Button type. To use thie component as a Submin button we need to specify `submit` type |
 | **disabled** | bool | false | Disable state |
-| **active** | bool/number | 0 | Active state |
-| **inverse** | bool/number | 0 | Inverse colors |
-| **outlineFocus** | bool/number | 0 | Apply outline focus |
+| **active** | bool/number | undefined | Active state |
+| **inverse** | bool/number | undefined | Inverse colors |
+| **outlineFocus** | bool/number | undefined | Apply outline focus |
 | **.active** | className |  | Same as `active` prop |
 | **.active-inverse** | className |  | Inverse colors of active state |
 
@@ -333,10 +333,10 @@ Button with thick border empty inside.
 | **color** | string | #999999 | Background color |
 | **type** | string | button | Button type. To use thie component as a Submin button we need to specify `submit` type |
 | **disabled** | bool | false | Disable state |
-| **active** | bool/number | false/0 | Active state |
-| **inverse** | bool/number | false/0 | Inverse colors |
-| **uppercase** | bool/number | false/0 | Uppercase text |
-| **rounded** | bool/number | false/0 | Set rounded corners |
+| **active** | bool/number | undefined | Active state |
+| **inverse** | bool/number | undefined | Inverse colors |
+| **uppercase** | bool/number | undefined | Uppercase text |
+| **rounded** | bool/number | undefined | Set rounded corners |
 | **.no-text-bg** | className |  | Disables text color background |
 
 
@@ -359,9 +359,9 @@ Button for highlight icons or glyphs.
 | **size** | string | md | Button size, one of: [lg, md, sm] |
 | **color** | string | rgba(0, 0, 0, 0.15) | Background color |
 | **activeText** | string | false | Text color |
-| **square** | bool/number | false | Do not use rounded corners |
-| **outline** | bool/number | false | Show outline |
-| **active** | bool/number | false | Active state |
+| **square** | bool/number | undefined | Do not use rounded corners |
+| **outline** | bool/number | undefined | Show outline |
+| **active** | bool/number | undefined | Active state |
 
 
 ### Switch
@@ -511,7 +511,7 @@ Arranges content items one next to another.
 |-----------|------|---------|-------------|
 | **gap** | string | 1em | Space between items |
 | **breakpoint** | string | undefined | Max-width to break into stack layout |
-| **wrapContent** | bool | false | Allows overflow item to wrap inside container |
+| **wrapContent** |  bool/number | undefined | Allows overflow item to wrap inside container |
 
 > **NOTE:**
 >

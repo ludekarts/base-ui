@@ -294,15 +294,15 @@ const Styles = createGlobalStyle`
 
     /* Cover Link */
 
-    & a.--cover-link {
-      position: initial;
-      &::after {
+    & .--cover-link {
+      position: relative;
+      & a.--link {
         top: 0;
         left: 0;
         right: 0;
         bottom: 0;
-        z-index: 0;
-        content: "";
+        z-index: 0;        
+        cursor: pointer;
         position: absolute;
       }
     }

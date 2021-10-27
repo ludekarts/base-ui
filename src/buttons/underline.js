@@ -102,13 +102,13 @@ const ButtonWrapper = styled.button`
     
     &.active {
       color: ${inverse ? color : text};
-     
+
       & svg {
         fill: ${inverse ? color : text};
       }
 
       & > span.base-ui-button-effect {
-        background-color: ${inverse ? color : text};
+        background-color: ${inverse ? text : color};
       }
 
       & > span.base-ui-button-effect::after {
@@ -236,9 +236,6 @@ UnderlineButton.propTypes = {
 
 UnderlineButton.defaultProps = {
   disabled: false,
-  outlineFocus: 0,
-  inverse: 0,
-  active: 0,
   type: "button",
   text: "#000000",
   color: "#999999",

@@ -313,6 +313,9 @@ const Docs = () => {
                   <Underline size={size} color="var(--akcent-one)" text="white" active>
                     <TextIcon icon={hasIcon}>Active</TextIcon>
                   </Underline>
+                  <Underline size={size} color="var(--akcent-one)" text="white" className="active">
+                    <TextIcon icon={hasIcon}>Active Class</TextIcon>
+                  </Underline>
                   <Underline size={size} disabled>
                     <TextIcon icon={hasIcon}>Disabled</TextIcon>
                   </Underline>
@@ -609,7 +612,15 @@ const Docs = () => {
               <Box>Sidebar</Box>
             </Sidebar>
 
+
+            <Text as="h2">Cover Link</Text>
+            <Box className="--cover-link">
+              <span>Cover link</span>
+              <a href="#" className="--link"></a>
+            </Box>
+
             <Space space="0 0 3em" />
+
           </Stack>
 
           <Text as="h2">Cover</Text>

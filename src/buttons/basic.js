@@ -120,7 +120,6 @@ BasicButton.propTypes = {
 
 BasicButton.defaultProps = {
   disabled: false,
-  inverse: 0,
   radius: "0.2em",
   text: "inherit",
   type: "button",
