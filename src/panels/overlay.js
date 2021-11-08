@@ -7,11 +7,11 @@ const Overlay = styled.div`
   bottom: 0;
   display: flex;
   position: fixed;
-  ${({ top, tint, zIndex, delayOut, duration }) => `
+  ${({ top, tint, delayOut, duration }) => `
     top:${top};
-    z-index: ${zIndex};
+    z-index: -1;
     background: rgba(0, 0, 0, ${tint});
-    transition: opacity ${duration}s ease ${delayOut}s, transform ${duration}s ease ${delayOut}s;
+    transition: opacity ${duration}s ease ${delayOut}s, transform ${duration}s ease ${delayOut}s, z-index 0s linear ${duration}s;
   `};
 
   /* hide */
@@ -19,14 +19,21 @@ const Overlay = styled.div`
   overflow: hidden;
   pointer-events: none;
   transform: translateZ(0);
+  
+  & > * {
+    pointer-events: none;
+  }
 
   ${({ open, zIndex, delayIn, duration }) =>
     open &&
     ` opacity: 1;
       z-index: ${zIndex};
-      pointer-events: all;
+      pointer-events: all;     
       transform: translateZ(0);
-      transition: opacity ${duration}s ease ${delayIn}s, transform ${duration}s ease ${delayIn}s;
+      transition: opacity ${duration}s ease ${delayIn}s, transform ${duration}s ease ${delayIn}s, z-index 0s linear;
+      & > * {
+        pointer-events: all;
+      }
     `}
 `;
 

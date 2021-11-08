@@ -97,6 +97,18 @@ export const Box = styled.div`
     width: 15.5em;   
     height: auto;     
   }
+
+  &.rounded {
+    border-radius: 1em;
+  }
+  
+  &.color {
+    background-color: rebeccapurple;
+  }
+  
+  &.color:last-child {
+    background-color: gold;
+  }
 `;
 
 export const Menu = styled.div`
@@ -157,4 +169,13 @@ export const Nav = styled.nav`
   width: 100%;
   display: flex;
   background-color: ${({ bg = "white" }) => bg};
+`;
+
+export const SlideContainer = styled.div`
+  width: 400px;
+  height: 150px;
+  display: flex;
+  overflow: hidden;
+  position: relative;
+  justify-content: center;
 `;

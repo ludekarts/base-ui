@@ -22,9 +22,23 @@ Wrapper component that provides all base-ui utility classes.
 | **fullCover** | boolean | false | Expands page body to cover entire screen |
 
 
+
 #### Available classes
 
 ---
+
+**CSS variables**
+
+| Variable name | value |
+|---------------|-------|
+| `--bui-focus-color` | rgba(66, 153, 225, 0.6) |
+| `--bui-box-shadow` | 0px 9px 9px -11px rgba(0, 0, 0, 0.5) |
+| `--bui-lift-shadow` | 0px 23px 18px -21px rgba(0, 0, 0, 0.7) |
+| `--bui-space` | 0.5rem |
+| `--bui-space-2x` | 1rem |
+| `--bui-space-3x` | 1.5rem |
+| `--bui-space-4x` | 2rem |
+
 
 **Flex modifiers**
 
@@ -39,6 +53,7 @@ Wrapper component that provides all base-ui utility classes.
 | Class name | Description |
 |------------|-------------|
 | `--stretch` | Set element width to 100% |
+| `--stretch-v` | Set element height to 100% |
 | `--stretch-block` | Diplay as block element and set width to 100% |
 | `--expand-content` | Set width of element children to 100% |
 | `--text-center` | Center text |
@@ -130,6 +145,7 @@ Wrapper component that provides all base-ui utility classes.
 | `--h-spread` | `--rail-spread` | Spread content to the sides of the element |
 | `--h-evenly` | `--rail-evenly` | Spread content to evenly across the element |
 | `--h-around` | `--rail-around` | Spread content with wcen space between inside the element |
+|
 
 
 **Default focus**
@@ -228,18 +244,23 @@ Rounded badge.
 | **justify** | string | center | Content justify (flex) |
 
 
+---
+
+
+## Interactive
+
 ### Collapse
 
-Animated containder that can expand on it's content.
+Animated container that can expand on it's content.
 
 ```
-  import { Collapse } from "@ludekarts/base-ui";
+  import { Collapse } from "@ludekarts/base-ui/interactive";
 
   . . .
 
   const [showCollapse, toggleCollapse] = useState(false);
 
-  <Collapse open={showCollapse} minHeight={36}>Lorem ipsum dolor sit ammet...</Collapse>
+  <Collapse open={showCollapse} mnh={36}>Lorem ipsum dolor sit ammet...</Collapse>
 ```
 
 **Props**
@@ -247,9 +268,70 @@ Animated containder that can expand on it's content.
 | Prop name | Type | Default | Description |
 |-----------|------|---------|-------------|
 | **open** | boolean | false | Current state of collapse container. Is external. |
-| **maxHeight** | number | undefined | Maximal height of the container |
-| **minHeight** | number | undefined | Minimal height of the container |
+| **mxh** | number | undefined | Maximal height of the container |
+| **mnh** | number | undefined | Minimal height of the container |
 
+
+
+### Slider
+
+Container that slides its content horizontally or vertically.
+
+```
+  import { Slider } from "@ludekarts/base-ui/interactive";
+
+  . . .
+
+  const [activeSlide, setActiveSlide] = useState(0);
+
+  <Wrapper styles={{width: "200px", height: "200px", position: "relative"}}>
+    <Slider activeIndex={activeSlide} variant="vertical" loop>
+      <div>SLIDE 1</div>
+      <div>SLIDE 2</div>
+      <div>SLIDE 3</div>
+      <div>SLIDE 4</div>
+      <div>SLIDE 5</div>
+    </Slider>
+  </Wrapper>
+```
+
+**Props**
+
+| Prop name | Type | Default | Description |
+|-----------|------|---------|-------------|
+| **activeIndex** | number | 0 | Currently displayed slide |
+| **variant** | string | horizontal | Animation: `horizontal` or `vertical` |
+| **loop** | boolean | false | Make slides loops form last to first an back |
+| **fitHeight** | boolean | false | Fit Slider height to its content |
+
+> **NOTE:**
+>
+> By default Slider expands to fill its container. You need to define the dimensions for the container.
+
+
+
+### BreakpointClass
+
+Switches classes base on given brakpoint.
+
+```
+  import { BreakpointClass } from "@ludekarts/base-ui/interactive";
+
+  . . .
+  
+  <BreakpointClass breakpoint="(max-width: 980px)" beforeClass="class-a" afterClass="class-b">
+    <div>Element 1</div>
+    <div>Element 2</div>
+  </BreakpointClass>
+```
+
+**Props**
+
+| Prop name | Type | Default | Description |
+|-----------|------|---------|-------------|
+| **breakpoint** | string | REQUIRED | Media brekpoint which changes the clsses |
+| **beforeClass** | string |  | List of classes before applying breakpoint |
+| **afterClass** | string |  | List of classes after applying breakpoint |
 
 ---
 
@@ -429,11 +511,13 @@ Internally used close button for panels.
 
 | Prop name | Type | Default | Description |
 |-----------|------|---------|-------------|
-| **text** | string | inherit | Text color |
+| **text** | string | inherit | Icon color |
 | **color** | string | #EEEEEE | Background color |
-| **size** | string | 1.5em | width & height |
+| **size** | string | 1.5em | Icon size |
 | **type** | string | button | Button type |
+| **spacing** | string | 3px | Margin around icon |
 | **focusColor** | string | rgba(66, 153, 225, 0.6) | Focus outline color |
+
 
 ---
 
@@ -485,6 +569,7 @@ Arranges content items one under another.
 | Prop name | Type | Default | Description |
 |-----------|------|---------|-------------|
 | **gap** | string | 1em | Space between items |
+| **mxw** | bool/number | undefined | Sets max-width range for media query. By default Stack breaks at `min-width` |
 | **breakpoint** | string | undefined | Min-width to break into rail layout |
 
 
@@ -510,6 +595,7 @@ Arranges content items one next to another.
 | Prop name | Type | Default | Description |
 |-----------|------|---------|-------------|
 | **gap** | string | 1em | Space between items |
+| **mnw** | bool/number | undefined | Sets min-width range for media query. By default Stack breaks at `max-width` |
 | **breakpoint** | string | undefined | Max-width to break into stack layout |
 | **wrapContent** |  bool/number | undefined | Allows overflow item to wrap inside container |
 

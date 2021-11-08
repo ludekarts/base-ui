@@ -6,10 +6,10 @@ import { debounce } from "../utils";
 const Wrapper = styled.div`
   overflow: hidden;
   transition: height .3s ease;
-  ${({ open, height, maxHeight, minHeight }) => `
+  ${({ open, height, mxh, mnh }) => `
     height: ${open ? height : 0}px;
-    ${minHeight ? `min-height: ${minHeight}px;` : ``}
-    ${maxHeight ? `max-height: ${maxHeight}px; overflow: auto;` : ``}
+    ${mnh ? `min-height: ${mnh}px;` : ``}
+    ${mxh ? `max-height: ${mxh}px; overflow: auto;` : ``}
   `}
 `;
 
@@ -19,7 +19,7 @@ const Collapse = props => {
   const wrapper = useRef();
 
   const updateOnResize = debounce(() => {
-    setHeight(wrapper.current.scrollHeight);
+    wrapper.current && setHeight(wrapper.current.scrollHeight);
   }, 400);
 
   useEffect(updateOnResize, [open]);
@@ -37,8 +37,8 @@ const Collapse = props => {
 Collapse.displayName = "Collapse";
 Collapse.propTypes = {
   open: PropTypes.bool,
-  maxHeight: PropTypes.number,
-  minHeight: PropTypes.number,
+  mxh: PropTypes.number,
+  mnh: PropTypes.number,
 };
 
 Collapse.defaultProps = {

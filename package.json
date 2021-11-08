@@ -1,6 +1,6 @@
 {
   "name": "@ludekarts/base-ui",
-  "version": "0.1.0-beta.13",
+  "version": "0.1.0-beta.15",
   "description": "Basic UI Components for React projects",
   "source": "src/index.js",
   "main": "public/base-ui.js",
@@ -10,6 +10,7 @@
     "./panels": "./public/panels.js",
     "./layout": "./public/layout.js",
     "./buttons": "./public/buttons.js",
+    "./interactive": "./public/interactive.js",
     "./package.json": "./package.json"
   },
   "repository": {
@@ -30,6 +31,7 @@
     "parcel": "^1.12.4"
   },
   "dependencies": {
+    "@ludekarts/utility-belt": "^0.2.0-alpha.5",
     "prop-types": "^15.7.2",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",

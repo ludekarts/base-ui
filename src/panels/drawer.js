@@ -25,6 +25,7 @@ const Wrapper = styled.div`
   `};
 
   & button.close {
+    z-index: 1;
     top: 1rem;
     right: 1rem;
     position: absolute;
@@ -37,7 +38,7 @@ const DrawerPanel = forwardRef((props, ref) => {
     <Wrapper {...rest} open={open} nested={nested} top={top} width={width} onClick={event => event.stopPropagation()} ref={ref}>
       {
         !onClose ? null :
-          <Close onClick={onClose} size="2em" className="close" />
+          <Close onClick={onClose} className="close" />
       }
       {children}
     </Wrapper>

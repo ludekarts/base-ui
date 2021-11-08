@@ -32,6 +32,7 @@ const Panel = styled.div`
   box-shadow: 0px 9px 9px -11px rgba(0, 0, 0, 0.5);
 
   & button.close {
+    z-index: 1;
     top: 1rem;
     right: 1rem;
     position: absolute;
@@ -52,7 +53,7 @@ const Modal = props => {
         <Panel onClick={event => event.stopPropagation()}>
           {
             !onClose ? null :
-              <Close onClick={onClose} size="2em" className="close" />
+              <Close onClick={onClose} className="close" />
           }
           <Content>{children}</Content>
         </Panel>

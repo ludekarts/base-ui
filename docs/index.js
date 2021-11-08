@@ -3,7 +3,7 @@ import React, { useState, useRef } from "react";
 
 // ---- Docs UI ----------------
 
-import { Wrapper, MiniBox, Box, Menu, DropList, TextIcon, SwitchIcon, MobileMenu, SomeContainer, Nav } from "./styled";
+import { Wrapper, MiniBox, Box, Menu, DropList, TextIcon, SwitchIcon, MobileMenu, SomeContainer, Nav, SlideContainer } from "./styled";
 import imageSrc from "./assets/image.png";
 import avatarSrc from "./assets/avatar.png";
 
@@ -11,7 +11,8 @@ import avatarSrc from "./assets/avatar.png";
 
 import { Button, Checkbox, Switch, Ghost, Underline, Highlight, Close } from "../src/buttons";
 import { Container, Rail, Stack, Grid, Space, Columns, Sidebar, Cover } from "../src/layout";
-import { GlobalStyles, Text, Collapse, Form, Badge } from "../src/basic";
+import { Collapse, Slider, BreakpointClass } from "../src/interactive";
+import { GlobalStyles, Text, Form, Badge } from "../src/basic";
 import { Drawer, Modal, Overlay } from "../src/panels";
 import { Image, Avatar, AspectRatio } from "../src/media";
 
@@ -171,6 +172,8 @@ const Docs = () => {
   const [navItem, setNavItem] = useState(-1);
   const [theme, changeTheme] = useState("one");
   const [size, setSize] = useState("md");
+  const [slideVariant, setSlideVariant] = useState("horizontal");
+  const [tab, setTab] = useState(0);
   const [hasIcon, toggleIcons] = useState(false);
   const [accordionOpenIndex, selectAccordionIndex] = useState(0);
 
@@ -490,6 +493,40 @@ const Docs = () => {
               </Stack>
             </Space>
 
+            <Text as="h2">Slider</Text>
+            <Space space="1em 0" inset>
+              <Stack>
+                <SlideContainer>
+                  <Slider activeIndex={tab} variant={slideVariant} fitHeight>
+                    <Box>SLIDE 1</Box>
+                    <Box>SLIDE 2</Box>
+                    <Box>SLIDE 3 </Box>
+                    <Box>SLIDE 4</Box>
+                    <Box>SLIDE 5</Box>
+                    <Box>SLIDE 6</Box>
+                    <Box>SLIDE 7</Box>
+                  </Slider>
+                </SlideContainer>
+                <Rail className="--push-bottom" >
+                  <button onClick={() => setTab(tab - 1)}>PREV</button>
+                  <button onClick={() => setTab(tab + 1)}>NEXT</button>
+                  <button onClick={() => setTab(4)}>5</button>
+                  <button onClick={() => setSlideVariant(slideVariant === "vertical" ? "horizontal" : "vertical")}>
+                    Change to: {slideVariant === "vertical" ? "horizontal" : "vertical"}
+                  </button>
+                </Rail>
+              </Stack>
+            </Space>
+
+
+            <Text as="h2">BreakpointClass</Text>
+            <Space space="1em 0" inset>
+              <BreakpointClass breakpoint="(max-width: 980px)" beforeClass="color" afterClass="rounded">
+                <Box>Hello BreakpointClass</Box>
+                <Box>Hello BreakpointClass</Box>
+              </BreakpointClass>
+            </Space>
+
             <Text as="h2">Form</Text>
             {/* Notice "--flex-column" class to enforce <Columns/> to grow full width without applying width:100% which brakes layout */}
             <Space className="--flex-column" space="1em" stretch inset>
@@ -567,8 +604,10 @@ const Docs = () => {
                       color={badge % 2 ? "var(--akcent-one)" : "var(--akcent-two)"}>
                       <span className="--stretch-block --text-center">{badge}</span>
                       <Close
+                        size="0.7rem"
+                        spacing="1px"
                         color="rgba(0,0,0,0.4)"
-                        text="rgba(255, 255, 255, 0.6)"
+                        text="rgba(255, 255, 255, 0.4)"
                         onClick={() => closeBadge(index)}
                         focusColor="rgba(255, 255, 255, 0.6)" />
                     </Badge>

@@ -9,8 +9,8 @@ const Stack = styled.div`
     margin-top: ${({ gap }) => gap};
   }  
     
-  ${({ breakpoint, gap }) => !breakpoint ? "" : `
-    @media (min-width: ${breakpoint}) {
+  ${({ breakpoint, gap, mxw }) => !breakpoint ? "" : `
+    @media (${mxw ? "max-width" : "min-width"}: ${breakpoint}) {
       flex-direction: row;            
       & > * + * {
         margin-top: unset;
@@ -24,6 +24,10 @@ Stack.displayName = "Stack";
 
 Stack.propTypes = {
   gap: PropTypes.string,
+  mxw: PropTypes.oneOfType([
+    PropTypes.bool,
+    PropTypes.number,
+  ]),
   breakpoint: PropTypes.string,
 };
 

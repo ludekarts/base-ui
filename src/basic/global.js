@@ -5,6 +5,7 @@ const Styles = createGlobalStyle`
     
   :root {
 
+    --bui-focus-color: rgba(66, 153, 225, 0.6);
     --bui-box-shadow: 0px 9px 9px -11px rgba(0, 0, 0, 0.5);
     --bui-lift-shadow: 0px 23px 18px -21px rgba(0, 0, 0, 0.7);
 
@@ -281,14 +282,14 @@ const Styles = createGlobalStyle`
     & .--rail-around, .--h-around {
       justify-content: space-around;
     } 
-
+    
     /* Default focus */
 
     & .--focusable {      
         transition: box-shadow .3s ease;
       &:focus {
         outline: none;
-        box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.6);
+        box-shadow: 0 0 0 3px var(--bui-focus-color, rgba(66, 153, 225, 0.6));
       }
     }
 
@@ -320,6 +321,10 @@ const Styles = createGlobalStyle`
 
     & .--stretch {
       width: 100%;
+    }
+   
+    & .--stretch-v {
+      height: 100%;
     }
 
     & .--expand-content {

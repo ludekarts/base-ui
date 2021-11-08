@@ -42,8 +42,8 @@ const Rail = styled.div`
     `}
   `} 
 
-  ${({ breakpoint, gap, wrapContent }) => !breakpoint || wrapContent ? "" : `  
-    @media (max-width: ${breakpoint}) {
+  ${({ breakpoint, gap, wrapContent, mnw }) => !breakpoint || wrapContent ? "" : `  
+    @media (${mnw ? "min-width" : "max-width"}: ${breakpoint}) {
       flex-direction: column;
       & > * + * {
         margin-top: ${gap};
@@ -59,6 +59,10 @@ Rail.displayName = "Rail";
 Rail.propTypes = {
   gap: PropTypes.string,
   breakpoint: PropTypes.string,
+  mnw: PropTypes.oneOfType([
+    PropTypes.bool,
+    PropTypes.number,
+  ]),
   wrapContent: PropTypes.oneOfType([
     PropTypes.bool,
     PropTypes.number,
