@@ -115,6 +115,28 @@ Wrapper component that provides all base-ui utility classes.
 | `--space-l-3x-i` | Set padding left of 1.5rem |
 | `--space-l-4x-i` | Set padding left of 2rem |
 
+**Spacing vertical & horizontal**
+
+| Class name | Description |
+|------------|-------------|
+| `--space-v-i` | Set padding top & bottom of 0.5rem |
+| `--space-v-2x-i` | Set padding top & bottom of 1rem |
+| `--space-v-3x-i` | Set padding top & bottom of 1.5rem |
+| `--space-v-4x-i` | Set padding top & bottom of 2rem |
+| `--space-h-i` | Set padding left & ritgh of 0.5rem |
+| `--space-h-2x-i` | Set padding left & ritgh of 1rem |
+| `--space-h-3x-i` | Set padding left & ritgh of 1.5rem |
+| `--space-h-4x-i` | Set padding left & ritgh of 2rem |
+| `--space-v` | Set margin top & bottom of 0.5rem |
+| `--space-v-2x` | Set margin top & bottom of 1rem |
+| `--space-v-3x` | Set margin top & bottom of 1.5rem |
+| `--space-v-4x` | Set margin top & bottom of 2rem |
+| `--space-h` | Set margin left & ritgh of 0.5rem |
+| `--space-h-2x` | Set margin left & ritgh of 1rem |
+| `--space-h-3x` | Set margin left & ritgh of 1.5rem |
+| `--space-h-4x` | Set margin left & ritgh of 2rem |
+
+
 **Push content in flex containers (margin)**
 
 | Class name | Description |

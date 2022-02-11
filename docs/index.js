@@ -181,17 +181,17 @@ const Docs = () => {
     const update = [...badges];
     update.splice(index, 1);
     setBadges(update);
-  }
+  };
 
   const imperativeToggle = () => {
     const nextState = !checkToggleStat;
     Form.hardFormReset(imperativeForm.current, { resetValue: nextState })
     setCheckToggleStat(nextState);
-  }
+  };
 
   const imperativeStates = () => {
-    setIperativeValues(Form.formInputsToObject(imperativeForm.current, { includeCheckStatus: true }));
-  }
+    setIperativeValues(Form.formInputsToObject(imperativeForm.current, { includeCheckValues: true }));
+  };
 
   return (
     <GlobalStyles>
