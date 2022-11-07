@@ -24,6 +24,15 @@ export const Wrapper = styled.div`
     border: 1px solid #ddd;
   }
 
+  & button {
+    border: none;
+    text-align: left;
+
+    &:hover {
+      background-color: var(--akcent-two);
+    }
+  }
+
   .flex {
     display: flex
   }

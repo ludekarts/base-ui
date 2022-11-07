@@ -19,9 +19,7 @@ const Panel = styled.div`
   margin: 1em;
   width: 100%;
   display: flex;
-  max-height: 98%;
-  min-width: 18rem;
-  max-width: 45rem;
+  min-width: 18rem;  
   overflow: hidden;
   background: white;
   padding: 1rem 0 0;  
@@ -30,6 +28,11 @@ const Panel = styled.div`
   flex-direction: column;
   box-sizing: border-box;
   box-shadow: 0px 9px 9px -11px rgba(0, 0, 0, 0.5);
+
+  ${({ mxw, mxh }) => `
+    max-height: ${mxh};
+    max-width: ${mxw};
+  `}
 
   & button.close {
     z-index: 1;
@@ -46,11 +49,11 @@ const Content = styled.div`
 `;
 
 const Modal = props => {
-  const { children, open, onClose } = props;
+  const { children, open, mxw, mxh, onClose, ...rest } = props;
   return (
     <Overlay open={open} tint={0.7} onClick={onClose}>
       <Center>
-        <Panel onClick={event => event.stopPropagation()}>
+        <Panel {...rest} onClick={event => event.stopPropagation()} mxw={mxw} mxh={mxh} >
           {
             !onClose ? null :
               <Close onClick={onClose} className="close" />
@@ -64,10 +67,14 @@ const Modal = props => {
 
 Modal.defaultProps = {
   open: false,
+  mxw: "45rem",
+  mxh: "95%",
 };
 
 Modal.propTypes = {
   open: PropTypes.bool,
+  mxw: PropTypes.string,
+  mxh: PropTypes.string,
   onClose: PropTypes.func,
   children: PropTypes.node,
 };

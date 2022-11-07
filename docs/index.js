@@ -485,7 +485,7 @@ const Docs = () => {
                 <div>
                   <Button onClick={() => toggleCollapse(!showCollapse)} text="white" color="var(--akcent-two)">Toggle Colapse</Button>
                 </div>
-                <Collapse open={showCollapse} minHeight={36}>
+                <Collapse open={showCollapse} mnh={36}>
                   <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quibusdam, cum. Aliquid nulla distinctio fuga totam eum culpa molestias veritatis mollitia exercitationem, recusandae voluptates maxime nesciunt esse iste. Nihil, tempora quia.</p>
                   <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quibusdam, cum. Aliquid nulla distinctio fuga totam eum culpa molestias veritatis mollitia exercitationem, recusandae voluptates maxime nesciunt esse iste. Nihil, tempora quia.</p>
                   <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quibusdam, cum. Aliquid nulla distinctio fuga totam eum culpa molestias veritatis mollitia exercitationem, recusandae voluptates maxime nesciunt esse iste. Nihil, tempora quia.</p>
@@ -531,7 +531,7 @@ const Docs = () => {
             {/* Notice "--flex-column" class to enforce <Columns/> to grow full width without applying width:100% which brakes layout */}
             <Space className="--flex-column" space="1em" stretch inset>
               <Columns minSize="400px">
-                <Form onSubmit={data => setForm(data)} includeCheckStatus>
+                <Form onSubmit={data => setForm(data)} includeCheckValues>
                   <Stack>
                     <Rail className="--expand-content">
                       <input name="username" type="text" placeholder="Username" required className="base-ui-focus" />
@@ -712,6 +712,33 @@ const Docs = () => {
             </Collapse>
           </Stack>
 
+          <hr />
+
+          <Text as="h2">Tree view</Text>
+          <Text font="monospace" color="#333">Composition of Stack, Space, Collapse and useState</Text>
+          <Space />
+
+          <Sidebar gap="0">
+            <Stack gap="0">
+              <Tree label="Folder A">
+                <button className="sharpCorners --h-start">Image A</button>
+                <button className="sharpCorners --h-start">Image B</button>
+                <button className="sharpCorners --h-start">Image C</button>
+              </Tree>
+              <Tree label="Folder B" openOnInit>
+                <button className="sharpCorners --h-start">File A</button>
+                <Tree label="Folder D">
+                  <button className="sharpCorners --h-start">File C</button>
+                  <button className="sharpCorners --h-start">File D with long description</button>
+                </Tree>
+              </Tree>
+              <Tree label="Folder C">
+                <button className="sharpCorners --h-start">File e</button>
+              </Tree>
+            </Stack>
+            <Box>Content</Box>
+          </Sidebar>
+
         </Container>
 
         <Overlay open={showOverlay} onClick={() => toggleOverlay(false)} />
@@ -725,6 +752,7 @@ const Docs = () => {
           <h3>Hello modal</h3>
           <p>This is a sample modal content...</p>
         </Modal>
+
       </Wrapper>
     </GlobalStyles >
   );
@@ -732,5 +760,22 @@ const Docs = () => {
 
 
 // render(<CoverTest />, document.getElementById("app"));
-render(<Docs />, document.getElementById("app"));
 // render(<Interactive />, document.getElementById("app"));
+render(<Docs />, document.getElementById("app"));
+
+function Tree(props) {
+  const { children, label, openOnInit = false } = props;
+  const [open, toggle] = useState(openOnInit);
+  return (
+    <Stack gap="0">
+      <button className="sharpCorners --h-start" onClick={() => toggle(!open)}>{label}</button>
+      <Collapse open={open}>
+        <Space space="0 0 0 1em" inset>
+          <Stack gap="0">
+            {children}
+          </Stack>
+        </Space>
+      </Collapse>
+    </Stack>
+  );
+}

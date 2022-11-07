@@ -907,6 +907,8 @@ Description
 |-----------|------|---------|-------------|
 | **open** | bool | false | Modal open state |
 | **onClose** | function | undefined | On close callback. If defined *Close* button will appear in the modal |
+| **mxw** | string | 45rem | Max modal width |
+| **mxh** | string | 95% | Max modal height |
 
 
 ### Dropdown

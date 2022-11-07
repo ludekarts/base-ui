@@ -2,7 +2,7 @@ import React, { useCallback, forwardRef } from "react";
 import PropTypes from "prop-types";
 
 // USAGE:
-/* 
+/*
   const handleSubmit = data => {
     // data: object with all input fields name and their values => { inputName: inputValue }.
   };
@@ -85,23 +85,23 @@ export function formInputsToObject(form, options = { includeCheckValues: false }
 
 /*
   [⚠️ NOTICE]:
-  This is an imperative way to update a form. When providing a @source object all form's inputs that names matches 
+  This is an imperative way to update a form. When providing a @source object all form's inputs that names matches
   fields in @source will be translated into the inputs "value".
-  
+
   [💡 HINT]:
-  If you wnant to update other properties on the input e.g. "checked" field then use object notation 
+  If you wnant to update other properties on the input e.g. "checked" field then use object notation
   instead a plain value like so:
 
   formUpdate("#form", {
     name: "Rex",
-    active: { 
-      checked: true, 
-      value: "🦖" 
+    active: {
+      checked: true,
+      value: "🦖"
     }
   });
 
   [💡 HINT]:
-  If you want to update a multiple radio buttons with same name then just treatthem as a one files input
+  If you want to update a multiple radio buttons with same name then just treat them as a one files input
   and set the velue normally e.g.:
 
   <form id="form">

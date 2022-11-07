@@ -7,6 +7,7 @@ const ButtonWrapper = styled.button`
   border: none;  
   cursor: pointer;
   font-size: 1em;    
+  overflow: hidden;
   position: relative;
   line-height: 1.3em;
   font-family: inherit;
@@ -15,8 +16,8 @@ const ButtonWrapper = styled.button`
   justify-content: center;  
   -moz-appearance: none;
   -webkit-appearance: none;  
-  background-color: transparent;
   transition: color .3s ease;
+  background-color: transparent !important;
 
   & > span.base-ui-button-text {
     z-index: 1;
@@ -59,10 +60,10 @@ const ButtonWrapper = styled.button`
     ${size === "lg" ? "padding: 0.8em 1.5em;" : size === "sm" ? "padding: 0.3em 0.8em;" : "padding: 0.5em 1em;"}
     font-size: ${size === "lg" ? "1rem" : size === "sm" ? "0.85rem" : "1em"};
     color: ${inverse ? text : color};
+    border-radius: ${rounded ? "2em" : "0.2em"};
     text-transform: ${uppercase ? "uppercase" : "none"};
     
-    & > span.base-ui-button-effect {
-      border-radius: ${rounded ? "2em" : "0.2em"};
+    & > span.base-ui-button-effect {      
       box-shadow: 0 0 0 0.15em ${color} inset;
       background-color: ${inverse ? color : text};
     }

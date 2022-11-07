@@ -17,7 +17,7 @@ const ButtonWrapper = styled.button`
   justify-content: center;
   -moz-appearance: none;
   -webkit-appearance: none;  
-  background-color: transparent;
+  background-color: transparent !important;
 
   & > span.base-ui-button-text {
     z-index: 1;    
@@ -94,7 +94,8 @@ const ButtonWrapper = styled.button`
 
     &:hover {
       color: ${activeText};
-      
+      background-color: transparent;
+            
       & svg {
         fill: ${activeText === "inherit" ? "rgba(0, 0, 0, 0.5)" : activeText};
       }

@@ -1,13 +1,12 @@
-import React, { useRef, useEffect, useState } from "react";
+import React, { useRef, useEffect } from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
-import { debounce } from "../utils";
 
 const Wrapper = styled.div`
   overflow: hidden;
   transition: height .3s ease;
-  ${({ open, height, mxh, mnh }) => `
-    height: ${open ? height : 0}px;
+  height: 0;
+  ${({ mxh, mnh }) => `    
     ${mnh ? `min-height: ${mnh}px;` : ``}
     ${mxh ? `max-height: ${mxh}px; overflow: auto;` : ``}
   `}
@@ -15,22 +14,31 @@ const Wrapper = styled.div`
 
 const Collapse = props => {
   const { open, ...rest } = props;
-  const [height, setHeight] = useState(0);
   const wrapper = useRef();
 
-  const updateOnResize = debounce(() => {
-    wrapper.current && setHeight(wrapper.current.scrollHeight);
-  }, 400);
-
-  useEffect(updateOnResize, [open]);
-
   useEffect(() => {
-    window.addEventListener("resize", updateOnResize);
-    return () => window.removeEventListener("resize", updateOnResize);
-  }, []);
+    let onTimer;
+    let outTimer;
+
+    if (wrapper.current) {
+      if (open) {
+        wrapper.current.style.height = wrapper.current.scrollHeight + "px";
+        onTimer = setTimeout(() => wrapper.current.style.height = "auto", 350);
+      }
+      else {
+        wrapper.current.style.height = wrapper.current.scrollHeight + "px";
+        outTimer = setTimeout(() => wrapper.current.style.height = 0, 10);
+      }
+    }
+
+    return () => {
+      clearTimeout(onTimer);
+      clearTimeout(outTimer);
+    }
+  }, [open]);
 
   return (
-    <Wrapper {...rest} open={open} height={height} ref={wrapper} />
+    <Wrapper {...rest} ref={wrapper} />
   );
 }
 

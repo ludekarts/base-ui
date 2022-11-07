@@ -17,8 +17,8 @@ const Wrapper = styled.button`
   border: none;  
   font-size: 1em;
   cursor: pointer;
-  border-radius: 50%;  
   padding: 0.28em;
+  border-radius: 50%;  
   transition: filter .3s ease, box-shadow.3s ease;
   
   display: flex;
@@ -34,7 +34,7 @@ const Wrapper = styled.button`
 
 
   ${({ focusColor, color, spacing }) => `       
-    background-color: ${color};
+    background-color: ${color} !important;
     &:focus {      
       box-shadow: 0 0 0 3px ${focusColor};
     }
