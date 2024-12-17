@@ -28,7 +28,8 @@
   "devDependencies": {
     "@ludekarts/task-runner": "^0.2.0",
     "microbundle": "^0.13.0",
-    "parcel": "^1.12.4"
+    "parcel": "^2.13.3",
+    "process": "^0.11.10"
   },
   "dependencies": {
     "@ludekarts/utility-belt": "^0.2.0-alpha.5",
